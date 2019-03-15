@@ -1,0 +1,43 @@
+<template>
+	<div class="loading">
+		<div class="mask"></div>
+		<div class="section">
+			<img src="../../assets/loading.gif" alt="">
+			<span class="text">正在加载</span>
+		</div>
+	</div>
+</template>
+
+<script>
+</script>
+
+<style scoped>
+.loading {
+	position: fixed;
+	top:0;
+	right:0;
+	left:0;
+	bottom:0;
+	z-index: 2;
+}
+.loading .mask {
+	position: absolute;
+	background: rgba(0,0,0,0.5);
+	width:100%;
+	height: 100%;
+}
+.loading .section {
+	position: absolute;
+	line-height: 32px;
+	top:50%;
+	left:50%;
+	transform:translateY(-50%);  
+	transform:translateX(-50%);  
+	background: #fff;
+	padding:20px;
+	border-radius: 3px;
+}
+.loading .section img {
+	vertical-align: middle;
+}
+</style>

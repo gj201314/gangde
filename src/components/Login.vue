@@ -1,0 +1,93 @@
+<template>
+  <div id="login-box">
+		<div class="login-img">
+			<img src="../../static/logo.png" alt="">
+		</div>
+		<div class="form mobile-form">
+			<div class="form-item">
+				<input type="text" name="account" maxlength="11" v-model.trim="formData.account" @blur="validate('account')" placeholder="用户名称" />
+				<span class="error-msg" v-show="rules.account.msg!=''">{{rules.account.msg}}</span>
+			</div>
+			<div class="form-item">
+				<input type="password" name="password" v-model.trim="formData.password" @blur="validate('password')" placeholder="密码" />
+				<span class="error-msg" v-show="rules.password.msg!=''">{{rules.password.msg}}</span>
+				<router-link to="/forgotPwd" class="forgotPwd">忘记密码</router-link>
+			</div>
+			<div class="btn-box">
+				<button type="button" class="btn-submit" @click="submit">登录</button>
+			</div>
+			<span class="exists">还没有账号?请<a href="javascript:void(0);" @click="toReg">注册</a></span>
+		</div>
+  </div>
+</template>
+
+<script>
+export default {
+    data () {
+		return {
+			formData:{
+				account:'',
+				password:''
+			},
+			rules:{
+				account:{
+					msg:'',
+					name:'用户名称'
+				},
+				password:{
+					msg:'',
+					name:'密码'
+				}
+			}
+		}
+    },
+	methods:{
+		validate(name){
+			let val = this.formData[name],p1=/^1([0-9]{10})$/;
+			if(val==''){
+				this.rules[name].msg = this.rules[name].name+'不能为空';
+				return false;
+			}else if(name=='mobile' && !p1.test(val)){
+				this.rules[name].msg = this.rules[name].name+'只能为11位的数字';
+				return false;
+			}else if(name=='confirmPwd' && (this.formData['pwd']!=this.formData['confirmPwd'])){
+				this.rules[name].msg = '两次密码不一致';
+				return false;
+			}else{
+				this.rules[name].msg = '';
+				return true;
+			};
+		},
+		toReg(){
+			this.$router.push('/reg');
+		},
+		submit(){
+			let flag = false;
+			for(let v in this.formData){
+				flag = this.validate(v);
+			};
+			if(flag){
+				this.$axios({
+					method:'post',
+					url:'/user/login',
+					data:this.formData
+				}).then(function (response) {
+					console.log(response);
+				}).catch(function (error) {
+					console.log(error);
+				});
+			}
+		}
+	}
+}
+</script>
+<style scoped>
+#login-box .login-img{
+	margin-bottom: 50px;
+}
+#login-box .login-img img {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+</style>
