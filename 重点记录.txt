@@ -1,0 +1,13 @@
+第一笔
+	安装less依赖:npm install less less-loader --save
+第二步：
+	进入到build的webpack.base.conf.js
+	在module.rules里追加
+		{
+		  test: /\.less$/,
+		  loader: "style-loader!css-loader!less-loader",
+		},
+在vue里添加
+<style lang = 'less' scoped>
+
+</style>

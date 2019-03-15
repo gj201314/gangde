@@ -2,6 +2,15 @@
   <div id="app">
 	<loading v-if="flag"></loading>
     <router-view/>
+	<div class="box">
+		<h2>less演示</h2>
+		<div class="box-child">
+			11111
+		</div>
+		<div class="box-child2">
+			222
+		</div>
+	</div>
   </div>
 </template>
 
@@ -15,8 +24,39 @@ export default {
 	}
 }
 </script>
-
-<style>
+<style lang="less">
+	@color:#eee;
+	@width:200px;
+	@height:200px;
+	.box {
+		background: @color;
+		.border;
+	}
+	.box-child {
+		width:@width;
+		height:@height;
+		.border3();
+	}
+	.box-child2 {
+		width:@width;
+		height:@height;
+		margin-left: 100px;
+		.border2(5px);
+	}
+	//没参数的
+	.border {
+		border:2px #f00 solid;
+	}
+	//有参数的
+	.border2(@borderWidth) {
+		border:@borderWidth #f00 solid;
+	}
+	//设置默认参数的
+	.border3(@borderWidth:10px;) {
+		border:@borderWidth #f00 solid;
+	}
+</style>
+<style lang="less">
 /* 基本样式 */
 * {
 	margin:0;
@@ -67,6 +107,28 @@ button {
   font-size:14px;
 	font-family: '微软雅黑';
 }
+.backgroundSize(@v){
+	background-size:@v;
+	-webkit-background-size:@v;
+	-moz-background-size:@v;
+	-ms-background-size:@v;
+}
+.borderRadius(@radius){
+	border-radius: @radius;
+	-webkit-border-radius: @radius;
+	-moz-border-radius: @radius;
+	-ms-border-radius: @radius;
+}
+.boxShadow(@v) {
+	-webkit-box-shadow:@v;
+	-moz-box-shadow:@v;
+	box-shadow:@v;
+}
+.transform(@v){
+	transform: @v;
+	-webkit-transform: @v;
+	-moz-transform: @v;
+}
 /* 头部样式 */
 #header {
 	height:80px;
@@ -79,7 +141,7 @@ button {
 #header .search {
 	border:1px #e3c653 solid;
 	overflow: hidden;
-	border-radius:35px;
+	.borderRadius(35px);
 	height: 35px;
 	width:256px;
 	margin-top: 10px;
@@ -101,11 +163,11 @@ button {
 	height:33px;
 	width:32px;
 	background: url(./assets/search-icon.png) no-repeat 3px center;
-	background-size:18px 17px;
+	.backgroundSize(18px 17px);
 	border:none;
 	display: inline-block;
 	vertical-align: bottom;
-	border-radius: 2px;
+	.borderRadius(2px);
 }
 #header img {
 	height: 40px;
@@ -134,7 +196,7 @@ button {
 	right:0;
 	bottom:0;
 	height: 3px;
-	border-radius:3px;
+	.borderRadius(3px);
 	background: #e3c653;
 }
 #header .user-status {
@@ -146,7 +208,7 @@ button {
 	height:35px;
 	text-align:center;
 	line-height:35px;
-	border-radius: 35px;
+	.borderRadius(35px);
 	font-size: 14px;
 	display:inline-block;
 }
@@ -188,7 +250,7 @@ button {
 	background-color: transparent;
 	background-image: none;
 	border: 1px solid #ddd;
-	border-radius: 4px;
+	.borderRadius(4px);
 	height: 34px;
 	outline:0;
 }
@@ -200,7 +262,7 @@ button {
 	display: block;
 	width: 22px;
 	height: 2px;
-	border-radius: 1px;
+	.borderRadius(1px);
 	background-color: #888;
 	margin-top: 4px;
 }
@@ -211,9 +273,7 @@ button {
 }
 #header .m-navbar nav {
 	opacity: 0;
-	transform: translateY(-100%);
-	-webkit-transform: translateY(-100%);
-	-moz-transform: translateY(-100%);
+	.transform(translateY(-100%));
 	transition: all 0.5s;
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
@@ -224,9 +284,7 @@ button {
 }
 #header .m-navbar.active nav {
 	opacity: 1;
-	transform: translateY(0);
-	-webkit-transform: translateY(0);
-	-moz-transform: translateY(0);
+	.transform(translateY(0));
 }
 #header .m-navbar a{
 	padding: 10px;
@@ -318,20 +376,18 @@ button {
 }
 .form .form-item .item-content .input-box {
 	border:1px #cbccca solid;
-	border-radius:4px;
+	.borderRadius(4px);
 }
 .form .form-item .item-content .input-box.error {
 	border-color:#ff6200;
-	-webkit-box-shadow:0px 5px 15px #e5e5e5;
-	-moz-box-shadow:0px 5px 15px #e5e5e5;
-	box-shadow:0px 5px 15px #e5e5e5;
+	.boxShadow(0px 5px 15px #e5e5e5);
 }
 .form .form-item .item-content .input-box input {
 	width:340px;
 	height:38px;
 	padding:10px;
 	font-size:14px;
-	border-radius:4px;
+	.borderRadius(4px);
 }
 .form .form-item input::-webkit-input-placeholder {
     color:#999;
@@ -357,7 +413,7 @@ button {
 	height:38px;
 	line-height: 40px;
 	text-align: center;
-	border-radius:0 4px 4px 0;
+	.borderRadius(0 4px 4px 0);
 	font-size: 14px;
 	border-left:1px #e0e0e0 solid;
 	background: #f0f0f2;
@@ -375,7 +431,7 @@ button {
 	font-size: 14px;
 	color:#ff6200;
 	background:url(./assets/icon-false.png) no-repeat left center;
-	background-size:18px 18px;
+	.backgroundSize(18px 18px);
 }
 .form .form-item .btn-box {
 	padding-top: 5px;
@@ -387,7 +443,7 @@ button {
 	line-height: 40px;
 	text-align: center;
 	font-size: 14px;
-	border-radius: 4px;
+	.borderRadius(4px);
 	width:340px;
 	display: block;
 }
@@ -410,7 +466,7 @@ button {
 }
 .success-box .msg {
 	background: url(./assets/success-icon.png) no-repeat left center;
-	background-size: 38px 38px;
+	.backgroundSize(380px 38px);
 	color:#333333;
 	font-size: 22px;
 	height: 40px;
@@ -424,7 +480,7 @@ button {
 	line-height: 40px;
 	text-align: center;
 	font-size: 14px;
-	border-radius: 4px;
+	.borderRadius(4px);
 	width:320px;
 	display:inline-block;
 }
@@ -444,13 +500,13 @@ button {
 	position: relative;
 	height: 45px;
 	margin-bottom: 30px;
-	border-radius:4px;
+	.borderRadius(4px);
 	border:1px #ccc solid;
 }
 .form.form.mobile-form .form-item input{
 	width:100%;
 	font-size: 14px;
-	border-radius:4px;
+	.borderRadius(4px);
 	height: 43px;
 	padding:0 10px;
 	border:none;
@@ -463,7 +519,7 @@ button {
 	height: 30px;
 	line-height: 30px;
 	background: url(assets/icon-false.png) no-repeat left center;
-	background-size:15px 15px;
+	.backgroundSize(15px 15px);
 	padding-left:20px;
 	color:#ff6200;
 	font-size: 14px;
@@ -491,7 +547,7 @@ button {
 	height:45px;
 	border:1px #d8bb48 solid;
 	font-size: 16px;
-	border-radius: 4px;
+	.borderRadius(4px);
 	background:#d8bb48;
 	color:#fff;
 }
