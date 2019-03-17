@@ -57,7 +57,7 @@ export default {
 	transform: translateX(-50%);
 	-webkit-transform: translateX(-50%);
 	-moz-transform: translateX(-50%);
-	z-index:999;
+	z-index:3000;
 }
 .g-msg.msg-success{
 	background:#47CA56;

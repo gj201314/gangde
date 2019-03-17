@@ -235,6 +235,7 @@ button {
 	height:50px;
 	background: #fff;
 	position: relative;
+	display:none;
 }
 .m-header h1 {
 	position: absolute;
@@ -550,6 +551,7 @@ button {
 	top:0;
 	line-height: 43px;
 	height:43px;
+	font-size: 14px;
 	color:rgb(38, 99, 249);
 }
 .form.form.mobile-form .btn-submit {

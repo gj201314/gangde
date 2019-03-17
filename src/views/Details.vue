@@ -44,8 +44,8 @@
 		<p-dialog id="dialog-down" :visible.sync="downVisible">
 			<div class="form mobile-form">
 				<div class="form-item">
-					<input type="text" v-model.trim="formData.nickName" @blur="validate('nickName')" placeholder="姓名" />
-					<span class="error-msg" v-show="rules.nickName.msg!=''">{{rules.nickName.msg}}</span>
+					<input type="text" v-model.trim="formData.username" @blur="validate('username')" placeholder="姓名" />
+					<span class="error-msg" v-show="rules.username.msg!=''">{{rules.username.msg}}</span>
 				</div>
 				<div class="form-item">
 					<input type="text" v-model.trim="formData.mobile" @blur="validate('mobile')" placeholder="手机号码" />
@@ -57,8 +57,8 @@
 					<span class="error-msg" v-show="rules.code.msg!=''">{{rules.code.msg}}</span>
 				</div>
 				<div class="form-item">
-					<input type="text" v-model.trim="formData.companyName" @blur="validate('companyName')" placeholder="公司名称(选填)" />
-					<span class="error-msg" v-show="rules.companyName.msg!=''">{{rules.companyName.msg}}</span>
+					<input type="text" v-model.trim="formData.company" @blur="validate('company')" placeholder="公司名称(选填)" />
+					<span class="error-msg" v-show="rules.company.msg!=''">{{rules.company.msg}}</span>
 				</div>
 				<div class="form-item">
 					<input type="text" v-model.trim="formData.email" @blur="validate('email')" placeholder="邮箱(选填)" />
@@ -84,16 +84,17 @@ export default {
 			content:'我是内容主体',
 			qrVisible:false,
 			downVisible:false,
-			type:-1,
+			type:0,
 			formData:{
-				nickName:'',
+				username:'',
 				mobile:'',
-				companyName:'',
+				company:'',
 				email:'',
-				code:''
+				code:'',
+				source_id:''
 			},
 			rules:{
-				nickName:{
+				username:{
 					msg:'',
 					name:'姓名'
 				},
@@ -101,13 +102,13 @@ export default {
 					msg:'',
 					name:'手机号码'
 				},
-				companyName:{
+				company:{
 					msg:'',
 					name:'公司名称'
 				},
 				email:{
 					msg:'',
-					name:'确认密码'
+					name:'邮箱'
 				},
 				code:{
 					msg:'',
@@ -117,6 +118,7 @@ export default {
 		}
 	},
 	mounted(){
+		this.formData.source_id = this.$route.params.id;
 		this.$axios({
 			method:'get',
 			url:'/archives/show',
@@ -138,16 +140,18 @@ export default {
 	},
 	methods:{
 		validate(name){
-			let val = this.formData[name],p1=/^1([0-9]{10})$/;
-			if(val==''){
+			let val = this.formData[name],p1=/^1([0-9]{10})$/,
+			p2 = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+			if(name=='username'){
+				console.log('不验证')
+			}else if(val=='' && (name!='email')){
 				this.rules[name].msg = this.rules[name].name+'不能为空';
 				return false;
-			}else if(name=='mobile' && p1.test(val)){
+			}else if(name=='mobile' && !p1.test(val)){
 				this.rules[name].msg = this.rules[name].name+'只能为11位的数字';
 				return false;
-			}else if(name=='confirmPwd' && (this.formData['pwd']!=this.formData['confirmPwd'])){
-				this.rules[name].msg = '两次密码不一致';
-				return false;
+			}else if(name=='email' && (val!='' && !p2.test(val))){
+				this.rules[name].msg = this.rules[name].name+'格式有误';
 			}else{
 				this.rules[name].msg = '';
 				return true;
@@ -156,10 +160,26 @@ export default {
 		submit(){
 			let flag = false;
 			for(let v in this.formData){
-				flag = this.validate(v);
+				if(v!='source_id'){
+					flag = this.validate(v);
+				};
 			};
 			if(flag){
-				console.log('提交ajax')
+				this.$axios({
+					method:'post',
+					url:'/client/create',
+					data:this.formData
+				}).then((response)=>{
+					let res = response.data;
+					if(res.code==0){
+						this.$msg({'msg':res.msg,'status':'error'});
+					}else{
+						this.$msg('请求成功');
+						this.downVisible = false;
+					};
+				}).catch((error)=>{
+					console.log(error);
+				});
 			}
 		}
 	}
@@ -183,7 +203,7 @@ export default {
 <style scoped>
 #details .main {
 	padding: 20px 0;
-	height: 900px;
+	min-height: 900px;
 }
 #details section {
 	width:800px;

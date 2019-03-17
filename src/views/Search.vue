@@ -46,7 +46,7 @@
 export default {
 	data(){
 		return {
-			pageCount:0,
+			pageCount:10,
 			currentPage:1,
 			items:[]
 		}
@@ -101,6 +101,7 @@ export default {
 	background: #fff;
 }
 #search .main {
+	min-height: 800px;
 	padding: 20px 0;
 }
 #search .article {
@@ -125,6 +126,7 @@ export default {
 	padding:10px 0;
 	height: 68px;
 	line-height: 28px;
+	overflow: hidden;
 	color:#666;
 }
 #search .item-box .item-content span {
