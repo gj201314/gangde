@@ -2,7 +2,7 @@
   <div id="app">
 	<loading v-if="flag"></loading>
     <router-view/>
-	<div class="box">
+	<div class="box" style="display: none;">
 		<h2>less演示</h2>
 		<div class="box-child">
 			11111
@@ -211,6 +211,16 @@ button {
 	.borderRadius(35px);
 	font-size: 14px;
 	display:inline-block;
+}
+#header .user-status span.user-login {
+	color: #c4c5c8;
+	font-size: 14px;
+	line-height:35px;
+}
+#header .user-status span.user-login i{
+	font-style: normal;
+	padding:0 5px;
+	color:#e3c653;
 }
 #header .user-status a.btn-reg {
 	border: 1px #e3c653 solid;
@@ -569,33 +579,33 @@ button {
 	padding-top:30px;
 }
 /* 手机端样式 */
-@media screen and (min-width:980px) {
-	.p-header {
-		display: block;
-	}
-	.m-header {
-		display: none;
-	}
-}
-@media screen and (max-width:980px) {
-	.wrap {
-		width:100%;
-	}
-	.p-header {
-		display: none;
-	}
-	#header {
-		height: auto;
-		min-height:50px;
-		padding: 0;
-		border-bottom:1px #e7e7e7 solid;
-	}
-	.m-header {
-		padding:8px 10px;
-		display: block;
-	}
-	#footer {
-		text-align: center;
-	}
-}
+// @media screen and (min-width:980px) {
+// 	.p-header {
+// 		display: block;
+// 	}
+// 	.m-header {
+// 		display: none;
+// 	}
+// }
+// @media screen and (max-width:980px) {
+// 	.wrap {
+// 		width:100%;
+// 	}
+// 	.p-header {
+// 		display: none;
+// 	}
+// 	#header {
+// 		height: auto;
+// 		min-height:50px;
+// 		padding: 0;
+// 		border-bottom:1px #e7e7e7 solid;
+// 	}
+// 	.m-header {
+// 		padding:8px 10px;
+// 		display: block;
+// 	}
+// 	#footer {
+// 		text-align: center;
+// 	}
+// }
 </style>

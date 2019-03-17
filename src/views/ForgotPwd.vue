@@ -167,11 +167,11 @@ export default {
 	background: url(../../static/shadow.png) no-repeat left bottom;
 	background-size:22px 130px;
 }
-@media screen and (max-width:400px) {
+/* @media screen and (max-width:400px) {
 	#reg {
 		padding:30px 15px;
 		width:auto;
 		max-width: 100%;
 	}
-}
+} */
 </style>

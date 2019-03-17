@@ -12,7 +12,7 @@
 				<router-link to="/about">关于我们</router-link>
 			</nav>
 			<div class="search pull-left">
-				<input type="text" v-model="serachVal" placeholder="搜索" />
+				<input type="text" v-model.trim="serachVal" placeholder="搜索" />
 				<button type="button" @click="toSearch"></button>
 			</div>
 			<div class="user-status pull-right">
@@ -21,7 +21,7 @@
 					<a href="javascript:void(0);" @click="loginVisible=true" class="btn-login">登录</a>
 				</template>
 				<template v-else>
-					<span>{{nickName}}</span>
+					<span class="user-login">欢迎<i>{{nickName}}</i>,来到纲得</span>
 				</template>
 			</div>
 		</div>
@@ -57,24 +57,41 @@
 
 <script>
 export default {
-    data () {
+  data () {
 		return {
 			open:false,
 			loginVisible:false,
 			serachVal:'',
 		}
-    },
+  },
+	props:{
+		search:{
+			type:String,
+			default:''
+		}
+	},
 	computed:{
 		nickName(){
 			return this.$store.state.nickName;
 		}
 	},
+	mounted(){
+		if(this.search!=''){
+			this.serachVal = this.search;
+		};
+	},
 	methods:{
 		handleEvent(type){//根据type来，判断表单的一些操作
-			
+			if(type=='close'){
+				this.loginVisible = false;
+			};
 		},
 		toSearch(){
-			this.$router.push('/search');
+			if(this.serachVal!=''){
+				this.$router.push({name:'search',params:{search:this.serachVal}});
+			}else{
+				this.$msg({'msg':'请输入搜索内容','status':'error'});
+			};
 		},
 		openNav(){
 			this.open = !this.open;

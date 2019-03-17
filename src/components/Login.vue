@@ -11,12 +11,12 @@
 			<div class="form-item">
 				<input type="password" name="password" v-model.trim="formData.password" @blur="validate('password')" placeholder="密码" />
 				<span class="error-msg" v-show="rules.password.msg!=''">{{rules.password.msg}}</span>
-				<router-link to="/forgotPwd" class="forgotPwd">忘记密码</router-link>
+				<a href="javascript:void(0);" class="forgotPwd" @click="toLink('/forgotPwd')">忘记密码</a>
 			</div>
 			<div class="btn-box">
 				<button type="button" class="btn-submit" @click="submit">登录</button>
 			</div>
-			<span class="exists">还没有账号?请<a href="javascript:void(0);" @click="toReg">注册</a></span>
+			<span class="exists">还没有账号?请<a href="javascript:void(0);" @click="toLink('/reg')">注册</a></span>
 		</div>
   </div>
 </template>
@@ -40,7 +40,7 @@ export default {
 				}
 			}
 		}
-    },
+	},
 	methods:{
 		validate(name){
 			let val = this.formData[name],p1=/^1([0-9]{10})$/;
@@ -58,8 +58,9 @@ export default {
 				return true;
 			};
 		},
-		toReg(){
-			this.$router.push('/reg');
+		toLink(href){
+			this.$emit('handleEvent','close');
+			this.$router.push(href);
 		},
 		submit(){
 			let flag = false;
@@ -71,9 +72,17 @@ export default {
 					method:'post',
 					url:'/user/login',
 					data:this.formData
-				}).then(function (response) {
-					console.log(response);
-				}).catch(function (error) {
+				}).then((response)=>{
+					let res = response.data;
+					if(res.code==0){
+						this.$msg({'msg':res.msg,'status':'error'});
+					}else{
+						this.$msg('登录成功');
+						localStorage.setItem('gangde_user',JSON.stringify(res.data.userinfo));
+						this.$store.commit('swicthNickName',res.data.username);
+						this.$emit('handleEvent','close');
+					};
+				}).catch((error)=>{
 					console.log(error);
 				});
 			}

@@ -1,16 +1,16 @@
 <template>
 	<div id="search">
-		<t-header></t-header>
+		<t-header :search="$route.params.search"></t-header>
 		<div class="wrap clearfix main">
 			<div class="item-list pull-left">
-				<div class="item-box clearfix" @click="toDetails">
+				<div class="item-box clearfix" v-for="item in items" @click="toDetails(item.id)">
 					<div class="item-content pull-left">
-						<h5>2019心愿：学写作给父母养老？</h5>
-						<p>小猪佩奇最近火了，原因竟然是...</p>
+						<h5>{{item.title}}</h5>
+						<p>{{item.description}}</p>
 						<span>阅读量<i>1167</i></span>
 					</div>
 					<div class="item-img pull-right">
-						<img src="../../static/detail-img.png" alt="">
+						<img :src="item.image" alt="">
 					</div>
 				</div>
 				<div class="pagination-box">
@@ -46,8 +46,9 @@
 export default {
 	data(){
 		return {
-			pageCount:10,
-			currentPage:1
+			pageCount:0,
+			currentPage:1,
+			items:[]
 		}
 	},
 	computed:{
@@ -69,16 +70,28 @@ export default {
 		}
 	},
 	mounted(){
-		setTimeout(()=>{
-			this.$store.commit('switchPageLoading',false);
-		},1000)
+		this.$axios({
+			method:'get',
+			url:'/archives/search',
+			params:{'search':this.$route.params.search}
+		}).then((response)=>{
+			let res = response.data;
+			if(res.code==0){
+				this.$msg({'msg':res.msg,'status':'error'});
+			}else{
+				this.$msg('查询成功');
+				this.items = res.data.Archives;
+			};
+		}).catch((error)=>{
+			console.log(error);
+		});
 	},
 	methods:{
 		updateCurrentPage(num){
 			this.currentPage=num;
 		},
-		toDetails(){
-			this.$router.push('/details');
+		toDetails(id=25){
+			this.$router.push({name:'details',params:{id:id}});
 		}
 	}
 }
@@ -97,8 +110,12 @@ export default {
 	width:800px;
 }
 #search .item-list .item-box{
+	position: relative;
 	padding: 27px 10px 27px 0;
 	border-bottom:1px #f0f0f0 solid;
+}
+#search .item-box .item-content {
+	padding-right:180px;
 }
 #search .item-box .item-content h5 {
 	font-size: 20px;
@@ -107,7 +124,7 @@ export default {
 #search .item-box .item-content p {
 	padding:10px 0;
 	height: 68px;
-	line-height: 24px;
+	line-height: 28px;
 	color:#666;
 }
 #search .item-box .item-content span {
@@ -120,6 +137,10 @@ export default {
 #search .item-box .item-img {
 	width:160px;
 	height:98px;
+	position: absolute;
+	right: 10px;
+    top: 27px;
+	text-align: center;
 }
 #search .item-box .item-img img{
 	max-width:100%;
@@ -219,11 +240,11 @@ export default {
 .pagination .prev.prohibit,.pagination .next.prohibit {
 	color:rgba(0, 0, 0,0.65);
 }
-@media screen and (max-width:980px) {
+/* @media screen and (max-width:980px) {
 	.result {
 		width:100%;
 		margin-left: 0;
 		padding: 10px;
 	}
-}
+} */
 </style>

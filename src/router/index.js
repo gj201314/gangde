@@ -27,7 +27,7 @@ export default new Router({
 		}
     },
 	{
-	    path: '/search',
+	  path: '/search/:search',
 		name: 'search',
 		component: Search
 	},
@@ -56,7 +56,7 @@ export default new Router({
 		}
 	},
 	{
-		path: '/details',
+		path: '/details/:id',
 		name: 'details',
 		component:Details,
 		meta:{

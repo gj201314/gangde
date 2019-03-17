@@ -3,7 +3,7 @@
 		<t-header></t-header>
 		<div class="wrap clearfix main">
 			<section class="pull-left">
-				<h3 class="content-title">小猪佩奇为啥火了？</h3>
+				<h3 class="content-title">{{title}}</h3>
 				<div class="author">
 					<div class="author-img"></div>
 					<div class="author-info">
@@ -16,8 +16,8 @@
 					</div>
 				</div>
 				<div class="content">{{content}}</div>
-				<button type="button" class="clickMore" @click="qrVisible=true">点击查看全文</button>
-				<button type="button" class="clickUpdate" @click="downVisible=true">点击下载新商道课题资料</button>
+				<button type="button" v-show="type==1" class="clickMore" @click="qrVisible=true">点击查看全文</button>
+				<button type="button" v-show="type==0" class="clickUpdate" @click="downVisible=true">点击下载新商道课题资料</button>
 			</section>
 			<div class="article pull-right">
 				<div class="focus clearfix">
@@ -79,10 +79,12 @@
 export default {
 	data(){
 		return {
+			title:'',
 			author:'林子聪',
 			content:'我是内容主体',
 			qrVisible:false,
 			downVisible:false,
+			type:-1,
 			formData:{
 				nickName:'',
 				mobile:'',
@@ -115,9 +117,24 @@ export default {
 		}
 	},
 	mounted(){
-		setTimeout(()=>{
-			this.$store.commit('switchPageLoading',false);
-		},1000)
+		this.$axios({
+			method:'get',
+			url:'/archives/show',
+			params:{'id':this.$route.params.id}
+		}).then((response)=>{
+			let res = response.data;
+			if(res.code==0){
+				this.$msg({'msg':res.msg,'status':'error'});
+			}else{
+				this.$msg('查询成功');
+				let data = res.data.archivesInfo;
+				this.title = data.title;
+				this.content = data.description;
+				this.type = data.type;
+			};
+		}).catch((error)=>{
+			console.log(error);
+		});
 	},
 	methods:{
 		validate(name){
@@ -305,7 +322,7 @@ export default {
 	width:100%;
 	overflow: hidden;
 }
-@media screen and (max-width:980px){
+/* @media screen and (max-width:980px){
 	#header {
 		display: none;
 	}
@@ -322,5 +339,5 @@ export default {
 		height: 40px;
 		line-height: 40px;
 	}
-}
+} */
 </style>

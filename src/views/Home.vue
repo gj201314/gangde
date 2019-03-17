@@ -123,7 +123,7 @@ export default {
 	mounted(){
 		setTimeout(()=>{
 			this.$store.commit('switchPageLoading',false);
-		},1000)
+		},500)
 	},
 	methods:{
 		
@@ -275,7 +275,7 @@ h3.content-title img{
 	font-size: 14px;
 	color:#fff;
 }
-@media screen and (max-width:980px) {
+/* @media screen and (max-width:980px) {
 	.banner {
 		height:208px;
 	}
@@ -313,5 +313,5 @@ h3.content-title img{
 	.ganders .item-list .f-item {
 		display: none;
 	}
-}
+} */
 </style>

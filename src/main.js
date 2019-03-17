@@ -52,7 +52,7 @@ router.afterEach((to, from) => {
 const store = new Vuex.Store({
 	state:{
 		pageLoading:false,
-		nickName:''
+		nickName: $user.isUserLogin()? $user.getUser().username:''
 	},
 	mutations:{
 		switchPageLoading(state,flag){
@@ -82,7 +82,7 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
   response => {
     // 数据响应之后，要做的业务
-		store.commit('switchPageLoading',true);
+		store.commit('switchPageLoading',false);
     return response
   },
   error => {
