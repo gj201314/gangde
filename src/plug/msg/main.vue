@@ -42,7 +42,7 @@ export default {
 	}
 }
 </script>
-<style>
+<style lang="less">
 .g-msg {
 	position: fixed;
 	padding: 10px;
@@ -54,21 +54,17 @@ export default {
 	transition: opacity .3s,transform .4s;
 	-webkit-transition: opacity .3s,-webkit-transform .4s;
 	-moz-transition: opacity .3s,-moz-transform .4s;
-	transform: translateX(-50%);
-	-webkit-transform: translateX(-50%);
-	-moz-transform: translateX(-50%);
+	.transform(translateX(-50%));
 	z-index:3000;
-}
-.g-msg.msg-success{
-	background:#47CA56;
-}
-.g-msg.msg-error{
-	background:#f00;
+	.msg-success{
+		background:#47CA56;
+	}
+	.msg-error{
+		background:#f00;
+	}
 }
 .msg-fade-enter,.msg-fade-leave-active {
     opacity: 0;
-    transform: translate(-50%,-100%);
-	-webkit-transform: translate(-50%,-100%);
-	-moz-transform: translate(-50%,-100%);
+    .transform(translate(-50%,-100%));
 }
 </style>

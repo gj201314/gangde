@@ -13,7 +13,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 .loading {
 	position: fixed;
 	top:0;
@@ -21,25 +21,25 @@ export default {
 	left:0;
 	bottom:0;
 	z-index:8888;
-}
-.loading .mask {
-	position: absolute;
-	background: rgba(0,0,0,0.5);
-	width:100%;
-	height: 100%;
-}
-.loading .section {
-	position: absolute;
-	line-height: 32px;
-	top:50%;
-	left:50%;
-	transform:translateY(-50%);  
-	transform:translateX(-50%);  
-	background: #fff;
-	padding:20px;
-	border-radius: 3px;
-}
-.loading .section img {
-	vertical-align: middle;
+	.mask {
+		position: absolute;
+		background: rgba(0,0,0,0.5);
+		width:100%;
+		height: 100%;
+	}
+	.section {
+		position: absolute;
+		line-height: 32px;
+		top:50%;
+		left:50%;
+		transform:translateY(-50%);  
+		transform:translateX(-50%);  
+		background: #fff;
+		padding:20px;
+		border-radius: 3px;
+		img {
+			vertical-align: middle;
+		}
+	}
 }
 </style>

@@ -100,163 +100,177 @@ export default {
 	}
 }
 </script>
-<style scoped>
-#price .main {
-	padding: 20px 0;
-}
-#price .list-title {
-	font-size: 35px;
-	text-align: center;
-	color:#666;
-	margin-bottom: 60px;
-}
-#price .list-item {
-	font-size:0;
-	display: table;
-	width: 100%;
-	margin-bottom: 115px;
-	-webkit-box-shadow:0px 5px 15px #e5e5e5;
-	-moz-box-shadow:0px 5px 15px #e5e5e5;
-	box-shadow:0px 5px 15px #e5e5e5;
-}
-#price .list-item .item {
-	display: table-cell;
-	vertical-align: top;
-	position: relative;
-	width:25%;
-	background: #fff;
-	font-size: 14px;
-	border:1px #ececec solid;
-	border-top:0;
-	cursor: pointer;
-}
-#price .list-item .item:hover .item-hover {
-	display: block;
-}
-#price .list-item .item h4{
-	height: 60px;
-	line-height: 60px;
-	font-size: 22px;
-	color:#666;
-	background: #ececec;
-	text-align: center;
-}
-#price .list-item .item .price{
-	height: 98px;
-	display: block;
-	line-height: 98px;
-	color:#666;
-	font-size: 37px;
-	text-align: center;
-}
-#price .list-item .item .price i {
-	font-size: 17px;
-	font-style: normal;
-	display: inline-block;
-	vertical-align: super;
-}
-#price .list-item .item .fn-list li {
-	line-height: 46px;
-	height: 46px;
-	border-top:1px #ececec solid;
-	text-indent: 30px;
-	color:#333;
-}
-#price .list-item .item .fn-list li i.icon {
-	width:20px;
-	height: 20px;
-	display: inline-block;
-	vertical-align: middle;
-	margin-left: 12px;
-}
-#price .list-item .item .fn-list li i.icon.error {
-	background: url(../assets/icon-false.png) no-repeat left center;
-	background-size:20px 20px;
-}
-#price .list-item .item .fn-list li i.icon.success {
-	background: url(../assets/icon-true.png) no-repeat left center;
-	background-size:20px 20px;
-}
-#price .list-item .item .fn-list li.unique {
-	color:#66a0f1;
-}
-#price .list-item .item .fn-list li.unique .text {
-	font-style: normal;
-	color:#ed8270;
-	margin-left:12px;
-}
-#price .list-item .item.basis h4 {
-	color:#fff;
-	background: #eb9e4c;
-}
-#price .list-item .item.enterprise h4 {
-	color:#fff;
-	background: #66a0f1;
-}
-#price .list-item .item.custom h4 {
-	color:#fff;
-	background: #d8bb48;
-}
-#price .list-item .item .item-hover {
-	position: absolute;
-	left:0;
-	top:-18px;
-	right:0;
-	bottom:-70px;
-	display: none;
-	border:1px #ececec solid;
-	border-top:none;
-	-webkit-box-shadow:0px 5px 15px #e5e5e5;
-	-moz-box-shadow:0px 5px 15px #e5e5e5;
-	box-shadow:0px 5px 15px #e5e5e5;
-}
-#price .list-item .item.free .item-hover {
-	bottom:0;
-}
-#price .list-item .item.basis .item-hover {
-	border:1px #eb9e4c solid;
-	border-top:none;
-}
-#price .list-item .item.enterprise .item-hover {
-	border:1px #66a0f1 solid;
-	border-top:none;
-}
-#price .list-item .item.custom .item-hover {
-	border:1px #d8bb48 solid;
-	border-top:none;
-}
-#price .list-item .item .item-hover h4 {
-	height: 78px;
-	line-height: 78px;
-}
-#price .list-item .item .item-hover button {
-	height: 35px;
-	width:130px;
-	border-radius:35px;
-	color:#fff;
-	font-size: 14px;
-	line-height: 35px;
-	border:none;
-	margin-top:20px;
-	background:#ececec;
-}
-#price .list-item .item.basis .item-hover button {
-	background:#eb9e4c;
-}
-#price .list-item .item.enterprise .item-hover button {
-	background:#66a0f1;
-}
-#price .list-item .item.custom .item-hover button {
-	background:#d8bb48;
-}
-#price .list-item .item .item-hover .btn-box {
-	height:69px;
-	position: absolute;
-	bottom:0;
-	right:0;
-	left:0;
-	background: #fff;
-	border-top:1px #ececec solid;
-	text-align: center;
+<style lang="less" scoped>
+#price {
+	.main {
+		padding: 20px 0;
+	}
+	.list-title {
+		font-size: 35px;
+		text-align: center;
+		color:#666;
+		margin-bottom: 60px;
+	}
+	.list-item {
+		font-size:0;
+		display: table;
+		width: 100%;
+		margin-bottom: 115px;
+		-webkit-box-shadow:0px 5px 15px #e5e5e5;
+		-moz-box-shadow:0px 5px 15px #e5e5e5;
+		box-shadow:0px 5px 15px #e5e5e5;
+		.item {
+			display: table-cell;
+			vertical-align: top;
+			position: relative;
+			width:25%;
+			background: #fff;
+			font-size: 14px;
+			border:1px #ececec solid;
+			border-top:0;
+			cursor: pointer;
+			.item-hover {
+				position: absolute;
+				left:0;
+				top:-18px;
+				right:0;
+				bottom:-70px;
+				display: none;
+				border:1px #ececec solid;
+				border-top:none;
+				-webkit-box-shadow:0px 5px 15px #e5e5e5;
+				-moz-box-shadow:0px 5px 15px #e5e5e5;
+				box-shadow:0px 5px 15px #e5e5e5;
+				h4 {
+					height: 78px;
+					line-height: 78px;
+				}
+				button {
+					height: 35px;
+					width:130px;
+					border-radius:35px;
+					color:#fff;
+					font-size: 14px;
+					line-height: 35px;
+					border:none;
+					margin-top:20px;
+					background:#ececec;
+				}
+				.btn-box {
+					height:69px;
+					position: absolute;
+					bottom:0;
+					right:0;
+					left:0;
+					background: #fff;
+					border-top:1px #ececec solid;
+					text-align: center;
+				}
+			}
+			&:hover {
+				.item-hover {
+					display: block;
+				}
+			}
+			h4{
+				height: 60px;
+				line-height: 60px;
+				font-size: 22px;
+				color:#666;
+				background: #ececec;
+				text-align: center;
+			}
+			.price{
+				height: 98px;
+				display: block;
+				line-height: 98px;
+				color:#666;
+				font-size: 37px;
+				text-align: center;
+				i {
+					font-size: 17px;
+					font-style: normal;
+					display: inline-block;
+					vertical-align: super;
+				}
+			}
+			.fn-list {
+				li {
+					line-height: 46px;
+					height: 46px;
+					border-top:1px #ececec solid;
+					text-indent: 30px;
+					color:#333;
+					i.icon {
+						width:20px;
+						height: 20px;
+						display: inline-block;
+						vertical-align: middle;
+						margin-left: 12px;
+						&.error {
+							background: url(../assets/icon-false.png) no-repeat left center;
+							background-size:20px 20px;
+						}
+						&.success {
+							background: url(../assets/icon-true.png) no-repeat left center;
+							background-size:20px 20px;
+						}
+					}
+					&.unique {
+						color:#66a0f1;
+						.text {
+							font-style: normal;
+							color:#ed8270;
+							margin-left:12px;
+						}
+					}
+				}
+			}
+			&.free {
+				.item-hover {
+					bottom:0;
+				}
+			}
+			&.basis {
+				h4 {
+					color:#fff;
+					background: #eb9e4c;
+				}
+				.item-hover {
+					border:1px #eb9e4c solid;
+					border-top:none;
+					button {
+						background:#eb9e4c;
+					}
+				}
+			}
+			&.enterprise {
+				h4 {
+					color:#fff;
+					background: #66a0f1;
+				}
+				.item-hover {
+					border:1px #66a0f1 solid;
+					border-top:none;
+					button {
+						background:#66a0f1;
+					}
+				}
+			}
+			&.custom {
+				h4 {
+					color:#fff;
+					background: #d8bb48;
+				}
+				.item-hover {
+					border:1px #d8bb48 solid;
+					border-top:none;
+					button {
+						background:#d8bb48;
+					}
+				}
+			}
+		}
+	}
 }
 </style>

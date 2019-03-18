@@ -66,63 +66,67 @@ export default {
 	}
 }
 </script>
-<style>
+<style lang="less">
 .p-switch {
 	position: relative;
 	font-size:0;
 	height: 20px;
-}
-.p-switch .p-switch__input {
-    position: absolute;
-    width: 0;
-    height: 0;
-    opacity: 0;
-    margin: 0
-}
-.p-switch .p-switch__core {
-    margin: 0;
-    display: inline-block;
-    position: relative;
-    width: 40px;
-    height: 20px;
-    border: 1px solid #dcdfe6;
-    outline: none;
-    border-radius: 10px;
-    box-sizing: border-box;
-    background: #dcdfe6;
-    cursor: pointer;
-    transition: border-color .3s,background-color .3s;
-	-webkit-transition: border-color .3s,background-color .3s;
-	-moz-transition: border-color .3s,background-color .3s;
-    vertical-align: middle
-}
-.p-switch .p-switch__core:after {
-    content: "";
-    position: absolute;
-    top: 1px;
-    left: 1px;
-    border-radius: 100%;
-    transition: all .3s;
-	-webkit-transition: all .3s;
-	-moz-transition: all .3s;
-    width: 16px;
-    height: 16px;
-    background-color: #fff
-}
-.p-switch.is-checked .p-switch__core:after {
-    left: 100%;
-    margin-left: -17px;
-}
-.p-switch .p-switch__label {
-    height: 20px;
-    display: inline-block;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    vertical-align: middle;
-    color: #303133;
-}
-.p-switch .p-switch__label--right {
-    margin-left: 10px;
+	.p-switch__input {
+	    position: absolute;
+	    width: 0;
+	    height: 0;
+	    opacity: 0;
+	    margin: 0
+	}
+	.p-switch__core {
+	    margin: 0;
+	    display: inline-block;
+	    position: relative;
+	    width: 40px;
+	    height: 20px;
+	    border: 1px solid #dcdfe6;
+	    outline: none;
+	    border-radius: 10px;
+	    box-sizing: border-box;
+	    background: #dcdfe6;
+	    cursor: pointer;
+	    transition: border-color .3s,background-color .3s;
+		-webkit-transition: border-color .3s,background-color .3s;
+		-moz-transition: border-color .3s,background-color .3s;
+	    vertical-align: middle;
+		&:after {
+		    content: "";
+		    position: absolute;
+		    top: 1px;
+		    left: 1px;
+		    border-radius: 100%;
+		    transition: all .3s;
+			-webkit-transition: all .3s;
+			-moz-transition: all .3s;
+		    width: 16px;
+		    height: 16px;
+		    background-color: #fff
+		}
+	}
+	&.is-checked {
+		.p-switch__core{
+			&:after {
+				left: 100%;
+				margin-left: -17px;
+			}
+		}
+	}
+	.p-switch__label {
+	    height: 20px;
+	    display: inline-block;
+	    font-size: 14px;
+	    font-weight: 500;
+	    cursor: pointer;
+	    vertical-align: middle;
+	    color: #303133;
+	}
+	.p-switch__label--right {
+	    margin-left: 10px;
+	}
 }
 </style>

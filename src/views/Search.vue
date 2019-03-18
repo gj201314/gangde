@@ -46,9 +46,10 @@
 export default {
 	data(){
 		return {
-			pageCount:10,
+			pageCount:0,
 			currentPage:1,
-			items:[]
+			items:[],
+			limit:10
 		}
 	},
 	computed:{
@@ -81,6 +82,7 @@ export default {
 			}else{
 				this.$msg('查询成功');
 				this.items = res.data.Archives;
+				this.pageCount = Math.ceil(res.data.total/this.limit);
 			};
 		}).catch((error)=>{
 			console.log(error);

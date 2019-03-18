@@ -11,3 +11,27 @@
 <style lang = 'less' scoped>
 
 </style>
+
+vue全局混入less
+	相关资料：https://www.jianshu.com/p/ab9ab999344b
+	安装依赖：npm install sass-resources-loader --save-dev
+	然后去build下的utils.js下找到 generateLoaders方法
+	在 less后面加上 .concat()代码 （如下）
+	如果你的是sass，或者stylus那就去对应的地方改
+	function generateLoaders(){
+//上面省略很多
+  return {
+    css: generateLoaders(),
+    postcss: generateLoaders(),
+    less: generateLoaders('less').concat({
+      loader: 'sass-resources-loader',
+        options: {
+          resources: path.resolve(__dirname, '../src/assets/css/common.less') //地址按照自己的更改
+        }
+    }),
+    sass: generateLoaders('sass', { indentedSyntax: true }),
+    scss: generateLoaders('sass'),
+    stylus: generateLoaders('stylus'),
+    styl: generateLoaders('stylus')
+  }
+}

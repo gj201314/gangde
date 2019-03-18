@@ -24,7 +24,7 @@ export default {
 	}
 }
 </script>
-<style scoped>
+<style lang="less" scoped>
 #search {
 	height:60px;
 	padding:10px;
@@ -37,10 +37,7 @@ export default {
 	display:block;
 	vertical-align: bottom;
 	margin-right: 10px;
-	-webkit-box-flex: 1.0;
-    -moz-flex-grow: 1;
-    -webkit-flex-grow: 1;
-    flex-grow: 1;
+	.flexgrow(1);
 }
 #search button {
 	height:40px;
@@ -55,11 +52,7 @@ export default {
 }
 @media screen and (max-width:980px){
 	#search {
-		display: -webkit-box;
-		display: -moz-box;
-		display: -ms-flexbox;
-		display: -webkit-flex;
-		display: flex;
+		.flexbox;
 	}
 }
 </style>

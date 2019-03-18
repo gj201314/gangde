@@ -50,7 +50,7 @@ export default {
 	}
 }
 </script>
-<style>
+<style lang="less">
 .p-dialog_wrapper {
 	position: fixed;
 	left:0;
@@ -59,31 +59,31 @@ export default {
 	top:0;
 	display:none;
 	z-index:2080;
-}
-.p-dialog_wrapper.dialog-active {
-	display: block;
-}
-.p-dialog_wrapper .p-dialog_content {
-	position:relative;
-	background: #fff;
-	z-index: 3;
-	width:50%;
-	margin:100px auto 0 auto;
-	padding:20px;
-	border-radius: 4px;
-	transition: opacity .3s,transform .4s;
-	-webkit-transition: opacity .3s,-webkit-transform .4s;
-	-moz-transition: opacity .3s,-moz-transform .4s;
-}
-.p-dialog_wrapper .p-dialog_content .p-dialog_close {
-	position: absolute;
-	top:17px;
-	right:-35px;
-	width:35px;
-	height:35px;
-	background:#d8bb48 url(../../assets/close-icon.png) no-repeat center center;
-	background-size: 12px 12px;
-	border-radius: 0 4px 4px 0;
+	&.dialog-active {
+		display: block;
+	}
+	.p-dialog_content {
+		position:relative;
+		background: #fff;
+		z-index: 3;
+		width:50%;
+		margin:100px auto 0 auto;
+		padding:20px;
+		border-radius: 4px;
+		transition: opacity .3s,transform .4s;
+		-webkit-transition: opacity .3s,-webkit-transform .4s;
+		-moz-transition: opacity .3s,-moz-transform .4s;
+		.p-dialog_close {
+			position: absolute;
+			top:17px;
+			right:-35px;
+			width:35px;
+			height:35px;
+			background:#d8bb48 url(../../assets/close-icon.png) no-repeat center center;
+			background-size: 12px 12px;
+			border-radius: 0 4px 4px 0;
+		}
+	}
 }
 .dialog-fade-enter,.dialog-fade-leave-active {
     opacity: 0;

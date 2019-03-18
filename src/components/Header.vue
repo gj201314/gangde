@@ -99,7 +99,7 @@ export default {
 	}
 }
 </script>
-<style scoped>
+<style lang="less" scoped>
 #header.home-header {
 	position:absolute;
 	left:0;
@@ -107,24 +107,22 @@ export default {
 	top:0;
 	background: transparent;
 	z-index: 2;
-}
-#header.home-header .nar-bar a {
-	color:#c4c5c8;
-}
-#header.home-header .nar-bar a.router-link-exact-active {
-	color:#e3c653;
-}
-#header.home-header .search input {
-	background: transparent;
-	color:#bca64f;
-}
-#header.home-header .search input::-webkit-input-placeholder {
-    color:#bca64f;
-}
-#header.home-header .search input:-moz-placeholder {
-    color:#bca64f;
-}
-#header.home-header .search input:-ms-input-placeholder {
-    color:#bca64f;
+	.nar-bar {
+		a {
+			color:#c4c5c8;
+			&.router-link-exact-active {
+				color:#e3c653;
+			}
+		}
+	}
+	.search {
+		input {
+			background: transparent;
+			color:#bca64f;
+			&::-webkit-input-placeholder,&:-moz-placeholder,&:-ms-input-placeholder {
+			    color:#bca64f;
+			}
+		}
+	}
 }
 </style>

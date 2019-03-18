@@ -2,7 +2,7 @@
   <div id="app">
 	<loading v-if="flag"></loading>
     <router-view/>
-	<div class="box">
+	<div class="box" style="display: none;">
 		<h2>less演示</h2>
 		<div class="box-child">
 			11111
@@ -123,28 +123,7 @@ button {
   font-size:14px;
 	font-family: '微软雅黑';
 }
-.backgroundSize(@v){
-	background-size:@v;
-	-webkit-background-size:@v;
-	-moz-background-size:@v;
-	-ms-background-size:@v;
-}
-.borderRadius(@radius){
-	border-radius: @radius;
-	-webkit-border-radius: @radius;
-	-moz-border-radius: @radius;
-	-ms-border-radius: @radius;
-}
-.boxShadow(@v) {
-	-webkit-box-shadow:@v;
-	-moz-box-shadow:@v;
-	box-shadow:@v;
-}
-.transform(@v){
-	transform: @v;
-	-webkit-transform: @v;
-	-moz-transform: @v;
-}
+
 /* 头部样式 */
 #header {
 	height:80px;
