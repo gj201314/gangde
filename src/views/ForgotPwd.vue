@@ -148,24 +148,28 @@ export default {
 	}
 }
 </script>
-<style scoped>
-#reg article .qrImg-box {
-	position: relative;
-}
-#reg article .qrImg-box img{
-	position: relative;
-	z-index: 2;
-}
-#reg article .qrImg-box:after {
-	content:'';
-	position: absolute;
-	z-index: 1;
-	left:60px;
-	top:0;
-	width:22px;
-	height:130px;
-	background: url(../../static/shadow.png) no-repeat left bottom;
-	background-size:22px 130px;
+<style lang="less" scoped>
+#reg {
+	article {
+		.qrImg-box {
+			position: relative;
+			img{
+				position: relative;
+				z-index: 2;
+			}
+			&:after {
+				content:'';
+				position: absolute;
+				z-index: 1;
+				left:60px;
+				top:0;
+				width:22px;
+				height:130px;
+				background: url(../../static/shadow.png) no-repeat left bottom;
+				background-size:22px 130px;
+			}
+		}
+	}
 }
 /* @media screen and (max-width:400px) {
 	#reg {

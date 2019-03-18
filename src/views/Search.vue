@@ -96,118 +96,118 @@ export default {
 	}
 }
 </script>
-<style scoped>
+<style lang="less" scoped>
 #search {
 	background: #fff;
-}
-#search .main {
-	min-height: 800px;
-	padding: 20px 0;
-}
-#search .article {
-	width:300px;
-}
-#search .item-list {
-	width:800px;
-}
-#search .item-list .item-box{
-	position: relative;
-	padding: 27px 10px 27px 0;
-	border-bottom:1px #f0f0f0 solid;
-}
-#search .item-box .item-content {
-	padding-right:180px;
-}
-#search .item-box .item-content h5 {
-	font-size: 20px;
-	color:#333333;
-}
-#search .item-box .item-content p {
-	padding:10px 0;
-	height: 68px;
-	line-height: 28px;
-	overflow: hidden;
-	color:#666;
-}
-#search .item-box .item-content span {
-	color:#999;
-}
-#search .item-box .item-content span i{
-	font-style:normal;
-	margin-left: 8px;
-}
-#search .item-box .item-img {
-	width:160px;
-	height:98px;
-	position: absolute;
-	right: 10px;
-    top: 27px;
-	text-align: center;
-}
-#search .item-box .item-img img{
-	max-width:100%;
-	max-height:100%;
-	display: block;
-}
-#search .article .focus {
-	padding:22px;
-	background:#f5f5f6;
-	margin-bottom: 32px;
-}
-#search .article .focus .qrImg {
-	width:130px;
-	height:130px;
-}
-#search .article .focus .qrImg img{
-	max-width: 100%;
-	max-height: 100%;
-	display: block;
-}
-#search .article .focus .qrInfo {
-	text-align: right;
-	padding-top: 17px;
-	padding-right: 10px;
-}
-#search .article .focus .qrInfo b {
-	font-size: 18px;
-	display: block;
-	color:#333;
-	font-weight:500;
-	margin-bottom: 10px;
-}
-#search .article .focus .qrInfo i {
-	font-style:normal;
-	font-size: 16px;
-	font-weight: 500;
-	padding-bottom: 7px;
-	color:#999;
-	border-bottom: 1px #999 solid;
-}
-#search .article h5.article-title {
-	color:#222;
-	font-size: 18px;
-	padding-left: 17px;
-	font-weight: 500;
-	position: relative;
-}
-#search .article h5.article-title:after {
-	content: '';
-	position: absolute;
-	top:5px;
-	left:0;
-	width:6px;
-	border-radius:3px;
-	background:#d8bb48;
-	height: 14px;
-}
-#search .article .article-list {
-	padding-left: 17px;
-}
-#search .article .article-list li {
-	height: 34px;
-	line-height: 34px;
-	width:100%;
-	overflow: hidden;
+	.main {
+		min-height: 800px;
+		padding: 20px 0;
+	}
+	.article {
+		width:300px;
+		.focus {
+			padding:22px;
+			background:#f5f5f6;
+			margin-bottom: 32px;
+			.qrImg {
+				width:130px;
+				height:130px;
+				img{
+					max-width: 100%;
+					max-height: 100%;
+					display: block;
+				}
+			}
+			.qrInfo {
+				text-align: right;
+				padding-top: 17px;
+				padding-right: 10px;
+				b {
+					font-size: 18px;
+					display: block;
+					color:#333;
+					font-weight:500;
+					margin-bottom: 10px;
+				}
+				i {
+					font-style:normal;
+					font-size: 16px;
+					font-weight: 500;
+					padding-bottom: 7px;
+					color:#999;
+					border-bottom: 1px #999 solid;
+				}
+			}
+		}
+		h5.article-title {
+			color:#222;
+			font-size: 18px;
+			padding-left: 17px;
+			font-weight: 500;
+			position: relative;
+			&:after {
+				content: '';
+				position: absolute;
+				top:5px;
+				left:0;
+				width:6px;
+				border-radius:3px;
+				background:#d8bb48;
+				height: 14px;
+			}
+		}
+		.article-list {
+			padding-left: 17px;
+			li {
+				height: 34px;
+				line-height: 34px;
+				width:100%;
+				overflow: hidden;
+			}
+		}
+	}
+	.item-list {
+		width:800px;
+		.item-box{
+			position: relative;
+			padding: 27px 10px 27px 0;
+			border-bottom:1px #f0f0f0 solid;
+			.item-content {
+				padding-right:180px;
+				h5 {
+					font-size: 20px;
+					color:#333333;
+				}
+				p {
+					padding:10px 0;
+					height: 68px;
+					line-height: 28px;
+					overflow: hidden;
+					color:#666;
+				}
+				span {
+					color:#999;
+					i{
+						font-style:normal;
+						margin-left: 8px;
+					}
+				}
+			}
+			.item-img {
+				width:160px;
+				height:98px;
+				position: absolute;
+				right: 10px;
+			    top: 27px;
+				text-align: center;
+				img{
+					max-width:100%;
+					max-height:100%;
+					display: block;
+				}
+			}
+		}
+	}
 }
 .pagination-box {
 	margin-top:30px;
@@ -216,31 +216,31 @@ export default {
 	font-size: 0;
 	text-align: center;
 	margin-bottom: 20px;
-}
-.pagination span {
-	padding:0 10px;
-	height:20px;
-	line-height:20px;
-	font-size: 14px;
-    color: rgba(0,0,0,0.65);sss
-	display: inline-block;
-	border-radius: 4px;
-	cursor: pointer;
-}
-.pagination span.active {
-	color:#fff;
-	background: rgb(24, 144, 255);
-}
-.pagination .prev,.pagination .next {
-	padding:0 10px;
-	height:18px;
-	line-height: 18px;
-	font-size: 14px;
-	color:rgba(0, 0, 0,1);
-	display: inline-block;
-} 
-.pagination .prev.prohibit,.pagination .next.prohibit {
-	color:rgba(0, 0, 0,0.65);
+	span {
+		padding:0 10px;
+		height:20px;
+		line-height:20px;
+		font-size: 14px;
+	    color: rgba(0,0,0,0.65);sss
+		display: inline-block;
+		border-radius: 4px;
+		cursor: pointer;
+		&.active {
+			color:#fff;
+			background: rgb(24, 144, 255);
+		}
+	}
+	.prev,.next {
+		padding:0 10px;
+		height:18px;
+		line-height: 18px;
+		font-size: 14px;
+		color:rgba(0, 0, 0,1);
+		display: inline-block;
+	}
+	.prev.prohibit,.next.prohibit {
+		color:rgba(0, 0, 0,0.65);
+	}
 }
 /* @media screen and (max-width:980px) {
 	.result {
