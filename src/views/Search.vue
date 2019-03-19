@@ -15,9 +15,9 @@
 				</div>
 				<div class="pagination-box">
 					<div class="pagination" v-if="pageCount>1">
-						<div class="prev"><</div>
+						<div class="prev" @click="pagePrev"><</div>
 						<span v-for="n in maxNum" :class="{'active':(num+n)==currentPage}" @click="updateCurrentPage(num+n)">{{num+n}}</span>
-						<div class="next prohibit">></div>
+						<div class="next prohibit" @click="pageNext">></div>
 					</div>
 				</div>
 			</div>
@@ -48,7 +48,7 @@ export default {
 		return {
 			pageCount:1,
 			currentPage:1,
-			items:[{"id":25,"user_id":1,"channel_id":3,"model_id":1,"title":"谷歌开源 iOS 自动测试框架 GTXiLib，主打无障碍使用","flag":"","image":"https:\/\/cdn.fastadmin.net\/uploads\/20180416\/5ad441196ddc60.png","keywords":"","description":"最近 Google 在帮助开发者提升 App 可用性上可谓是动作频频，不只发布了无障碍技术指导方案，成立无障碍支援团队，近日还在博客上宣布开源 iOS 专用的自动化测试框架 GTXiLib ，以帮助开发者打造无障碍 App 。","tags":"Google,互联网","weigh":25,"views":7,"comments":0,"likes":0,"dislikes":0,"diyname":"","createtime":1523754040,"updatetime":1523878710,"publishtime":1523721600,"deletetime":null,"memo":"","status":"normal","group_id":0,"type":0,"downloadLink":"","qrImg":"","customBtn":"","url":"\/cms\/a\/25.html","fullurl":"http:\/\/192.168.33.30:8093\/cms\/a\/25.html","likeratio":50,"tagslist":[{"name":"Google","url":"\/cms\/t\/Google.html"},{"name":"互联网","url":"\/cms\/t\/互联网.html"}],"create_date":"11 months ago"}],
+			items:[],
 			limit:10
 		}
 	},
@@ -71,28 +71,48 @@ export default {
 		}
 	},
 	mounted(){
-		this.$axios({
-			method:'get',
-			url:'/archives/search',
-			params:{'search':this.$route.params.search}
-		}).then((response)=>{
-			let res = response.data;
-			if(res.code==0){
-				this.$msg({'msg':res.msg,'status':'error'});
-			}else{
-				this.$msg('查询成功');
-				this.items = res.data.Archives;
-				this.pageCount = Math.ceil(res.data.total/this.limit);
-			};
-		}).catch((error)=>{
-			console.log(error);
-		});
+		this.archiveSearch();
 	},
 	methods:{
+		archiveSearch(){
+			this.$axios({
+				method:'get',
+				url:'/archives/search',
+				params:{'search':this.$route.params.search,'page':this.currentPage}
+			}).then((response)=>{
+				let res = response.data;
+				if(res.code==0){
+					this.$msg({'msg':res.msg,'status':'error'});
+				}else{
+					this.$msg('查询成功');
+					this.items = res.data.Archives;
+					this.pageCount = Math.ceil(res.data.total/this.limit);
+				};
+			}).catch((error)=>{
+				console.log(error);
+			});
+		},
+		pagePrev(){
+			if(this.currentPage>1){
+				--this.currentPage;
+				this.archiveSearch();
+			}else{
+				console.log('第一页')
+			};
+		},
+		pageNext(){
+			if(this.currentPage<this.pageCount){
+				++this.currentPage;
+				this.archiveSearch();
+			}else{
+				console.log('最后一页')
+			};
+		},
 		updateCurrentPage(num){
 			this.currentPage=num;
+			this.archiveSearch();
 		},
-		toDetails(id=25){
+		toDetails(id){
 			this.$router.push({name:'details',params:{id:id}});
 		}
 	}
@@ -188,8 +208,32 @@ export default {
 			width:100%;
 		}
 		.articleQr {
+			padding:14px 10px;
 			.focus {
 				display: none;
+			}
+		}
+		.item-list {
+			.item-box {
+				padding:14px 10px;
+				.item-content {
+					padding-right: 100px;
+					h5 {
+						font-size: 16px;
+						height: 50px;
+						line-height: 25px;
+						overflow: hidden;
+						width:100%;
+					}
+					span {
+						font-size: 12px;
+					}
+				}
+				.item-img {
+					width:100px;
+					top:14px;
+					bottom:14px;
+				}
 			}
 		}
 	}

@@ -1,19 +1,7 @@
 <template>
   <div id="app">
-	<loading v-if="flag"></loading>
+		<loading v-if="flag"></loading>
     <router-view/>
-	<div class="box" style="display: none;">
-		<h2>less演示</h2>
-		<div class="box-child">
-			11111
-		</div>
-		<div class="box-child2">
-			222
-		</div>
-		<div class="box-child3">
-			333
-		</div>
-	</div>
   </div>
 </template>
 
@@ -28,49 +16,6 @@ export default {
 }
 </script>
 <style lang="less">
-// 练习样式
-@color:#eee;
-@width:200px;
-@height:200px;
-.box {
-	background: @color;
-	.border;
-}
-.box-child {
-	width:@width;
-	height:@height;
-	.border3();
-}
-.box-child2 {
-	width:(@width *5) /10;
-	height:(@height - 40) *5;
-	margin-left: 100px;
-	.border2(5px);
-}
-.box-child3 {
-	.pos(a);
-}
-.pos(r){
-	position: relative;
-}
-.pos(a){
-	position: absolute;
-}
-.pos(f){
-	position: fixed;
-}
-//没参数的
-.border {
-	border:2px #f00 solid;
-}
-//有参数的
-.border2(@borderWidth) {
-	border:@borderWidth #f00 solid;
-}
-//设置默认参数的
-.border3(@borderWidth:10px;) {
-	border:@borderWidth #f00 solid;
-}
 /* 基本样式 */
 * {
 	margin:0;

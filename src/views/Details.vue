@@ -74,17 +74,15 @@
 </template>
 
 <script>
-// import dHeader from '@/components/Dheader'
-
 export default {
 	data(){
 		return {
-			title:'',
+			title:'卧室撒大苏打实打实大苏打',
 			author:'林子聪',
 			content:'我是内容主体',
 			qrVisible:false,
 			downVisible:false,
-			type:0,
+			type:-1,
 			views:0,
 			formData:{
 				username:'',
@@ -202,6 +200,24 @@ export default {
 		text-align: center;
 	}
 }
+@media screen and (max-width:1200px) {
+	.p-dialog_wrapper#dialog-down {
+		.p-dialog_content{
+			width:90%;
+			padding:20px;
+		}
+		.login-img {
+			margin-bottom:20px !important;
+			img {
+				width:80%;
+				height: auto !important;
+			}
+		}
+		.p-dialog_close {
+			display: none;
+		}
+	}
+}
 </style>
 <style lang="less" scoped>
 #details {
@@ -270,22 +286,25 @@ export default {
 		}
 	}
 }
-/* @media screen and (max-width:980px){
-	#header {
-		display: none;
+@media screen and (max-width:980px){
+	#details {
+		section,.articleQr {
+			float:none;
+			width:100%;
+		}
+		section {
+			padding:14px 10px;
+			.clickMore {
+				height: 40px;
+				line-height: 40px;
+			}
+		}
+		.articleQr {
+			padding:14px 10px;
+			.focus {
+				display: none;
+			}
+		}
 	}
-	#d-header {
-		display: block;
-	}
-	#details section {
-		width:100%;
-	}
-	#details article {
-		display: none;
-	}
-	#details section .clickMore {
-		height: 40px;
-		line-height: 40px;
-	}
-} */
+}
 </style>
