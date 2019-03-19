@@ -34,7 +34,7 @@
 			<h1>纲得</h1>
 			<div class="nick-status pull-right">
 				<template v-if="nickName==''">
-					<router-link to="/login">登录</router-link>
+					<a href="javascript:void(0);" @click="loginVisible=true">登录</a>
 				</template>
 				<template v-else>
 					<span>{{nickName}}</span>
@@ -119,9 +119,6 @@ export default {
 		input {
 			background: transparent;
 			color:#bca64f;
-			&::-webkit-input-placeholder,&:-moz-placeholder,&:-ms-input-placeholder {
-			    color:#bca64f;
-			}
 		}
 	}
 }

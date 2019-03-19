@@ -14,10 +14,12 @@ Vue.use(plug);
 // 全局组件
 import tHeader from '@/components/Header'
 import bFooter from '@/components/Footer'
+import Search from '@/components/Search'
 import Login from '@/components/Login'
 
 Vue.component('tHeader',tHeader);
 Vue.component('login',Login);
+Vue.component('search',Search);
 Vue.component('bFooter',bFooter);
 
 
@@ -28,15 +30,16 @@ Vue.config.productionTip = false;
 router.beforeEach((to,from,next)=>{
 	if(to.meta.requireAuth){
 		var token = true;
-		if(!token){//token失效或者不存在
-			next({
-				path:'/login',
-				query:{
-					redirect:to.meta.fullPath
-				}
-			});
-			return false;
-		}
+		//token失效或者不存在
+// 		if(!token){
+// 			next({
+// 				path:'/login',
+// 				query:{
+// 					redirect:to.meta.fullPath
+// 				}
+// 			});
+// 			return false;
+// 		}
 	};
 	if(to.meta.title){
 		document.title = to.meta.title
@@ -74,6 +77,7 @@ axios.interceptors.request.use(
   error => {
     // 错误处理代码
     store.commit('switchPageLoading',false);
+	$msg({msg:'服务器或网络环境出错',status:'error'});
     return Promise.reject(error)
   }
 )
@@ -82,11 +86,12 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
   response => {
     // 数据响应之后，要做的业务
-		store.commit('switchPageLoading',false);
+	store.commit('switchPageLoading',false);
     return response
   },
   error => {
-		store.commit('switchPageLoading',false);
+	store.commit('switchPageLoading',false);
+	$msg({msg:'服务器或网络环境出错',status:'error'});
     return Promise.reject(error)
   }
 )

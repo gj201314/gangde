@@ -2,6 +2,7 @@
 	<div id="home">
 		<div id="home-top">
 			<t-header class="home-header"></t-header>
+			<search></search>
 			<div class="banner-box">
 				<swiper :options="banOption">
 					<swiper-slide v-for="imgSrc in banImg" class="item">
@@ -281,43 +282,35 @@ h3.content-title {
 		color:#fff;
 	}
 }
-/* @media screen and (max-width:980px) {
-	.banner {
-		height:208px;
+@media screen and (max-width:1200px) {
+	h3.content-title {
+		padding-top: 20px;
+		img {
+			width:60%;
+			height: auto;
+		}
 	}
-	.banner .info {
-		top:50%;
-		left:50%;
-		margin-left: -123px;
-		margin-top: -75px;
+	.advantage .item-list {
+		padding:0;
+		.item {
+			float: none;
+			display: block;
+			width:90%;
+			margin:20px auto 0;
+		}
 	}
-	.advantage .item h5 {
-		height: auto;
-		line-height: initial;
-		margin-bottom: 30px;
-	}
-	.advantage .item {
-		margin: 0;
-		width:100%;
-		padding:22px 35px;
-		height: auto;
+	.ganders {
 		margin-bottom: 10px;
+		.item-list {
+			.f-item {
+				margin:0 0 10px 0;
+				width:48%;
+				padding:0 1%;
+			}
+		}
 	}
-	.introduce {
-		padding:35px 22px;
-	}
-	.introduce h3 {
-		margin-bottom: 40px;
-	}
-	.introduce p {
-		line-height:20px;
+	#footer {
 		height: auto;
 	}
-	.ganders .item-list .swiper-box {
-		display: block;
-	}
-	.ganders .item-list .f-item {
-		display: none;
-	}
-} */
+}
 </style>

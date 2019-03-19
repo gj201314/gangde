@@ -5,62 +5,122 @@
 			<div class="main clearfix">
 				<template v-if="!flag">
 					<section class="pull-left">
-						<div class="form">
-							<div class="form-item">
-								<div class="item-title">手机号码:</div>
-								<div class="item-content">
-									<div class="input-box" :class="[rules.mobile.msg!=''? 'error':'']">
-										<input type="text" v-model.trim="formData.mobile" @blur="validate('mobile')" placeholder="11位数字" />
+						<div class="p-form">
+							<div class="form">
+								<div class="form-item">
+									<div class="item-title">用户名称:</div>
+									<div class="item-content">
+										<div class="input-box" :class="[rules.username.msg!=''? 'error':'']">
+											<input type="text" v-model.trim="formData.username" @blur="validate('username')" placeholder="用户名称" />
+										</div>
+									</div>
+									<div class="item-errMsg" v-show="rules.username.msg!=''">
+										{{rules.username.msg}}
 									</div>
 								</div>
-								<div class="item-errMsg" v-show="rules.mobile.msg!=''">
-									{{rules.mobile.msg}}
+								<div class="form-item">
+									<div class="item-title">手机号码:</div>
+									<div class="item-content">
+										<div class="input-box" :class="[rules.mobile.msg!=''? 'error':'']">
+											<input type="text" v-model.trim="formData.mobile" @blur="validate('mobile')" placeholder="11位数字" />
+										</div>
+									</div>
+									<div class="item-errMsg" v-show="rules.mobile.msg!=''">
+										{{rules.mobile.msg}}
+									</div>
+								</div>
+								<div class="form-item">
+									<div class="item-title">短信效验码:</div>
+									<div class="item-content">
+										<div class="input-box input-code" :class="[rules.code.msg!=''? 'error':'']">
+											<input type="text" maxlength="4" v-model.number="formData.code" @blur="validate('code')" placeholder="手机短信" />
+											<span class="getCode" @click="createCountDown">{{countText}}</span>
+										</div>
+									</div>
+									<div class="item-errMsg" v-show="rules.code.msg!=''">
+										{{rules.code.msg}}
+									</div>
+								</div>
+								<div class="form-item">
+									<div class="item-title">邮箱:</div>
+									<div class="item-content">
+										<div class="input-box" :class="[rules.email.msg!=''? 'error':'']">
+											<input type="text" v-model.trim="formData.email" @blur="validate('email')" placeholder="请输入邮箱" />
+										</div>
+									</div>
+									<div class="item-errMsg" v-show="rules.email.msg!=''">
+										{{rules.email.msg}}
+									</div>
+								</div>
+								<div class="form-item">
+									<div class="item-title">登录密码:</div>
+									<div class="item-content">
+										<div class="input-box" :class="[rules.password.msg!=''? 'error':'']">
+											<input type="password" v-model.trim="formData.password" @blur="validate('password')" placeholder="3-20位字符" />
+										</div>
+									</div>
+									<div class="item-errMsg" v-show="rules.password.msg!=''">
+										{{rules.password.msg}}
+									</div>
+								</div>
+								<div class="form-item">
+									<div class="item-title">确认密码:</div>
+									<div class="item-content">
+										<div class="input-box" :class="[rules.confirmPwd.msg!=''? 'error':'']">
+											<input type="password" v-model.trim="formData.confirmPwd" @blur="validate('confirmPwd')" placeholder="请再输入一遍" />
+										</div>
+									</div>
+									<div class="item-errMsg" v-show="rules.confirmPwd.msg!=''">
+										{{rules.confirmPwd.msg}}
+									</div>
+								</div>
+								<div class="form-item">
+									<div class="item-title"></div>
+									<div class="item-content">
+										<div class="btn-box">
+											<button type="button" class="btn-submit" @click="submit">立即注册</button>
+										</div>
+										<div class="other clearfix">
+											<!-- <p-switch checked="checked" v-model="formData.remember" activeText="忘记我" class="pull-left"></p-switch> -->
+											<router-link to="/forgotPwd" class="pull-right">忘记密码？</router-link>
+										</div>
+									</div>
 								</div>
 							</div>
-							<div class="form-item">
-								<div class="item-title">登录密码:</div>
-								<div class="item-content">
-									<div class="input-box" :class="[rules.pwd.msg!=''? 'error':'']">
-										<input type="password" v-model.trim="formData.pwd" @blur="validate('pwd')" placeholder="3-20位字符" />
-									</div>
+						</div>
+						<div class="m-form">
+							<div class="form mobile-form">
+								<div class="form-item">
+									<input type="text" v-model.trim="formData.username" @blur="validate('username')" placeholder="用户名称" />
+									<span class="error-msg" v-show="rules.username.msg!=''">{{rules.username.msg}}</span>
 								</div>
-								<div class="item-errMsg" v-show="rules.pwd.msg!=''">
-									{{rules.pwd.msg}}
+								<div class="form-item">
+									<input type="text" v-model.trim="formData.mobile" @blur="validate('mobile')" placeholder="手机号码" />
+									<span class="error-msg" v-show="rules.mobile.msg!=''">{{rules.mobile.msg}}</span>
 								</div>
-							</div>
-							<div class="form-item">
-								<div class="item-title">确认密码:</div>
-								<div class="item-content">
-									<div class="input-box" :class="[rules.confirmPwd.msg!=''? 'error':'']">
-										<input type="password" v-model.trim="formData.confirmPwd" @blur="validate('confirmPwd')" placeholder="请再输入一遍" />
-									</div>
+								<div class="form-item item-code">
+									<input type="text" class="input-code" maxlength="4" v-model.number="formData.code" @blur="validate('code')" placeholder="验证码" />
+									<span class="getCode">获取验证码</span>
+									<span class="error-msg" v-show="rules.code.msg!=''">{{rules.code.msg}}</span>
 								</div>
-								<div class="item-errMsg" v-show="rules.confirmPwd.msg!=''">
-									{{rules.confirmPwd.msg}}
+								<div class="form-item">
+									<input type="text" v-model.trim="formData.email" @blur="validate('email')" placeholder="邮箱" />
+									<span class="error-msg" v-show="rules.email.msg!=''">{{rules.email.msg}}</span>
 								</div>
-							</div>
-							<div class="form-item">
-								<div class="item-title">短信效验码:</div>
-								<div class="item-content">
-									<div class="input-box input-code" :class="[rules.code.msg!=''? 'error':'']">
-										<input type="text" maxlength="4" v-model.number="formData.code" @blur="validate('code')" placeholder="手机短信" />
-										<span class="getCode">获取</span>
-									</div>
+								<div class="form-item">
+									<input type="text" v-model.trim="formData.password" @blur="validate('password')" placeholder="登录密码" />
+									<span class="error-msg" v-show="rules.password.msg!=''">{{rules.password.msg}}</span>
 								</div>
-								<div class="item-errMsg" v-show="rules.code.msg!=''">
-									{{rules.code.msg}}
+								<div class="form-item">
+									<input type="text" v-model.trim="formData.confirmPwd" @blur="validate('confirmPwd')" placeholder="确认密码" />
+									<span class="error-msg" v-show="rules.confirmPwd.msg!=''">{{rules.confirmPwd.msg}}</span>
 								</div>
-							</div>
-							<div class="form-item">
-								<div class="item-title"></div>
-								<div class="item-content">
-									<div class="btn-box">
-										<button type="button" class="btn-submit" @click="submit">立即注册</button>
-									</div>
-									<div class="other clearfix">
-										<p-switch checked="checked" v-model="formData.remember" activeText="忘记我" class="pull-left"></p-switch>
-										<router-link to="/forgotPwd" class="pull-right">忘记密码？</router-link>
-									</div>
+								<div class="btn-box">
+									<button type="button" class="btn-submit" @click="submit">立即注册</button>
+								</div>
+								<div class="other clearfix">
+									<!-- <p-switch checked="checked" v-model="formData.remember" activeText="忘记我" class="pull-left"></p-switch> -->
+									<router-link to="/forgotPwd" class="pull-right">忘记密码？</router-link>
 								</div>
 							</div>
 						</div>
@@ -93,20 +153,33 @@ export default {
 		return {
 			flag:false,
 			formData:{
+				username:'',
 				mobile:'',
-				pwd:'',
+				password:'',
 				confirmPwd:'',
 				code:'',
-				remember:true
+				email:'',
+				username:''
 			},
+			remember:true,
+			timer:null,
+			countText:'获取',
 			rules:{
 				mobile:{
 					msg:'',
 					name:'手机号码'
 				},
-				pwd:{
+				email:{
+					msg:'',
+					name:'邮箱'
+				},
+				password:{
 					msg:'',
 					name:'登录密码'
+				},
+				username:{
+					msg:'',
+					name:'用户名称'
 				},
 				confirmPwd:{
 					msg:'',
@@ -125,15 +198,45 @@ export default {
 		},1000);
 	},
 	methods:{
+		createCountDown(){
+			if(this.formData.mobile==''){
+				this.$msg({msg:'请输入手机号码',status:'error'});
+			}else if(!this.$isMobile(this.formData.mobile)){
+				this.$msg({msg:'请输入正确的手机号码',status:'error'});
+			}else if(this.timer==null){
+				this.countDown(10);
+			};
+		},
+		countDown(num){
+			if(num==1){
+				this.countText = '获取';
+				clearTimeout(this.timer);
+			}else{
+				--num;
+				this.countText = `${num}秒后重新获取`;
+				this.timer = setTimeout(()=>{
+					this.countDown(num);
+				},1000);
+			};
+		},
 		validate(name){
-			let val = this.formData[name],p1=/^1([0-9]{10})$/;
+			let val = this.formData[name];
 			if(val==''){
 				this.rules[name].msg = this.rules[name].name+'不能为空';
 				return false;
-			}else if(name=='mobile' && !p1.test(val)){
+			}else if(name=='mobile' && !this.$isMobile(val)){
 				this.rules[name].msg = this.rules[name].name+'只能为11位的数字';
 				return false;
-			}else if(name=='confirmPwd' && (this.formData['pwd']!=this.formData['confirmPwd'])){
+			}else if(name=='code' && !this.$isMobileCode(val)){
+				this.rules[name].msg = this.rules[name].name+'只能为6位的数字';
+				return false;
+			}else if(name=='email' && !this.$isEmail(val)){
+				this.rules[name].msg = this.rules[name].name+'格式不正确';
+				return false;
+			}else if(name=='password' && !this.$isPwd(val)){
+				this.rules[name].msg = this.rules[name].name+'只能为3-20位的字符';
+				return false;
+			}else if(name=='confirmPwd' && (this.formData['password']!=this.formData['confirmPwd'])){
 				this.rules[name].msg = '两次密码不一致';
 				return false;
 			}else{
@@ -147,8 +250,21 @@ export default {
 				flag = this.validate(v);
 			};
 			if(flag){
-				console.log('提交ajax')
-			}
+				this.$axios({
+					method:'post',
+					url:'/user/register',
+					data:this.formData
+				}).then((response)=>{
+					let res = response.data;
+					if(res.code==0){
+						this.$msg({'msg':res.msg,'status':'error'});
+					}else{
+						this.flag = true;
+					};
+				}).catch((error)=>{
+					console.log(error);
+				});
+			};
 		}
 	}
 }

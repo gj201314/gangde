@@ -1,6 +1,6 @@
 <template>
   <div id="search">
-		<input type="text" placeholder="搜索感兴趣的内容" />
+		<input type="text" v-model.trim="serachVal" placeholder="搜索感兴趣的内容" />
 		<button type="button" @click="toSearch">搜索</button>
   </div>
 </template>
@@ -9,7 +9,7 @@
 export default {
 	data () {
 		return {
-		  
+		  serachVal:''
 		}
 	},
 	computed:{
@@ -19,7 +19,11 @@ export default {
 	},
 	methods:{
 		toSearch(){
-			this.$router.push('/search');
+			if(this.serachVal!=''){
+				this.$router.push({name:'search',params:{search:this.serachVal}});
+			}else{
+				this.$msg({'msg':'请输入搜索内容','status':'error'});
+			};
 		}
 	}
 }
@@ -29,28 +33,29 @@ export default {
 	height:60px;
 	padding:10px;
 	display: none;
+	input {
+		height:40px;
+		width:100%;
+		padding:0 10px;
+		font-size: 14px;
+		display:block;
+		vertical-align: bottom;
+		margin-right: 10px;
+		.flexgrow(1);
+	}
+	button {
+		height:40px;
+		width:100px;
+		background-color:@dColor;
+		border:1px @dColor solid;
+		padding:0 25px;
+		color:#fff;
+		font-size: 14px;
+		display:block;
+		border-radius: 2px;
+	}
 }
-#search input {
-	height:40px;
-	width:100%;
-	font-size: 14px;
-	display:block;
-	vertical-align: bottom;
-	margin-right: 10px;
-	.flexgrow(1);
-}
-#search button {
-	height:40px;
-	width:100px;
-	background-color: rgb(86, 119, 252);
-	border:1px rgb(86, 119, 252) solid;
-	padding:0 25px;
-	color:#fff;
-	font-size: 14px;
-	display:block;
-	border-radius: 2px;
-}
-@media screen and (max-width:980px){
+@media screen and (max-width:1200px){
 	#search {
 		.flexbox;
 	}

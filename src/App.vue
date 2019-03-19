@@ -123,7 +123,6 @@ button {
   font-size:14px;
 	font-family: '微软雅黑';
 }
-
 /* 头部样式 */
 #header {
 	height:80px;
@@ -141,7 +140,6 @@ button {
 		margin-top: 10px;
 		margin-left: 35px;
 		font-size: 0;
-		
 		input {
 			height:33px;
 			line-height: 33px;
@@ -152,6 +150,15 @@ button {
 			border:none;
 			display:inline-block;
 			vertical-align: bottom;
+			&::-webkit-input-placeholder {
+				color:#bca64f;
+			}
+			&::-moz-input-placeholder {
+				color:#bca64f;
+			}
+			&::-ms-input-placeholder {
+				color:#bca64f;
+			}
 		}
 		button {
 			height:33px;
@@ -364,6 +371,9 @@ button {
 				}
 			}
 		}
+		.m-form {
+			display: none;
+		}
 	}
 }
 .form {
@@ -470,7 +480,7 @@ button {
 	text-align: center;
 	.msg {
 		background: url(./assets/success-icon.png) no-repeat left center;
-		.backgroundSize(380px 38px);
+		.backgroundSize(38px 38px);
 		color:#333333;
 		font-size: 22px;
 		height: 40px;
@@ -533,22 +543,19 @@ button {
 		}
 		&.item-code {
 			position: relative;
+			.flexbox;
 		}
 		.input-code {
-			position: absolute;
-			left:0;
-			right:90px;
-			top:0;
-			width:auto;
+			.flexgrow(1);
 		}
 		.getCode {
-			position: absolute;
-			right:10px;
-			top:0;
+			min-width:100px;
+			text-align:center;
+			display: block;
 			line-height: 43px;
 			height:43px;
 			font-size: 14px;
-			color:rgb(38, 99, 249);
+			color:@dColor;
 		}
 		.forgotPwd {
 			position: absolute;
@@ -578,34 +585,151 @@ button {
 		padding-top:30px;
 	}
 }
+.articleQr {
+	width:300px;
+	.focus {
+		padding:22px;
+		background:#f5f5f6;
+		margin-bottom: 32px;
+		.qrImg {
+			width:130px;
+			height:130px;
+			position: relative;
+			&:after {
+				content:'';
+				position: absolute;
+				z-index: 1;
+				left: -10px;
+				top:0;
+				width:22px;
+				height:130px;
+				background: url(../static/shadow.png) no-repeat left bottom;
+				background-size:22px 130px;
+			}
+			img{
+				position: relative;
+				z-index: 2;
+				max-width: 100%;
+				max-height: 100%;
+				display: block;
+			}
+		}
+		.qrInfo {
+			text-align: right;
+			padding-top: 17px;
+			padding-right: 10px;
+			b {
+				font-size: 18px;
+				display: block;
+				color:#333;
+				font-weight:500;
+				margin-bottom: 10px;
+			}
+			i {
+				font-style:normal;
+				font-size: 16px;
+				font-weight: 500;
+				padding-bottom: 7px;
+				color:#999;
+				border-bottom: 1px #999 solid;
+			}
+		}
+	}
+	h5.article-title {
+		color:#222;
+		font-size: 18px;
+		padding-left: 17px;
+		font-weight: 500;
+		position: relative;
+		&:after {
+			content: '';
+			position: absolute;
+			top:5px;
+			left:0;
+			width:6px;
+			border-radius:3px;
+			background:#d8bb48;
+			height: 14px;
+		}
+	}
+	.article-list {
+		padding-left: 17px;
+		li {
+			height: 34px;
+			line-height: 34px;
+			width:100%;
+			overflow: hidden;
+		}
+	}
+}
 /* 手机端样式 */
-// @media screen and (min-width:980px) {
-// 	.p-header {
-// 		display: block;
-// 	}
-// 	.m-header {
-// 		display: none;
-// 	}
-// }
-// @media screen and (max-width:980px) {
-// 	.wrap {
-// 		width:100%;
-// 	}
-// 	.p-header {
-// 		display: none;
-// 	}
-// 	#header {
-// 		height: auto;
-// 		min-height:50px;
-// 		padding: 0;
-// 		border-bottom:1px #e7e7e7 solid;
-// 	}
-// 	.m-header {
-// 		padding:8px 10px;
-// 		display: block;
-// 	}
-// 	#footer {
-// 		text-align: center;
-// 	}
-// }
+@media screen and (max-width:1200px) {
+	.wrap {
+		width:100%;
+	}
+	.introduce {
+		display:none;
+	}
+	.p-header {
+		display: none;
+	}
+	#header {
+		height: auto;
+		min-height:50px;
+		padding: 0;
+		border-bottom:1px #e7e7e7 solid;
+		&.home-header {
+			position: relative !important;
+		}
+	}
+	.m-header {
+		padding:8px 10px;
+		display: block;
+	}
+	.p-dialog_wrapper.dialog-login {
+		.p-dialog_content{
+			width:90%;
+			padding:20px;
+		}
+		.login-img {
+			margin-bottom:20px !important;
+			img {
+				width:80%;
+				height: auto !important;
+			}
+		}
+		.p-dialog_close {
+			display: none;
+		}
+	}
+	#reg {
+		.main {
+			padding:15px;
+			height:auto;
+			min-height: 500px;
+			.m-form {
+				display: block;
+			}
+			section {
+				width:100%;
+				border:none;
+				margin:0 auto;
+				float: none !important;
+			}
+			article,.p-form {
+				display: none;
+			}
+		}
+	}
+	.success-box {
+		width:90%;
+		.btn {
+			width:100%;
+		}
+		.msg {
+			font-size: 16px;
+			text-indent: 15px;
+		}
+	}
+}
 </style>

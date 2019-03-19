@@ -17,6 +17,17 @@
 export default {
 }
 </script>
-<style scoped>
-
+<style lang="less">
+@media screen and (max-width:1200px) {
+	#footer {
+		height: auto;
+		.copyright {
+			padding: 28px 20px 20px 20px;
+			.links {
+				margin-left:0;
+				margin-top: 10px;
+			}
+		}
+	}
+}
 </style>

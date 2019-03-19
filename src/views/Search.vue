@@ -7,7 +7,7 @@
 					<div class="item-content pull-left">
 						<h5>{{item.title}}</h5>
 						<p>{{item.description}}</p>
-						<span>阅读量<i>1167</i></span>
+						<span>阅读量<i>{{item.views}}</i></span>
 					</div>
 					<div class="item-img pull-right">
 						<img :src="item.image" alt="">
@@ -21,7 +21,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="article pull-right">
+			<div class="articleQr pull-right">
 				<div class="focus clearfix">
 					<div class="qrImg pull-left">
 						<img src="../../static/qr-img.png" alt="二维码">
@@ -46,9 +46,9 @@
 export default {
 	data(){
 		return {
-			pageCount:0,
+			pageCount:1,
 			currentPage:1,
-			items:[],
+			items:[{"id":25,"user_id":1,"channel_id":3,"model_id":1,"title":"谷歌开源 iOS 自动测试框架 GTXiLib，主打无障碍使用","flag":"","image":"https:\/\/cdn.fastadmin.net\/uploads\/20180416\/5ad441196ddc60.png","keywords":"","description":"最近 Google 在帮助开发者提升 App 可用性上可谓是动作频频，不只发布了无障碍技术指导方案，成立无障碍支援团队，近日还在博客上宣布开源 iOS 专用的自动化测试框架 GTXiLib ，以帮助开发者打造无障碍 App 。","tags":"Google,互联网","weigh":25,"views":7,"comments":0,"likes":0,"dislikes":0,"diyname":"","createtime":1523754040,"updatetime":1523878710,"publishtime":1523721600,"deletetime":null,"memo":"","status":"normal","group_id":0,"type":0,"downloadLink":"","qrImg":"","customBtn":"","url":"\/cms\/a\/25.html","fullurl":"http:\/\/192.168.33.30:8093\/cms\/a\/25.html","likeratio":50,"tagslist":[{"name":"Google","url":"\/cms\/t\/Google.html"},{"name":"互联网","url":"\/cms\/t\/互联网.html"}],"create_date":"11 months ago"}],
 			limit:10
 		}
 	},
@@ -105,69 +105,6 @@ export default {
 		min-height: 800px;
 		padding: 20px 0;
 	}
-	.article {
-		width:300px;
-		.focus {
-			padding:22px;
-			background:#f5f5f6;
-			margin-bottom: 32px;
-			.qrImg {
-				width:130px;
-				height:130px;
-				img{
-					max-width: 100%;
-					max-height: 100%;
-					display: block;
-				}
-			}
-			.qrInfo {
-				text-align: right;
-				padding-top: 17px;
-				padding-right: 10px;
-				b {
-					font-size: 18px;
-					display: block;
-					color:#333;
-					font-weight:500;
-					margin-bottom: 10px;
-				}
-				i {
-					font-style:normal;
-					font-size: 16px;
-					font-weight: 500;
-					padding-bottom: 7px;
-					color:#999;
-					border-bottom: 1px #999 solid;
-				}
-			}
-		}
-		h5.article-title {
-			color:#222;
-			font-size: 18px;
-			padding-left: 17px;
-			font-weight: 500;
-			position: relative;
-			&:after {
-				content: '';
-				position: absolute;
-				top:5px;
-				left:0;
-				width:6px;
-				border-radius:3px;
-				background:#d8bb48;
-				height: 14px;
-			}
-		}
-		.article-list {
-			padding-left: 17px;
-			li {
-				height: 34px;
-				line-height: 34px;
-				width:100%;
-				overflow: hidden;
-			}
-		}
-	}
 	.item-list {
 		width:800px;
 		.item-box{
@@ -205,7 +142,7 @@ export default {
 				img{
 					max-width:100%;
 					max-height:100%;
-					display: block;
+					display: inline-block;
 				}
 			}
 		}
@@ -244,11 +181,17 @@ export default {
 		color:rgba(0, 0, 0,0.65);
 	}
 }
-/* @media screen and (max-width:980px) {
-	.result {
-		width:100%;
-		margin-left: 0;
-		padding: 10px;
+@media screen and (max-width:1200px) {
+	#search {
+		.item-list,.articleQr {
+			float:none;
+			width:100%;
+		}
+		.articleQr {
+			.focus {
+				display: none;
+			}
+		}
 	}
-} */
+}
 </style>

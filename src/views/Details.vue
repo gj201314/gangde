@@ -5,13 +5,13 @@
 			<section class="pull-left">
 				<h3 class="content-title">{{title}}</h3>
 				<div class="author">
-					<div class="author-img"></div>
+					<!-- <div class="author-img"></div> -->
 					<div class="author-info">
-						<b>{{author}}</b>
+						<!-- <b>{{author}}</b> -->
 						<p>
-							<span>2019.02.18</span><span>字数799</span>
-							<span>阅读598</span><span>评论99</span>
-							<span>喜欢50</span>
+							<!-- <span>2019.02.18</span><span>字数799</span> -->
+							<span>阅读{{views}}</span><!-- <span>评论99</span> -->
+							<!-- <span>喜欢50</span> -->
 						</p>
 					</div>
 				</div>
@@ -19,7 +19,7 @@
 				<button type="button" v-show="type==1" class="clickMore" @click="qrVisible=true">点击查看全文</button>
 				<button type="button" v-show="type==0" class="clickUpdate" @click="downVisible=true">点击下载新商道课题资料</button>
 			</section>
-			<div class="article pull-right">
+			<div class="articleQr pull-right">
 				<div class="focus clearfix">
 					<div class="qrImg pull-left">
 						<img src="../../static/qr-img.png" alt="二维码">
@@ -85,6 +85,7 @@ export default {
 			qrVisible:false,
 			downVisible:false,
 			type:0,
+			views:0,
 			formData:{
 				username:'',
 				mobile:'',
@@ -133,6 +134,7 @@ export default {
 				this.title = data.title;
 				this.content = data.description;
 				this.type = data.type;
+				this.views = data.views;
 			};
 		}).catch((error)=>{
 			console.log(error);
@@ -140,17 +142,16 @@ export default {
 	},
 	methods:{
 		validate(name){
-			let val = this.formData[name],p1=/^1([0-9]{10})$/,
-			p2 = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
-			if(name=='username'){
+			let val = this.formData[name];
+			if(name=='company'){
 				console.log('不验证')
 			}else if(val=='' && (name!='email')){
 				this.rules[name].msg = this.rules[name].name+'不能为空';
 				return false;
-			}else if(name=='mobile' && !p1.test(val)){
+			}else if(name=='mobile' && !this.$isMobile(val)){
 				this.rules[name].msg = this.rules[name].name+'只能为11位的数字';
 				return false;
-			}else if(name=='email' && (val!='' && !p2.test(val))){
+			}else if(name=='email' && (val!='' && !this.$isEmail(val))){
 				this.rules[name].msg = this.rules[name].name+'格式有误';
 			}else{
 				this.rules[name].msg = '';
@@ -266,83 +267,6 @@ export default {
 		    color:#fff;
 			background:rgba(255,0,0,0.5);
 			/* display: none; */
-		}
-	}
-	.article{
-		width:300px;
-		.focus {
-			padding:22px;
-			background:#f5f5f6;
-			margin-bottom: 32px;
-			.qrImg {
-				width:130px;
-				height:130px;
-				position: relative;
-				&:after {
-					content:'';
-					position: absolute;
-					z-index: 1;
-					left: -10px;
-					top:0;
-					width:22px;
-					height:130px;
-					background: url(../../static/shadow.png) no-repeat left bottom;
-					background-size:22px 130px;
-				}
-				img{
-					position: relative;
-					z-index: 2;
-					max-width: 100%;
-					max-height: 100%;
-					display: block;
-				}
-			}
-			.qrInfo {
-				text-align: right;
-				padding-top: 17px;
-				padding-right: 10px;
-				b {
-					font-size: 18px;
-					display: block;
-					color:#333;
-					font-weight:500;
-					margin-bottom: 10px;
-				}
-				i {
-					font-style:normal;
-					font-size: 16px;
-					font-weight: 500;
-					padding-bottom: 7px;
-					color:#999;
-					border-bottom: 1px #999 solid;
-				}
-			}
-		}
-		h5.article-title {
-			color:#222;
-			font-size: 18px;
-			padding-left: 17px;
-			font-weight: 500;
-			position: relative;
-			&:after {
-				content: '';
-				position: absolute;
-				top:5px;
-				left:0;
-				width:6px;
-				border-radius:3px;
-				background:#d8bb48;
-				height: 14px;
-			}
-		}
-		.article-list {
-			padding-left: 17px;
-			li {
-				height: 34px;
-				line-height: 34px;
-				width:100%;
-				overflow: hidden;
-			}
 		}
 	}
 }

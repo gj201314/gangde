@@ -56,10 +56,10 @@ export default {
 	-moz-transition: opacity .3s,-moz-transform .4s;
 	.transform(translateX(-50%));
 	z-index:3000;
-	.msg-success{
+	&.msg-success{
 		background:#47CA56;
 	}
-	.msg-error{
+	&.msg-error{
 		background:#f00;
 	}
 }
