@@ -86,6 +86,8 @@
 								</div>
 							</div>
 						</div>
+						<!-- <p-radio v-model="typeRadio" label="1">邮箱验证</p-radio>
+						<p-radio v-model="typeRadio" label="2">手机验证</p-radio> -->
 					</section>
 					<article class="pull-left">
 						<div class="qr-box">
@@ -114,6 +116,7 @@ export default {
 	data(){
 		return {
 			flag:false,
+			typeRadio:1,
 			formData:{
 				mobile:'',
 				password:'',

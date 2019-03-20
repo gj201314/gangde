@@ -4,10 +4,12 @@ import Switch from './Switch/index.js'
 import Dialog from './dialog/index.js'
 import Cookie from './cookie/index.js'
 import User from './user/index.js'
+import Radio from './radio/index.js'
 
 const install = (Vue)=>{
 	Vue.component(Loading.name,Loading);
 	Vue.component(Switch.name,Switch);
+	Vue.component(Radio.name,Radio);
 	Vue.component(Dialog.name,Dialog);
 
 	Vue.prototype.$msg = window.$msg = Msg.init;
