@@ -17,7 +17,7 @@
 				</div>
 				<div class="content">{{content}}</div>
 				<button type="button" v-show="type==1" class="clickMore" @click="qrVisible=true">点击查看全文</button>
-				<button type="button" v-show="type==0" class="clickUpdate" @click="downVisible=true">点击下载新商道课题资料</button>
+				<button type="button" v-show="type==0" class="clickUpdate" @click="downVisible=true">{{customBtn}}</button>
 			</section>
 			<div class="articleQr pull-right">
 				<div class="focus clearfix">
@@ -38,7 +38,7 @@
 		</div>
 		<p-dialog id="dialog-qr" :visible.sync="qrVisible">
 			<div class="img-box">
-				<img src="../../static/qr-img.png" alt="">
+				<img :src="qrImg" alt="">
 			</div>
 		</p-dialog>
 		<p-dialog id="dialog-down" :visible.sync="downVisible">
@@ -84,6 +84,8 @@ export default {
 			downVisible:false,
 			type:-1,
 			views:0,
+			customBtn:'点此获取白皮书',
+			qrImg:'../../static/qr-img.png',
 			formData:{
 				username:'',
 				mobile:'',
@@ -133,6 +135,13 @@ export default {
 				this.content = data.description;
 				this.type = data.type;
 				this.views = data.views;
+				if(this.type==0){//白皮书
+					if(data.customBtn!=''){
+						this.customBtn = data.customBtn;
+					};
+				}else{
+					this.qrImg = data.qrImg;
+				};
 			};
 		}).catch((error)=>{
 			console.log(error);
