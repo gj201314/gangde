@@ -1,6 +1,6 @@
 <template>
 	<div id="reg">
-		<t-header></t-header>
+		<t-header :toLogin="toLogin"></t-header>
 		<div class="wrap">
 			<div class="main clearfix">
 				<template v-if="!flag">
@@ -138,7 +138,7 @@
 				<template v-if="flag">
 					<div class="success-box">
 						<div class="msg">注册成功，可以去登录了</div>
-						<button type="button" class="btn">登录</button>
+						<button type="button" class="btn" @click="toLogin=true">登录</button>
 					</div>
 				</template>
 			</div>
@@ -152,6 +152,7 @@ export default {
 	data(){
 		return {
 			flag:false,
+			toLogin:false,
 			formData:{
 				username:'',
 				mobile:'',

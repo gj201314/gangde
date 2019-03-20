@@ -68,6 +68,17 @@ export default {
 		search:{
 			type:String,
 			default:''
+		},
+		toLogin:{
+			type:Boolean,
+			default:false
+		}
+	},
+	watch:{
+		toLogin(n,o){
+			if(n){
+				this.loginVisible=true;
+			}
 		}
 	},
 	computed:{

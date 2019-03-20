@@ -28,13 +28,13 @@ const install = (Vue)=>{
 	};
 	//验证手机号验证码
 	Vue.prototype.$isMobileCode = (val)=>{
-		let p = /^[0-9]{6}$/;
+		let p = /^[0-9]{4}$/;
 		return p.test(val);
 	}
 	//验证密码
 	Vue.prototype.$isPwd = (val)=>{
 		let s = true;
-		if(val.length<3 && val.length>20){
+		if(val.length<3 || val.length>20){
 			s=false;
 		};
 		return s;
