@@ -100,7 +100,7 @@
 								</div>
 								<div class="form-item item-code">
 									<input type="text" class="input-code" maxlength="4" v-model.number="formData.code" @blur="validate('code')" placeholder="验证码" />
-									<span class="getCode">获取验证码</span>
+									<span class="getCode" @click="createCountDown">{{countText}}</span>
 									<span class="error-msg" v-show="rules.code.msg!=''">{{rules.code.msg}}</span>
 								</div>
 								<div class="form-item">
@@ -204,7 +204,7 @@ export default {
 			}else if(!this.$isMobile(this.formData.mobile)){
 				this.$msg({msg:'请输入正确的手机号码',status:'error'});
 			}else if(this.timer==null){
-				this.countDown(10);
+				this.smSend();
 			};
 		},
 		countDown(num){
@@ -218,6 +218,22 @@ export default {
 					this.countDown(num);
 				},1000);
 			};
+		},
+		smSend(){
+			this.$axios({
+				method:'post',
+				url:'/sms/send',
+				data:{"mobile":this.formData.mobile}
+			}).then((response)=>{
+				let res = response.data;
+				if(res.code==0){
+					this.$msg({'msg':res.msg,'status':'error'});
+				}else{
+					this.countDown(60);
+				};
+			}).catch((error)=>{
+				console.log(error);
+			});
 		},
 		validate(name){
 			let val = this.formData[name];

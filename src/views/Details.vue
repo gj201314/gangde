@@ -70,6 +70,9 @@
 			</div>
 		</p-dialog>
 		<b-footer></b-footer>
+		<div style="display: none;">
+			<a href="../../static/qr-img.png" download="" ref="download"><span id="download">下载文件</span></a>
+		</div>
 	</div>
 </template>
 
@@ -77,9 +80,9 @@
 export default {
 	data(){
 		return {
-			title:'卧室撒大苏打实打实大苏打',
+			title:'',
 			author:'林子聪',
-			content:'我是内容主体',
+			content:'',
 			qrVisible:false,
 			downVisible:false,
 			type:-1,
@@ -131,7 +134,7 @@ export default {
 			}else{
 				this.$msg('查询成功');
 				let data = res.data.archivesInfo;
-				this.title = data.title;
+				document.title = this.title = data.title;
 				this.content = data.description;
 				this.type = data.type;
 				this.views = data.views;
@@ -148,6 +151,18 @@ export default {
 		});
 	},
 	methods:{
+		download(href){
+			this.$refs['download'].href = href;
+			let pos = href.lastIndexOf("/");
+			if(pos == -1){
+				pos = href.lastIndexOf("\\")
+			}
+			let filename = href.substr(pos +1);
+			this.$refs['download'].download = filename;
+			let ja = document.getElementById('download');
+			ja.addEventListener("click", function(){console.log('下载文件')}, false);
+			ja.click();
+		},
 		validate(name){
 			let val = this.formData[name];
 			if(name=='company'){
@@ -183,6 +198,7 @@ export default {
 						this.$msg({'msg':res.msg,'status':'error'});
 					}else{
 						this.$msg('请求成功');
+						this.download(res.data.download);
 						this.downVisible = false;
 					};
 				}).catch((error)=>{
@@ -268,6 +284,7 @@ export default {
 		}
 		.content {
 			margin-bottom: 15px;
+			min-height:700px;
 		}
 		.clickMore {
 			height:50px;

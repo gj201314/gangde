@@ -494,7 +494,7 @@ button {
 			.flexgrow(1);
 		}
 		.getCode {
-			min-width:100px;
+			min-width:130px;
 			text-align:center;
 			display: block;
 			line-height: 43px;
