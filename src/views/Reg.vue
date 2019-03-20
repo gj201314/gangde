@@ -292,11 +292,4 @@ export default {
 		}
 	}
 }
-/* @media screen and (max-width:400px) {
-	#reg {
-		padding:30px 15px;
-		width:auto;
-		max-width: 100%;
-	}
-} */
 </style>

@@ -2,81 +2,155 @@
 	<div id="price">
 		<t-header></t-header>
 		<div class="wrap clearfix main">
+			<div class="menubar">
+				<span data-num="0" :class="[activeNum==0? 'active':'']" @click="activeNum=0">免费版</span>
+				<span data-num="1" :class="[activeNum==1? 'active':'']" @click="activeNum=1">基础版</span>
+				<span data-num="2" :class="[activeNum==2? 'active':'']" @click="activeNum=2">企业版</span>
+				<span data-num="3" :class="[activeNum==3? 'active':'']" @click="activeNum=3">定制版</span>
+			</div>
 			<h3 class="list-title">套餐价格</h3>
-			<div class="list-item clearfix">
-				<div class="item free">
-					<h4>免费版</h4>
-					<span class="price"><i>&yen;</i>0</span>
-					<ul class="fn-list">
-						<li>分组:&nbsp;1组</li>
-						<li>文章标签设置</li>
-						<li>白皮书注册生成&nbsp;1套</li>
-						<li>内容预览h5生成&nbsp;2套</li>
-						<li>海报模板&nbsp;5套</li>
-						<li>监测链生成服务<i class="icon error"></i></li>
-						<li>推广参数生成服务<i class="icon error"></i></li>
-						<li>文章抓取平台开发<i class="icon success"></i></li>
-						<li>数据展示平台开发<i class="icon success"></i></li>
-						<li>每日晨报功能开放<i class="icon error"></i></li>
-					</ul>
-					<div class="item-hover">
+			<div class="p-item">
+				<div class="list-item clearfix">
+					<div class="item free">
 						<h4>免费版</h4>
-						<!-- <div class="btn-box">
-							<button type="button" class="btn-default">购买</button>
-						</div> -->
-					</div>
-				</div>
-				<div class="item basis">
-					<h4>基础版</h4>
-					<span class="price"><i>&yen;</i>14.900</span>
-					<ul class="fn-list">
-						<li>分组:&nbsp;2组</li>
-						<li>文章标签设置</li>
-						<li>白皮书注册生成&nbsp;15套</li>
-						<li>内容预览h5生成&nbsp;30套</li>
-						<li>海报模板&nbsp;5套</li>
-						<li>监测链生成服务<i class="icon success"></i></li>
-						<li>推广参数生成服务<i class="icon success"></i></li>
-						<li>文章抓取平台开发<i class="icon success"></i></li>
-						<li>数据展示平台开发<i class="icon success"></i></li>
-						<li>每日晨报功能开放<i class="icon success"></i></li>
-					</ul>
-					<div class="item-hover">
-						<h4>基础版</h4>
-						<div class="btn-box">
-							<button type="button" class="btn-default">购买</button>
+						<span class="price"><i>&yen;</i>0</span>
+						<ul class="fn-list">
+							<li>分组:&nbsp;1组</li>
+							<li>文章标签设置</li>
+							<li>白皮书注册生成&nbsp;1套</li>
+							<li>内容预览h5生成&nbsp;2套</li>
+							<li>海报模板&nbsp;5套</li>
+							<li>监测链生成服务<i class="icon error"></i></li>
+							<li>推广参数生成服务<i class="icon error"></i></li>
+							<li>文章抓取平台开发<i class="icon success"></i></li>
+							<li>数据展示平台开发<i class="icon success"></i></li>
+							<li>每日晨报功能开放<i class="icon error"></i></li>
+						</ul>
+						<div class="item-hover">
+							<h4>免费版</h4>
+							<!-- <div class="btn-box">
+								<button type="button" class="btn-default">购买</button>
+							</div> -->
 						</div>
 					</div>
-				</div>
-				<div class="item enterprise">
-					<h4>免费版</h4>
-					<span class="price"><i>&yen;</i>29.800</span>
-					<ul class="fn-list">
-						<li>分组:&nbsp;5组</li>
-						<li>文章标签设置</li>
-						<li class="unique">白皮书注册生成<i class="text">不限</i></li>
-						<li class="unique">内容预览h5生成<i class="text">不限</i></li>
-						<li class="unique">海报模板<i class="text">不限</i></li>
-						<li>监测链生成服务<i class="icon success"></i></li>
-						<li>推广参数生成服务<i class="icon success"></i></li>
-						<li>文章抓取平台开发<i class="icon success"></i></li>
-						<li>数据展示平台开发<i class="icon success"></i></li>
-						<li>每日晨报功能开放<i class="icon success"></i></li>
-					</ul>
-					<div class="item-hover">
+					<div class="item basis">
 						<h4>基础版</h4>
-						<div class="btn-box">
-							<button type="button" class="btn-default">购买</button>
+						<span class="price"><i>&yen;</i>14.900</span>
+						<ul class="fn-list">
+							<li>分组:&nbsp;2组</li>
+							<li>文章标签设置</li>
+							<li>白皮书注册生成&nbsp;15套</li>
+							<li>内容预览h5生成&nbsp;30套</li>
+							<li>海报模板&nbsp;5套</li>
+							<li>监测链生成服务<i class="icon success"></i></li>
+							<li>推广参数生成服务<i class="icon success"></i></li>
+							<li>文章抓取平台开发<i class="icon success"></i></li>
+							<li>数据展示平台开发<i class="icon success"></i></li>
+							<li>每日晨报功能开放<i class="icon success"></i></li>
+						</ul>
+						<div class="item-hover">
+							<h4>基础版</h4>
+							<div class="btn-box">
+								<button type="button" class="btn-default">购买</button>
+							</div>
 						</div>
 					</div>
+					<div class="item enterprise">
+						<h4>企业版</h4>
+						<span class="price"><i>&yen;</i>29.800</span>
+						<ul class="fn-list">
+							<li>分组:&nbsp;5组</li>
+							<li>文章标签设置</li>
+							<li class="unique">白皮书注册生成<i class="text">不限</i></li>
+							<li class="unique">内容预览h5生成<i class="text">不限</i></li>
+							<li class="unique">海报模板<i class="text">不限</i></li>
+							<li>监测链生成服务<i class="icon success"></i></li>
+							<li>推广参数生成服务<i class="icon success"></i></li>
+							<li>文章抓取平台开发<i class="icon success"></i></li>
+							<li>数据展示平台开发<i class="icon success"></i></li>
+							<li>每日晨报功能开放<i class="icon success"></i></li>
+						</ul>
+						<div class="item-hover">
+							<h4>企业版</h4>
+							<div class="btn-box">
+								<button type="button" class="btn-default">购买</button>
+							</div>
+						</div>
+					</div>
+					<div class="item custom">
+						<h4>定制版</h4>
+						<span class="price"><i>&yen;</i>需协商</span>
+						<ul class="fn-list">
+							<li>定制化海报模板开发设计</li>
+							<li>微信公众号授权及二维码管理</li>
+						</ul>
+					</div>
 				</div>
-				<div class="item custom">
-					<h4>协商版</h4>
-					<span class="price"><i>&yen;</i>需协商</span>
-					<ul class="fn-list">
-						<li>定制化海报模板开发设计</li>
-						<li>微信公众号授权及二维码管理</li>
-					</ul>
+			</div>
+			<div class="m-item">
+				<div class="list-item clearfix">
+					<div class="item free" v-show="activeNum==0">
+						<span class="price"><i>&yen;</i>0</span>
+						<ul class="fn-list">
+							<li>分组:&nbsp;1组</li>
+							<li>文章标签设置</li>
+							<li>白皮书注册生成&nbsp;1套</li>
+							<li>内容预览h5生成&nbsp;2套</li>
+							<li>海报模板&nbsp;5套</li>
+							<li>监测链生成服务<i class="icon error"></i></li>
+							<li>推广参数生成服务<i class="icon error"></i></li>
+							<li>文章抓取平台开发<i class="icon success"></i></li>
+							<li>数据展示平台开发<i class="icon success"></i></li>
+							<li>每日晨报功能开放<i class="icon error"></i></li>
+						</ul>
+					</div>
+					<div class="item basis" v-show="activeNum==1">
+						<span class="price"><i>&yen;</i>14.900</span>
+						<ul class="fn-list">
+							<li>分组:&nbsp;2组</li>
+							<li>文章标签设置</li>
+							<li>白皮书注册生成&nbsp;15套</li>
+							<li>内容预览h5生成&nbsp;30套</li>
+							<li>海报模板&nbsp;5套</li>
+							<li>监测链生成服务<i class="icon success"></i></li>
+							<li>推广参数生成服务<i class="icon success"></i></li>
+							<li>文章抓取平台开发<i class="icon success"></i></li>
+							<li>数据展示平台开发<i class="icon success"></i></li>
+							<li>每日晨报功能开放<i class="icon success"></i></li>
+						</ul>
+						<div class="item-hover">
+							<div class="btn-box">
+								<button type="button" class="btn-default">购买</button>
+							</div>
+						</div>
+					</div>
+					<div class="item enterprise" v-show="activeNum==2">
+						<span class="price"><i>&yen;</i>29.800</span>
+						<ul class="fn-list">
+							<li>分组:&nbsp;5组</li>
+							<li>文章标签设置</li>
+							<li class="unique">白皮书注册生成<i class="text">不限</i></li>
+							<li class="unique">内容预览h5生成<i class="text">不限</i></li>
+							<li class="unique">海报模板<i class="text">不限</i></li>
+							<li>监测链生成服务<i class="icon success"></i></li>
+							<li>推广参数生成服务<i class="icon success"></i></li>
+							<li>文章抓取平台开发<i class="icon success"></i></li>
+							<li>数据展示平台开发<i class="icon success"></i></li>
+							<li>每日晨报功能开放<i class="icon success"></i></li>
+						</ul>
+						<div class="item-hover">
+							<div class="btn-box">
+								<button type="button" class="btn-default">购买</button>
+							</div>
+						</div>
+					</div>
+					<div class="item custom" v-show="activeNum==3">
+						<span class="price"><i>&yen;</i>需协商</span>
+						<ul class="fn-list">
+							<li>定制化海报模板开发设计</li>
+							<li>微信公众号授权及二维码管理</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -88,6 +162,7 @@
 export default {
 	data(){
 		return {
+			activeNum:0
 		}
 	},
 	mounted(){
@@ -270,6 +345,74 @@ export default {
 					}
 				}
 			}
+		}
+	}
+	.menubar {
+		padding:14px 10px;
+		font-size: 0;
+		display: none;
+		span {
+			width:25%;
+			height: 35px;
+			line-height: 35px;
+			font-size: 16px;
+			display: inline-block;
+			text-align:center;
+			&.active {
+				background: @dColor;
+				color:#fff;
+				.borderRadius(8px);
+			}
+		}
+	}
+	.p-item {
+		display: block
+	}
+	.m-item {
+		display: none;
+		.list-item {
+			display: block;
+			width:auto;
+			margin:0 10px;
+			.item {
+				display:block;
+				width:100%;
+				border: 1px #ececec solid;
+				.fn-list {
+					li {
+						text-align:center;
+						text-indent:0;
+					}
+				}
+				.item-hover {
+					position: static;
+					border:none;
+					display: block;
+					.boxShadow(initial);
+					.btn-box {
+						position: static;
+					}
+				}
+			}
+		}
+	}
+}
+@media screen and (max-width:1200px) {
+	#price {
+		.main {
+			min-height: 700px;
+		}
+		.menubar {
+			display: block;
+		}
+		.list-title {
+			display: none;
+		}
+		.p-item {
+			display: none;
+		}
+		.m-item {
+			display: block;
 		}
 	}
 }
