@@ -7,7 +7,7 @@ function getUser(){ //获取用户信息
 export default {
 	getUser,
 	isUserLogin(){
-		if(cookie.getCookie('token') && cookie.getCookie('token')){
+		if(cookie.getCookie('token') && getUser()!=''){
 			return true;
 		};
 		return false;
