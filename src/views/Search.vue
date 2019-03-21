@@ -34,7 +34,9 @@
 				</div>
 				<h5 class="article-title">相关文章</h5>
 				<ul class="article-list">
-					<li>没文化，真可怕啊啊啊啊啊啊</li>
+					<li v-for="item in article">
+						<router-link :to="'/details/'+item.id">{{item.title}}</router-link>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -49,6 +51,7 @@ export default {
 			pageCount:1,
 			currentPage:1,
 			items:[],
+			article:[],
 			limit:10
 		}
 	},
@@ -70,32 +73,63 @@ export default {
 			return num;
 		}
 	},
+	watch:{
+		$route(to,form){
+			console.log('第二次搜索') //to,form
+			this.init();
+		}
+	},
 	mounted(){
-		this.archiveSearch();
+		this.init();
 	},
 	methods:{
-		archiveSearch(){
-			this.$axios({
-				method:'get',
-				url:'/archives/search',
-				params:{'search':this.$route.params.search,'page':this.currentPage}
-			}).then((response)=>{
-				let res = response.data;
-				if(res.code==0){
-					this.$msg({'msg':res.msg,'status':'error'});
+		init(){
+			axios.all([this.archiveSearch(), this.archivesAbout()])
+			.then(axios.spread((search, about)=>{
+				this.$store.commit('switchPageLoading',false);
+				// 两个请求现在都执行完成
+				console.log(search,about)
+				let aboutRes = about.data;
+				if(aboutRes.code==0){
+					this.$msg({'msg':aboutRes.msg,'status':'error'});
 				}else{
-					this.$msg('查询成功');
-					this.items = res.data.Archives;
-					this.pageCount = Math.ceil(res.data.total/this.limit);
+					this.article = aboutRes.data.Archives;
 				};
-			}).catch((error)=>{
-				console.log(error);
+				this.searchCallback(search);
+			})).catch((error)=>{
+				this.$store.commit('switchPageLoading',false);
+				console.log(error)
 			});
+		},
+		archiveSearch(type){
+			let search = axios.get('/api/archives/search',{
+				params:{'search':this.$route.params.search,'page':this.currentPage}
+			});
+			if(type=='update'){
+				search.then((response)=>{
+					this.searchCallback(response);
+				}).catch((error)=>{
+					console.log(error);
+				});
+			}
+			return search;
+		},
+		searchCallback(response){
+			let res = response.data;
+			if(res.code==0){
+				this.$msg({'msg':res.msg,'status':'error'});
+			}else{
+				this.items = res.data.Archives;
+				this.pageCount = Math.ceil(res.data.total/this.limit);
+			};
+		},
+		archivesAbout(type){
+			return axios.get('/api/Archives/about/47');
 		},
 		pagePrev(){
 			if(this.currentPage>1){
 				--this.currentPage;
-				this.archiveSearch();
+				this.archiveSearch('update');
 			}else{
 				console.log('第一页')
 			};
@@ -103,14 +137,14 @@ export default {
 		pageNext(){
 			if(this.currentPage<this.pageCount){
 				++this.currentPage;
-				this.archiveSearch();
+				this.archiveSearch('update');
 			}else{
 				console.log('最后一页')
 			};
 		},
 		updateCurrentPage(num){
 			this.currentPage=num;
-			this.archiveSearch();
+			this.archiveSearch('update');
 		},
 		toDetails(id){
 			this.$router.push({name:'details',params:{id:id}});

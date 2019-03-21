@@ -23,7 +23,7 @@
 									<div class="item-content">
 										<div class="input-box input-code" :class="[rules.code.msg!=''? 'error':'']">
 											<input type="text" maxlength="4" v-model.number="formData.code" @blur="validate('code')" placeholder="手机短信" />
-											<span class="getCode">获取</span>
+											<span class="getCode" @click="createCountDown">{{countText}}</span>
 										</div>
 									</div>
 									<div class="item-errMsg" v-show="rules.code.msg!=''">
@@ -70,7 +70,7 @@
 								</div>
 								<div class="form-item item-code">
 									<input type="text" class="input-code" maxlength="4" v-model.number="formData.code" @blur="validate('code')" placeholder="验证码" />
-									<span class="getCode">获取验证码</span>
+									<span class="getCode" @click="createCountDown">{{countText}}</span>
 									<span class="error-msg" v-show="rules.code.msg!=''">{{rules.code.msg}}</span>
 								</div>
 								<div class="form-item">
@@ -117,6 +117,8 @@ export default {
 		return {
 			flag:false,
 			typeRadio:1,
+			countText:'获取',
+			timer:null,
 			formData:{
 				mobile:'',
 				password:'',
@@ -146,9 +148,46 @@ export default {
 	mounted(){
 		setTimeout(()=>{
 			this.$store.commit('switchPageLoading',false);
-		},1000);
+		},300);
 	},
 	methods:{
+		createCountDown(){
+			if(this.formData.mobile==''){
+				this.$msg({msg:'请输入手机号码',status:'error'});
+			}else if(!this.$isMobile(this.formData.mobile)){
+				this.$msg({msg:'请输入正确的手机号码',status:'error'});
+			}else if(this.timer==null){
+				this.smSend();
+			};
+		},
+		countDown(num){
+			if(num==1){
+				this.countText = '获取';
+				clearTimeout(this.timer);
+			}else{
+				--num;
+				this.countText = `${num}秒后重新获取`;
+				this.timer = setTimeout(()=>{
+					this.countDown(num);
+				},1000);
+			};
+		},
+		smSend(){
+			this.$axios({
+				method:'post',
+				url:'/sms/send',
+				data:{"mobile":this.formData.mobile}
+			}).then((response)=>{
+				let res = response.data;
+				if(res.code==0){
+					this.$msg({'msg':res.msg,'status':'error'});
+				}else{
+					this.countDown(60);
+				};
+			}).catch((error)=>{
+				console.log(error);
+			});
+		},
 		validate(name){
 			let val = this.formData[name],p1=/^1([0-9]{10})$/;
 			if(val==''){

@@ -79,7 +79,7 @@ export default {
 					}else{
 						this.$msg('登录成功');
 						localStorage.setItem('gangde_user',JSON.stringify(res.data.userinfo));
-						this.$store.commit('swicthNickName',res.data.username);
+						this.$store.commit('swicthNickName',res.data.userinfo.username);
 						this.$emit('handleEvent','close');
 					};
 				}).catch((error)=>{

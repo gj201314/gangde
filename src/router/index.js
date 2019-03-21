@@ -72,5 +72,9 @@ export default new Router({
 			title:'价格页'
 		}
 	}
-  ]
+  ],
+  scrollBehavior (to, from, savedPosition) {
+    // return 期望滚动到哪个的位置
+	return { x: 0, y: 0 };
+  }
 })

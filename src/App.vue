@@ -171,7 +171,8 @@ button {
 			color: #c4c5c8;
 			font-size: 14px;
 			line-height:35px;
-			i{
+			a{
+				width:auto;
 				font-style: normal;
 				padding:0 5px;
 				color:#e3c653;
@@ -604,6 +605,14 @@ button {
 			line-height: 34px;
 			width:100%;
 			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			a {
+				color: #333;
+				&:hover {
+					color:@dColor;
+				}
+			}
 		}
 	}
 }

@@ -21,7 +21,7 @@
 					<a href="javascript:void(0);" @click="loginVisible=true" class="btn-login">登录</a>
 				</template>
 				<template v-else>
-					<span class="user-login">欢迎<i>{{nickName}}</i>,来到纲得</span>
+					<span class="user-login">欢迎<a href="index/user/dashboard.html">{{nickName}}</a>,来到纲得</span>
 				</template>
 			</div>
 		</div>
@@ -37,7 +37,7 @@
 					<a href="javascript:void(0);" @click="loginVisible=true">登录</a>
 				</template>
 				<template v-else>
-					<span>{{nickName}}</span>
+					<span><a href="index/user/dashboard.html">{{nickName}}</a></span>
 				</template>
 			</div>
 		</div>

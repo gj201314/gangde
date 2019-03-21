@@ -32,7 +32,9 @@
 				</div>
 				<h5 class="article-title">相关文章</h5>
 				<ul class="article-list">
-					<li>没文化，真可怕啊啊啊啊啊啊</li>
+					<li v-for="item in article">
+						<router-link :to="'/details/'+item.id">{{item.title}}</router-link>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -53,7 +55,7 @@
 				</div>
 				<div class="form-item item-code">
 					<input type="text" class="input-code" maxlength="4" v-model.number="formData.code" @blur="validate('code')" placeholder="验证码" />
-					<span class="getCode">获取验证码</span>
+					<span class="getCode" @click="createCountDown">{{countText}}</span>
 					<span class="error-msg" v-show="rules.code.msg!=''">{{rules.code.msg}}</span>
 				</div>
 				<div class="form-item">
@@ -87,6 +89,10 @@ export default {
 			downVisible:false,
 			type:-1,
 			views:0,
+			timer:null,
+			countText:'获取',
+			loadingFlag:false,
+			article:[],
 			customBtn:'点此获取白皮书',
 			qrImg:'../../static/qr-img.png',
 			formData:{
@@ -121,36 +127,107 @@ export default {
 			}
 		}
 	},
+	watch:{
+		$route(to,form){
+			console.log('第二进入') //to,form
+			this.init();
+		}
+	},
 	mounted(){
-		this.formData.source_id = this.$route.params.id;
-		this.$axios({
-			method:'get',
-			url:'/archives/show',
-			params:{'id':this.$route.params.id}
-		}).then((response)=>{
-			let res = response.data;
-			if(res.code==0){
-				this.$msg({'msg':res.msg,'status':'error'});
-			}else{
-				this.$msg('查询成功');
-				let data = res.data.archivesInfo;
-				document.title = this.title = data.title;
-				this.content = data.description;
-				this.type = data.type;
-				this.views = data.views;
-				if(this.type==0){//白皮书
-					if(data.customBtn!=''){
-						this.customBtn = data.customBtn;
-					};
-				}else{
-					this.qrImg = data.qrImg;
-				};
-			};
-		}).catch((error)=>{
-			console.log(error);
-		});
+		this.init();
 	},
 	methods:{
+		init(){
+			this.formData.source_id = this.$route.params.id;
+			axios({
+				method:'get',
+				url:'/api/archives/show',
+				params:{'id':this.$route.params.id}
+			}).then((response)=>{
+				if(this.loadingFlag){
+					this.$store.commit('switchPageLoading',false);	
+				};
+				this.loadingFlag=true;
+				let res = response.data;
+				if(res.code==0){
+					this.$msg({'msg':res.msg,'status':'error'});
+				}else{
+					let data = res.data.archivesInfo;
+					document.title = this.title = data.title;
+					this.content = data.description;
+					this.type = data.type;
+					this.views = data.views;
+					if(this.type==0){//白皮书
+						if(data.customBtn!=''){
+							this.customBtn = data.customBtn;
+						};
+					}else{
+						this.qrImg = data.qrImg;
+					};
+				};
+			}).catch((error)=>{
+				if(this.loadingFlag){
+					this.$store.commit('switchPageLoading',false);	
+				};
+				this.loadingFlag=true;
+				console.log(error);
+			});
+			axios.get('/api/Archives/about/47?id='+this.formData.source_id).then((about)=>{
+				if(this.loadingFlag){
+					this.$store.commit('switchPageLoading',false);	
+				};
+				this.loadingFlag=true;
+				let aboutRes = about.data;
+				if(aboutRes.code==0){
+					this.$msg({'msg':aboutRes.msg,'status':'error'});
+				}else{
+					this.article = aboutRes.data.Archives;
+				};
+			}).catch((error)=>{
+				if(this.loadingFlag){
+					this.$store.commit('switchPageLoading',false);	
+				};
+				this.loadingFlag=true;
+				console.log(error);
+			});
+		},
+		createCountDown(){
+			if(this.formData.mobile==''){
+				this.$msg({msg:'请输入手机号码',status:'error'});
+			}else if(!this.$isMobile(this.formData.mobile)){
+				this.$msg({msg:'请输入正确的手机号码',status:'error'});
+			}else if(this.timer==null){
+				this.smSend();
+			};
+		},
+		countDown(num){
+			if(num==1){
+				this.countText = '获取';
+				clearTimeout(this.timer);
+			}else{
+				--num;
+				this.countText = `${num}秒后重新获取`;
+				this.timer = setTimeout(()=>{
+					this.countDown(num);
+				},1000);
+			};
+		},
+		smSend(){
+			this.$axios({
+				method:'post',
+				url:'/sms/send',
+				data:{"mobile":this.formData.mobile}
+			}).then((response)=>{
+				let res = response.data;
+				if(res.code==0){
+					this.$msg({'msg':res.msg,'status':'error'});
+				}else{
+					this.countDown(60);
+				};
+			}).catch((error)=>{
+				console.log(error);
+			});
+		},
 		download(href){
 			this.$refs['download'].href = href;
 			let pos = href.lastIndexOf("/");
@@ -284,7 +361,7 @@ export default {
 		}
 		.content {
 			margin-bottom: 15px;
-			min-height:700px;
+			min-height:600px;
 		}
 		.clickMore {
 			height:50px;
@@ -297,6 +374,7 @@ export default {
 		    color: #e3c653;
 			background: #fff;
 			display: block;
+			margin-bottom: 40px;
 		}
 		.clickUpdate {
 			height: 60px;
@@ -307,8 +385,8 @@ export default {
 			border:1px #f00 solid;
 			font-size: 14px;
 		    color:#fff;
+			margin-bottom: 40px;
 			background:rgba(255,0,0,0.5);
-			/* display: none; */
 		}
 	}
 }

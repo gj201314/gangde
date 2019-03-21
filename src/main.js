@@ -22,25 +22,10 @@ Vue.component('login',Login);
 Vue.component('search',Search);
 Vue.component('bFooter',bFooter);
 
-
-
 Vue.config.productionTip = false;
 
 /*路由守卫*/
 router.beforeEach((to,from,next)=>{
-	if(to.meta.requireAuth){
-		var token = true;
-		//token失效或者不存在
-// 		if(!token){
-// 			next({
-// 				path:'/login',
-// 				query:{
-// 					redirect:to.meta.fullPath
-// 				}
-// 			});
-// 			return false;
-// 		}
-	};
 	if(to.meta.title){
 		document.title = to.meta.title
 	};
@@ -71,12 +56,12 @@ const store = new Vuex.Store({
 axios.interceptors.request.use(
   config => {
     // 发送请求之前，要做的业务
-		store.commit('switchPageLoading',true);
+	store.commit('switchPageLoading',true);
     return config
   },
   error => {
     // 错误处理代码
-    store.commit('switchPageLoading',false);
+	store.commit('switchPageLoading',false);
 	$msg({msg:'服务器或网络环境出错',status:'error'});
     return Promise.reject(error)
   }
