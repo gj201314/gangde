@@ -95,15 +95,7 @@ button {
 			border:none;
 			display:inline-block;
 			vertical-align: bottom;
-			&::-webkit-input-placeholder {
-				color:#bca64f;
-			}
-			&::-moz-input-placeholder {
-				color:#bca64f;
-			}
-			&::-ms-input-placeholder {
-				color:#bca64f;
-			}
+			.placeholder(#bca64f);
 		}
 		button {
 			height:33px;
@@ -181,79 +173,34 @@ button {
 	}
 }
 .m-header {
-	height:50px;
-	background: #fff;
+	height:70px;
+	padding:15px 0;
 	position: relative;
 	display:none;
-	h1 {
-		position: absolute;
-		top:8px;
-		left:100px;
-		right:100px;
-		height: 34px;
-		line-height:34px;
-		font-size: 18px;
-		text-align: center;
-		color: #777;
-		font-weight: normal;
-	}
 	.nick-status {
-		height: 34px;
-		line-height: 34px;
-		a {
-			color:#333;
+		width:15%;
+		.status-box {
+			padding:0 5px;
+			height:40px;
+			line-height:40px;
+			text-align: center;
+			overflow: hidden;
+			a {
+				color:#f2f0f0;
+			}
 		}
 	}
-	.navbar-toggle {
-		padding: 0 10px;
-		background-color: transparent;
-		background-image: none;
-		border: 1px solid #ddd;
-		.borderRadius(4px);
-		height: 34px;
-		outline:0;
-		&:focus,&:hover {
-			background-color: #ddd;
-			outline:0;
-		}
-		.icon-bar {
-			display: block;
-			width: 22px;
-			height: 2px;
-			.borderRadius(1px);
-			background-color: #888;
-			margin-top: 4px;
-		}
-	}
-}
-.m-navbar {
-	background: #fff;
-	height: 0;
-	overflow: hidden;
-	nav {
-		opacity: 0;
-		.transform(translateY(-100%));
-		transition: all 0.5s;
-		-webkit-transition: all 0.5s;
-		-moz-transition: all 0.5s;
-		border-top: 1px #e7e7e7 solid;
-	}
-	&.active {
-		height: auto;
-		nav {
-			opacity: 1;
-			.transform(translateY(0));
-		}
-	}
-	a{
-		padding: 10px;
-		line-height: 20px;
-		color:#777;
-		font-size: 14px;
-		display: block;
-		&.router-link-exact-active {
-			color: #555;
-			background-color: #e7e7e7;
+	.search-input {
+		.flexgrow(1);
+		padding-left:15%;
+		input {
+			width:100%;
+			height:100%;
+			text-indent:58px;
+			background:rgba(255,255,255,0.3) url(./assets/m-search.png) no-repeat 25px center;
+			.borderRadius(45px);
+			.backgroundSize(21px 20px);
+			.placeholder(#f2f0f0);
 		}
 	}
 }
@@ -273,6 +220,74 @@ button {
 		a {
 			display: inline-block;
 			margin-right: 3px;
+		}
+	}
+	.p-footer {
+		display: block;
+	}
+	.m-footer {
+		height:65px;
+		background:#f9f9f9;
+		border-top:1px #eae9e9 solid;
+		display: none;
+		.item {
+			width:33.333%;
+			float: left;
+			.item-icon {
+				height:40px;
+				width:100%;
+				display: block;
+			}
+			.item-text {
+				height:24px;
+				line-height:1.5;
+				text-align: center;
+				width:100%;
+				display: block;
+				font-size:14px;
+				color:#a1a1a1;
+			}
+			&.item-home {
+				.item-icon {
+					background:url(./assets/index.png) no-repeat center;
+					.backgroundSize(30px 30px);
+				}
+			}
+			&.item-price {
+				.item-icon {
+					background:url(./assets/price.png) no-repeat center;
+					.backgroundSize(26px 30px);
+				}
+			}
+			&.item-about {
+				.item-icon {
+					background:url(./assets/about.png) no-repeat center;
+					.backgroundSize(28px 30px);
+				}
+			}
+			&.router-link-exact-active {
+				.item-text {
+					color:#e3c653;
+				}
+				&.item-home {
+					.item-icon {
+						background:url(./assets/index_click.png) no-repeat center;
+						.backgroundSize(30px 30px);
+					}
+				}
+				&.item-price {
+					.item-icon {
+						background:url(./assets/price_click.png) no-repeat center;
+						.backgroundSize(26px 30px);
+					}
+				}
+				&.item-about {
+					.item-icon {
+						background:url(./assets/about_click.png) no-repeat center;
+						.backgroundSize(28px 30px);
+					}
+				}
+			}
 		}
 	}
 }
@@ -621,24 +636,18 @@ button {
 	.wrap {
 		width:100%;
 	}
-	.introduce {
-		display:none;
-	}
-	.p-header {
-		display: none;
+	.p-header,.p-footer {
+		display: none !important;
 	}
 	#header {
-		height: auto;
-		min-height:50px;
+		height:45px;
 		padding: 0;
-		border-bottom:1px #e7e7e7 solid;
-		&.home-header {
-			position: relative !important;
-		}
 	}
 	.m-header {
-		padding:8px 10px;
-		display: block;
+		.flexbox;
+	}
+	.m-footer {
+		display: block !important;
 	}
 	.p-dialog_wrapper.dialog-login {
 		.p-dialog_content{
@@ -684,6 +693,9 @@ button {
 			font-size: 16px;
 			text-indent: 15px;
 		}
+	}
+	#footer {
+		height:auto;
 	}
 }
 </style>

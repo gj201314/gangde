@@ -28,9 +28,34 @@
 	display: -webkit-flex;
 	display: flex;
 }
+/*x轴对齐*/
+.justifyContent{
+    -webkit-box-pack: center;
+    -moz-justify-content: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+/*y轴对齐*/
+.alignItems{
+    -webkit-box-align: center;
+    -moz-align-items: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
 .flexgrow(@v) {
 	-webkit-box-flex: @v;
 	-moz-flex-grow: @v;
 	-webkit-flex-grow: @v;
 	flex-grow:@v;
 }
+.placeholder(@color) {
+	&::-webkit-input-placeholder {
+		color:@color;
+	}
+	&::-moz-input-placeholder {
+		color:@color;
+	}
+	&::-ms-input-placeholder {
+		color:@color;
+	}
+};

@@ -2,16 +2,19 @@
 	<div id="home">
 		<div id="home-top">
 			<t-header class="home-header"></t-header>
-			<search></search>
 			<div class="banner-box">
 				<swiper :options="banOption">
 					<swiper-slide v-for="imgSrc in banImg" class="item">
-						<img :src="'../../static/'+imgSrc" alt="">
+						<img :src="'../../static/'+imgSrc+'.png'" alt="" class="p-img">
+						<img :src="'../../static/m-'+imgSrc+'.png'" alt="" class="m-img">
 					</swiper-slide>
 					<div class="swiper-button-prev ban-button-prev" slot="button-prev"></div>
 					<div class="swiper-button-next ban-button-next" slot="button-next"></div>
 					<div class="swiper-pagination ban-pagination" slot="pagination"></div>
 				</swiper>
+				<div class="m-regBtn">
+					<router-link to="/reg">免费注册</router-link>
+				</div>
 			</div>
 		</div>
 		<div class="wrap">
@@ -20,39 +23,55 @@
 				<div class="item-list clearfix">
 					<div class="item">
 						<div class="item-section">
+							<div class="m-item-l">
 								<div class="item-icon">
 									<img src="../assets/icon-yliu.png" alt="">
 								</div>
 								<h5>独创引流模式</h5>
 								<span class="icon-bar"></span>
-								<p>将你的优质内容发布到纲得平台后，用户通过百度等搜索引擎，可以阅读部内容，剩余内容需关注公众号才能获得而实现从搜索引擎到微信公众号的引流。</p>
-						</div>
-						</div>
-					<div class="item">
-						<div class="item-section">
-							<div class="item-icon">
-								<img src="../assets/icon-push.png" alt="">
 							</div>
-							<h5>灵活发布内容</h5>
-							<span class="icon-bar"></span>
-							<p>在纲得平台发布内容时， 可以通选择内容类型，实现引流到微信公号，还是获取客户的姓名、手机号等信息。</p>
+							<div class="m-item-r">
+								<b>在纲得平台发布内容时</b>
+								<p>将你的优质内容发布到纲得平台后，用户通过百度等搜索引擎，可以阅读部内容，剩余内容需关注公众号才能获得而实现从搜索引擎到微信公众号的引流。</p>
+							</div>
 						</div>
 					</div>
 					<div class="item">
 						<div class="item-section">
-							<div class="item-icon">
-								<img src="../assets/icon-hbao.png" alt="">
+							<div class="m-item-l">
+								<div class="item-icon">
+									<img src="../assets/icon-push.png" alt="">
+								</div>
+								<h5>灵活发布内容</h5>
+								<span class="icon-bar"></span>
 							</div>
-							<h5>一键生成海报</h5>
-							<span class="icon-bar"></span>
-							<p>将纲得平台的内容，一键生成文并茂的海报，并支持分享到朋友圈等多个渠道。海报上附带的 二维码也可以实现引流功能。</p>
+							<div class="m-item-r">
+								<b>在纲得平台发布内容时</b>
+								<p>在纲得平台发布内容时， 可以通选择内容类型，实现引流到微信公号，还是获取客户的姓名、手机号等信息。</p>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="item-section">
+							<div class="m-item-l">
+								<div class="item-icon">
+									<img src="../assets/icon-hbao.png" alt="">
+								</div>
+								<h5>一键生成海报</h5>
+								<span class="icon-bar"></span>
+							</div>
+							<div class="m-item-r">
+								<b>在纲得平台发布内容时</b>
+								<p>将纲得平台的内容，一键生成文并茂的海报，并支持分享到朋友圈等多个渠道。海报上附带的 二维码也可以实现引流功能。</p>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="introduce">
-			<img src="../../static/3.png" alt="">
+			<img src="../../static/3.png" alt="" class="p-img">
+			<img src="../../static/m-3.png" alt="" class="m-img">
 		</div>
 		<div class="wrap">
 			<div class="ganders">
@@ -87,6 +106,9 @@
 				</div>
 			</div>
 		</div>
+		<div class="regBtn-box">
+			<router-link to="/reg">免费注册</router-link>
+		</div>
 		<b-footer></b-footer>
 	</div>
 </template>
@@ -102,7 +124,7 @@ export default {
 	data(){
 		return {
 			flag:false,
-			banImg:['banner-img1.png'],
+			banImg:['banner-img1'],
 			banOption:{
 				loop:true,
 				pagination: {
@@ -173,10 +195,51 @@ export default {
 #home-top {
 	position: relative;
 	.banner-box {
+		position:relative;
 		img{
 			width:100%;
+		}
+		.m-regBtn {
+			position: absolute;
+			left:26%;
+			right:26%;
+			bottom:22px;
+			z-index: 1;
+			display: none;
+			a {
+				height:45px;
+				background:#efc935;
+				line-height:45px;
+				width:100%;
+				color:#584704;
+				font-size:18px;
+				display: block;
+				text-align: center;
+				.borderRadius(50px)
+			}
+		}
+		.p-img {
 			display: block;
 		}
+		.m-img {
+			display: none;
+		}
+	}
+}
+.regBtn-box {
+	padding:34px 0;
+	background:#fff;
+	a {
+		height:45px;
+		background:#efc935;
+		line-height:45px;
+		width:48%;
+		margin:0 auto;
+		color:#584704;
+		font-size:18px;
+		display: block;
+		text-align: center;
+		.borderRadius(50px)
 	}
 }
 h3.content-title {
@@ -186,6 +249,7 @@ h3.content-title {
 		height: 62px;
 		display:inline-block;
 		width:auto;
+		vertical-align: middle;
 	}
 }
 .advantage {
@@ -232,11 +296,16 @@ h3.content-title {
 				width:80px;
 			}
 		}
+		.m-item-r {
+			b {
+				display: none;
+			}
+		}
 		p {
 			width:74%;
 			margin:20px auto 0;
 			font-size: 14px;
-		  color:#666;
+			color:#666;
 			line-height:22px;
 		}
 	}
@@ -245,7 +314,12 @@ h3.content-title {
 	margin-bottom: 20px;
 	img {
 		width:100%;
+	}
+	.p-img {
 		display: block;
+	}
+	.m-img {
+		display: none;
 	}
 }
 .ganders {
@@ -283,20 +357,104 @@ h3.content-title {
 	}
 }
 @media screen and (max-width:1200px) {
+	#home-top {
+		.banner-box{
+			.m-img {
+				display: block;
+			}
+			.p-img {
+				display: none;
+			}
+			.swiper-container {
+				width:100%;
+				.ban-pagination {
+					display: none;
+				}
+				.ban-button-next,.ban-button-prev {
+					display: none;
+				}
+			}
+			.m-regBtn {
+				display: block;
+			}
+		}
+	}
 	h3.content-title {
 		padding-top: 20px;
 		img {
-			width:60%;
+			width:47%;
 			height: auto;
 		}
 	}
-	.advantage .item-list {
-		padding:0;
-		.item {
-			float: none;
+	.advantage {
+		margin-bottom:22px;
+		.item-list {
+			padding:0;
+			margin-top:35px;
+			.item {
+				float: none;
+				display: block;
+				border:none;
+				margin:0;
+				margin-bottom:13px;
+				width:100%;
+				text-align: initial;
+				height:auto;
+				&:last-child {
+					margin:0;
+				}
+				.item-section {
+					.flexbox;
+					.justifyContent;
+					padding:33px 0;
+					.m-item-l {
+						width:32%;
+						margin-right:3%;
+						text-align: center;
+						h5 {
+							font-size:18px;
+						}
+						.item-icon {
+							width:62%;
+							margin:0 auto;
+							padding-top:0;
+							img {
+								width:100%;
+								height:auto;
+								display: block;
+							}
+						}
+						span {
+							width:70px !important;
+						}
+					}
+					.m-item-r {
+						width:56%;
+						b {
+							display: block;
+							font-size:16px;
+							color:#333;
+							font-weight: normal;
+						}
+						p {
+							margin:0;
+							padding-top:10px;
+							width:100%;
+							font-size:14px;
+							color:#666;
+							line-height:24px;
+						}
+					}
+				}
+			}
+		}
+	}
+	.introduce {
+		.p-img {
+			display: none;
+		}
+		.m-img {
 			display: block;
-			width:90%;
-			margin:20px auto 0;
 		}
 	}
 	.ganders {
@@ -304,13 +462,13 @@ h3.content-title {
 		.item-list {
 			.f-item {
 				margin:0 0 10px 0;
-				width:48%;
-				padding:0 1%;
+				width:33.333%;
+				padding:0 2%;
 			}
 		}
 	}
-	#footer {
-		height: auto;
+	.introduce {
+		margin-bottom:0px;
 	}
 }
 </style>

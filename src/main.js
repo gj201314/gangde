@@ -19,7 +19,6 @@ import Login from '@/components/Login'
 
 Vue.component('tHeader',tHeader);
 Vue.component('login',Login);
-Vue.component('search',Search);
 Vue.component('bFooter',bFooter);
 
 Vue.config.productionTip = false;

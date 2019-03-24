@@ -26,27 +26,19 @@
 			</div>
 		</div>
 		<div class="m-header">
-			<button type="button" class="navbar-toggle pull-left" @click="openNav">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<h1>纲得</h1>
-			<div class="nick-status pull-right">
-				<template v-if="nickName==''">
-					<a href="javascript:void(0);" @click="loginVisible=true">登录</a>
-				</template>
-				<template v-else>
-					<span><a href="index/user/dashboard.html">{{nickName}}</a></span>
-				</template>
+			<div class="search-input">
+				<input type="text" v-model.trim="serachVal" placeholder="搜索" @change="toSearch" />
 			</div>
-		</div>
-		<div class="m-navbar" :class="{active:open}">
-			<nav>
-				<router-link to="/">首页</router-link>
-				<router-link to="/price">价格</router-link>
-				<router-link to="/about">关于我们</router-link>
-			</nav>
+			<div class="nick-status pull-right">
+				<div class="status-box">
+					<template v-if="nickName==''">
+						<a href="javascript:void(0);" @click="loginVisible=true">登录</a>
+					</template>
+					<template v-else>
+						<span><a href="index/user/dashboard.html">{{nickName}}</a></span>
+					</template>
+				</div>
+			</div>
 		</div>
 		<!--sync可以实现prop的双向数据绑定-->
 		<p-dialog class="dialog-login" :visible.sync="loginVisible">
