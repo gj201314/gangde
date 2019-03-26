@@ -229,6 +229,7 @@ export default {
 .regBtn-box {
 	padding:34px 0;
 	background:#fff;
+	display:none;
 	a {
 		height:45px;
 		background:#efc935;
@@ -469,6 +470,9 @@ h3.content-title {
 	}
 	.introduce {
 		margin-bottom:0px;
+	}
+	.regBtn-box {
+		display: block;
 	}
 }
 </style>
