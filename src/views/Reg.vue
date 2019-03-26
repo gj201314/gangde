@@ -8,6 +8,17 @@
 						<div class="p-form">
 							<div class="form">
 								<div class="form-item">
+									<div class="item-title">用户名称:</div>
+									<div class="item-content">
+										<div class="input-box" :class="[rules.username.msg!=''? 'error':'']">
+											<input type="text" v-model.trim="formData.username" @blur="validate('username')" placeholder="用户名称" />
+										</div>
+									</div>
+									<div class="item-errMsg" v-show="rules.username.msg!=''">
+										{{rules.username.msg}}
+									</div>
+								</div>
+								<div class="form-item">
 									<div class="item-title">手机号码:</div>
 									<div class="item-content">
 										<div class="input-box" :class="[rules.mobile.msg!=''? 'error':'']">
@@ -28,6 +39,17 @@
 									</div>
 									<div class="item-errMsg" v-show="rules.code.msg!=''">
 										{{rules.code.msg}}
+									</div>
+								</div>
+								<div class="form-item">
+									<div class="item-title">邮箱:</div>
+									<div class="item-content">
+										<div class="input-box" :class="[rules.email.msg!=''? 'error':'']">
+											<input type="text" v-model.trim="formData.email" @blur="validate('email')" placeholder="请输入邮箱" />
+										</div>
+									</div>
+									<div class="item-errMsg" v-show="rules.email.msg!=''">
+										{{rules.email.msg}}
 									</div>
 								</div>
 								<div class="form-item">
@@ -69,6 +91,10 @@
 						<div class="m-form">
 							<div class="form mobile-form">
 								<div class="form-item">
+									<input type="text" v-model.trim="formData.username" @blur="validate('username')" placeholder="用户名称" />
+									<span class="error-msg" v-show="rules.username.msg!=''">{{rules.username.msg}}</span>
+								</div>
+								<div class="form-item">
 									<input type="text" v-model.trim="formData.mobile" @blur="validate('mobile')" placeholder="手机号码" />
 									<span class="error-msg" v-show="rules.mobile.msg!=''">{{rules.mobile.msg}}</span>
 								</div>
@@ -76,6 +102,10 @@
 									<input type="text" class="input-code" maxlength="4" v-model.number="formData.code" @blur="validate('code')" placeholder="验证码" />
 									<span class="getCode" @click="createCountDown">{{countText}}</span>
 									<span class="error-msg" v-show="rules.code.msg!=''">{{rules.code.msg}}</span>
+								</div>
+								<div class="form-item">
+									<input type="text" v-model.trim="formData.email" @blur="validate('email')" placeholder="邮箱" />
+									<span class="error-msg" v-show="rules.email.msg!=''">{{rules.email.msg}}</span>
 								</div>
 								<div class="form-item">
 									<input type="password" v-model.trim="formData.password" @blur="validate('password')" placeholder="登录密码" />
@@ -124,10 +154,12 @@ export default {
 			flag:false,
 			toLogin:false,
 			formData:{
+				username:'',
 				mobile:'',
 				password:'',
 				confirmPwd:'',
-				code:''
+				code:'',
+				email:''
 			},
 			remember:true,
 			timer:null,
@@ -137,9 +169,17 @@ export default {
 					msg:'',
 					name:'手机号码'
 				},
+				email:{
+					msg:'',
+					name:'邮箱'
+				},
 				password:{
 					msg:'',
 					name:'登录密码'
+				},
+				username:{
+					msg:'',
+					name:'用户名称'
 				},
 				confirmPwd:{
 					msg:'',
@@ -206,6 +246,9 @@ export default {
 			}else if(name=='code' && !this.$isMobileCode(val)){
 				this.rules[name].msg = this.rules[name].name+'只能为6位的数字';
 				return false;
+			}else if(name=='email' && !this.$isEmail(val)){
+				this.rules[name].msg = this.rules[name].name+'格式不正确';
+				return false;
 			}else if(name=='password' && !this.$isPwd(val)){
 				this.rules[name].msg = this.rules[name].name+'只能为3-20位的字符';
 				return false;
@@ -232,11 +275,7 @@ export default {
 					if(res.code==0){
 						this.$msg({'msg':res.msg,'status':'error'});
 					}else{
-						// this.flag = true;
-						this.$msg({'msg':'注册成功'});
-						setTimeout(()=>{
-							location.href = '/index/user/dashboard.html';
-						},1000);
+						this.flag = true;
 					};
 				}).catch((error)=>{
 					console.log(error);

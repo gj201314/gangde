@@ -125,4 +125,9 @@ export default {
 		}
 	}
 }
+@media screen and (max-width:1200px) {
+	#header:not(.home-header){
+		display: none !important;
+	}
+}
 </style>

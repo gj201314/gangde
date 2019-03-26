@@ -1,6 +1,7 @@
 <template>
 	<div id="search">
 		<t-header :search="$route.params.search"></t-header>
+		<d-header :title="'搜索:'+$route.params.search"></d-header>
 		<div class="wrap clearfix main">
 			<div class="item-list pull-left">
 				<div class="item-box clearfix" v-for="item in items" @click="toDetails(item.id)">

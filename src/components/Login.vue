@@ -5,8 +5,8 @@
 		</div>
 		<div class="form mobile-form">
 			<div class="form-item">
-				<input type="text" name="mobile" maxlength="11" v-model.trim="formData.mobile" @blur="validate('mobile')" placeholder="手机号码" />
-				<span class="error-msg" v-show="rules.mobile.msg!=''">{{rules.mobile.msg}}</span>
+				<input type="text" name="account" maxlength="11" v-model.trim="formData.account" @blur="validate('account')" placeholder="用户名称" />
+				<span class="error-msg" v-show="rules.account.msg!=''">{{rules.account.msg}}</span>
 			</div>
 			<div class="form-item">
 				<input type="password" name="password" v-model.trim="formData.password" @blur="validate('password')" placeholder="密码" />
@@ -26,13 +26,13 @@ export default {
     data () {
 		return {
 			formData:{
-				mobile:'',
+				account:'',
 				password:''
 			},
 			rules:{
-				mobile:{
+				account:{
 					msg:'',
-					name:'手机号码'
+					name:'用户名称'
 				},
 				password:{
 					msg:'',
@@ -81,9 +81,6 @@ export default {
 						localStorage.setItem('gangde_user',JSON.stringify(res.data.userinfo));
 						this.$store.commit('swicthNickName',res.data.userinfo.username);
 						this.$emit('handleEvent','close');
-						setTimeout(()=>{
-							location.href = '/index/user/dashboard.html';
-						},1000);
 					};
 				}).catch((error)=>{
 					console.log(error);

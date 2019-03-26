@@ -1,5 +1,6 @@
 <template>
 	<div id="price">
+		<t-header></t-header>
 		<d-header title="价格"></d-header>
 		<div class="wrap clearfix main">
 			<div class="menubar">
@@ -170,9 +171,6 @@ export default {
 		setTimeout(()=>{
 			this.$store.commit('switchPageLoading',false);
 		},1000)
-	},
-	components:{
-		dHeader
 	},
 	methods:{
 		

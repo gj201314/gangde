@@ -1,6 +1,7 @@
 <template>
 	<div id="details">
 		<t-header></t-header>
+		<d-header :title="title"></d-header>
 		<div class="wrap clearfix main">
 			<section class="pull-left">
 				<h3 class="content-title">{{title}}</h3>
@@ -71,10 +72,11 @@
 				</div>
 			</div>
 		</p-dialog>
+		<p-dialog id="dialog-downBtn" :visible.sync="downBtnVisible">
+			<div class="msg">资料提交成功，可以下载白皮书文件了！</div>
+			<a href="" download="" ref="download">点击即可下载</a>
+		</p-dialog>
 		<b-footer></b-footer>
-		<div style="display: none;">
-			<a href="../../static/qr-img.png" download="" ref="download"><span id="download">下载文件</span></a>
-		</div>
 	</div>
 </template>
 
@@ -87,6 +89,7 @@ export default {
 			content:'',
 			qrVisible:false,
 			downVisible:false,
+			downBtnVisible:false,
 			type:-1,
 			views:0,
 			timer:null,
@@ -236,9 +239,6 @@ export default {
 			}
 			let filename = href.substr(pos +1);
 			this.$refs['download'].download = filename;
-			let ja = document.getElementById('download');
-			ja.addEventListener("click", function(){console.log('下载文件')}, false);
-			ja.click();
 		},
 		validate(name){
 			let val = this.formData[name];
@@ -277,6 +277,9 @@ export default {
 						this.$msg('请求成功');
 						this.download(res.data.download);
 						this.downVisible = false;
+						setTimeout(()=>{
+							this.downBtnVisible = true;
+						},500);
 					};
 				}).catch((error)=>{
 					console.log(error);
@@ -300,6 +303,32 @@ export default {
 	}
 	.login-img {
 		text-align: center;
+	}
+}
+#dialog-downBtn {
+	.p-dialog_content {
+		width:400px;
+		.msg {
+			background: url(../assets/success-icon.png) no-repeat left 5px;
+			color: #333333;
+			font-size: 16px;
+			padding-left:45px;
+			line-height: 40px;
+			min-height: 100px;
+			.backgroundSize(30px 30px);
+		}
+		a {
+			height:35px;
+			background:#efc935;
+			line-height:35px;
+			width:100%;
+			margin:0 auto;
+			color:#584704;
+			font-size:14px;
+			display: block;
+			text-align: center;
+			.borderRadius(35px)
+		}
 	}
 }
 @media screen and (max-width:1200px) {

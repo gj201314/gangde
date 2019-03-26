@@ -650,16 +650,19 @@ button {
 		display: block !important;
 	}
 	.p-dialog_wrapper.dialog-login {
-		.p-dialog_content{
-			width:90%;
-			padding:20px;
-		}
 		.login-img {
 			margin-bottom:20px !important;
 			img {
 				width:80%;
 				height: auto !important;
 			}
+		}
+	}
+	.p-dialog_wrapper {
+		.p-dialog_content{
+			width:90%;
+			max-width:90%;
+			padding:20px;
 		}
 		.p-dialog_close {
 			display: none;

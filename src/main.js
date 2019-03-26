@@ -13,11 +13,13 @@ Vue.use(plug);
 
 // 全局组件
 import tHeader from '@/components/Header'
+import dHeader from '@/components/Dheader'
 import bFooter from '@/components/Footer'
 import Search from '@/components/Search'
 import Login from '@/components/Login'
 
 Vue.component('tHeader',tHeader);
+Vue.component('dHeader',dHeader);
 Vue.component('login',Login);
 Vue.component('bFooter',bFooter);
 

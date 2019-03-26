@@ -28,7 +28,7 @@ export default {
 	}
 }
 </script>
-<style scoped>
+<style>
 #d-header {
 	padding:8px 10px;
 	display: block;
@@ -36,6 +36,7 @@ export default {
 	background: #f8f8f8;
 	position: relative;
 	border-bottom: 1px #e7e7e7 solid;
+	display:none;
 }
 #d-header h1 {
 	position: absolute;
@@ -75,12 +76,12 @@ export default {
 	margin-right: 3px;
 	background-color: #888;
 }
-@media screen and (min-width:980px){
+@media screen and (max-width:1200px){
 	#header {
-		display: block;
+		display: none;
 	}
 	#d-header {
-		display: none;
+		display: block;
 	}
 }
 </style>
