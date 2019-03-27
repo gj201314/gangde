@@ -76,12 +76,12 @@ export default {
 	margin-right: 3px;
 	background-color: #888;
 }
-@media screen and (max-width:1200px){
+/* @media screen and (max-width:1200px){
 	#header {
 		display: none;
 	}
 	#d-header {
 		display: block;
 	}
-}
+} */
 </style>

@@ -25,7 +25,7 @@
 				</template>
 			</div>
 		</div>
-		<div class="m-header">
+		<div class="m-homeHeader">
 			<div class="search-input">
 				<input type="text" v-model.trim="serachVal" placeholder="搜索" @change="toSearch" />
 			</div>
@@ -40,6 +40,17 @@
 				</div>
 			</div>
 		</div>
+		<div class="m-header">
+			<h1>{{title}}</h1>
+			<div class="nick-status pull-right">
+				<template v-if="nickName==''">
+					<a href="javascript:void(0);" @click="loginVisible=true">登录</a>
+				</template>
+				<template v-else>
+					<span><a href="index/user/dashboard.html">{{nickName}}</a></span>
+				</template>
+			</div>
+		</div>
 		<!--sync可以实现prop的双向数据绑定-->
 		<p-dialog class="dialog-login" :visible.sync="loginVisible">
 			<login @handleEvent="handleEvent"></login>
@@ -49,13 +60,13 @@
 
 <script>
 export default {
-  data () {
+	data () {
 		return {
 			open:false,
 			loginVisible:false,
 			serachVal:'',
 		}
-  },
+	},
 	props:{
 		search:{
 			type:String,
@@ -64,6 +75,10 @@ export default {
 		toLogin:{
 			type:Boolean,
 			default:false
+		},
+		title:{
+			type:String,
+			default:'纲得'
 		}
 	},
 	watch:{
@@ -127,7 +142,12 @@ export default {
 }
 @media screen and (max-width:1200px) {
 	#header:not(.home-header){
-		display: none !important;
+		.m-homeHeader {
+			display: none !important;
+		}
+		.m-header {
+			display: block;
+		}
 	}
 }
 </style>

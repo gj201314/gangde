@@ -156,6 +156,9 @@ export default {
 				this.$msg({msg:'请输入手机号码',status:'error'});
 			}else if(!this.$isMobile(this.formData.mobile)){
 				this.$msg({msg:'请输入正确的手机号码',status:'error'});
+			}else if(name=='code' && !this.$isMobileCode(val)){
+				this.rules[name].msg = this.rules[name].name+'只能为4位的数字';
+				return false;
 			}else if(this.timer==null){
 				this.smSend();
 			};
@@ -176,7 +179,7 @@ export default {
 			this.$axios({
 				method:'post',
 				url:'/sms/send',
-				data:{"mobile":this.formData.mobile}
+				data:{"mobile":this.formData.mobile,'event':'resetpwd'}
 			}).then((response)=>{
 				let res = response.data;
 				if(res.code==0){

@@ -172,7 +172,7 @@ button {
 		}
 	}
 }
-.m-header {
+.m-homeHeader {
 	height:70px;
 	padding:15px 0;
 	position: relative;
@@ -204,6 +204,67 @@ button {
 		}
 	}
 }
+.m-header {
+	height:50px;
+	background: #f8f8f8;
+	border-bottom: 1px #e7e7e7 solid;
+	position: fixed;
+	top:0;
+	right:0;
+	left:0;
+	display:none;
+	z-index: 1;
+	h1 {
+		position: absolute;
+		top:8px;
+		left:80px;
+		right:80px;
+		height: 34px;
+		line-height:34px;
+		font-size: 18px;
+		text-align: center;
+		color: #777;
+		font-weight: normal;
+		overflow: hidden;
+		text-overflow:ellipsis;
+		white-space: nowrap;
+	}
+	.nick-status {
+		height:50px;
+		line-height: 50px;
+		padding-right:10px;
+		a {
+			color:#333;
+			width:80px;
+			text-align: right;
+			display: block;
+			overflow: hidden;
+			text-overflow:ellipsis;
+			white-space: nowrap;
+		}
+	}
+	.navbar-toggle {
+		padding: 0 10px;
+		background-color: transparent;
+		background-image: none;
+		border: 1px solid #ddd;
+		.borderRadius(4px);
+		height: 34px;
+		outline:0;
+		&:focus,&:hover {
+			background-color: #ddd;
+			outline:0;
+		}
+		.icon-bar {
+			display: block;
+			width: 22px;
+			height: 2px;
+			.borderRadius(1px);
+			background-color: #888;
+			margin-top: 4px;
+		}
+	}
+}
 #footer {
 	height: 95px;
 	background:#1f1f1f;
@@ -229,6 +290,11 @@ button {
 		height:65px;
 		background:#f9f9f9;
 		border-top:1px #eae9e9 solid;
+		position:fixed;
+		bottom:0;
+		left:0;
+		right:0;
+		z-index: 1;
 		display: none;
 		.item {
 			width:33.333%;
@@ -643,7 +709,7 @@ button {
 		height:45px;
 		padding: 0;
 	}
-	.m-header {
+	.m-homeHeader {
 		.flexbox;
 	}
 	.m-footer {
@@ -698,7 +764,8 @@ button {
 		}
 	}
 	#footer {
-		height:auto;
+		height:60px;
+		background:transparent;
 	}
 }
 </style>

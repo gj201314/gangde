@@ -1,6 +1,6 @@
 <template>
 	<div id="details">
-		<t-header></t-header>
+		<t-header :title="title"></t-header>
 		<d-header :title="title"></d-header>
 		<div class="wrap clearfix main">
 			<section class="pull-left">
@@ -157,7 +157,7 @@ export default {
 				}else{
 					let data = res.data.archivesInfo;
 					document.title = this.title = data.title;
-					this.content = data.description;
+					this.content = data.content;
 					this.type = data.type;
 					this.views = data.views;
 					if(this.type==0){//白皮书
