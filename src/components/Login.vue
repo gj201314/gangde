@@ -5,8 +5,8 @@
 		</div>
 		<div class="form mobile-form">
 			<div class="form-item">
-				<input type="text" name="mobile" maxlength="11" v-model.trim="formData.mobile" @blur="validate('mobile')" placeholder="手机号码" />
-				<span class="error-msg" v-show="rules.mobile.msg!=''">{{rules.mobile.msg}}</span>
+				<input type="text" name="account" maxlength="11" v-model.trim="formData.account" @blur="validate('account')" placeholder="手机号码" />
+				<span class="error-msg" v-show="rules.account.msg!=''">{{rules.account.msg}}</span>
 			</div>
 			<div class="form-item">
 				<input type="password" name="password" v-model.trim="formData.password" @blur="validate('password')" placeholder="密码" />
@@ -26,11 +26,11 @@ export default {
     data () {
 		return {
 			formData:{
-				mobile:'',
+				account:'',
 				password:''
 			},
 			rules:{
-				mobile:{
+				account:{
 					msg:'',
 					name:'手机号码'
 				},
@@ -47,7 +47,7 @@ export default {
 			if(val==''){
 				this.rules[name].msg = this.rules[name].name+'不能为空';
 				return false;
-			}else if(name=='mobile' && !p1.test(val)){
+			}else if(name=='account' && !p1.test(val)){
 				this.rules[name].msg = this.rules[name].name+'只能为11位的数字';
 				return false;
 			}else if(name=='confirmPwd' && (this.formData['pwd']!=this.formData['confirmPwd'])){
