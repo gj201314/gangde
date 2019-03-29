@@ -29,7 +29,10 @@ export default new Router({
 	{
 	  path: '/search/:search',
 	  name: 'search',
-	  component: Search
+	  component: Search,
+	  meta:{
+	  	title:'搜索'
+	  }
 	},
 	{
 	  path: '/login',
@@ -60,7 +63,7 @@ export default new Router({
 		name: 'details',
 		component:Details,
 		meta:{
-			title:'详情页',
+			title:'详情',
 			requireAuth:false
 		}
 	},
@@ -69,7 +72,7 @@ export default new Router({
 		name: 'price',
 		component:Price,
 		meta:{
-			title:'价格页'
+			title:'价格'
 		}
 	}
   ],
