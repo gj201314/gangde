@@ -16,7 +16,7 @@
 						</p>
 					</div>
 				</div>
-				<div class="content">{{content}}</div>
+				<div class="content" v-html="content"></div>
 				<button type="button" v-show="type==1" class="clickMore" @click="qrVisible=true">点击查看全文</button>
 				<button type="button" v-show="type==0" class="clickUpdate" @click="downVisible=true">{{customBtn}}</button>
 			</section>
@@ -142,10 +142,16 @@ export default {
 	methods:{
 		init(){
 			this.formData.source_id = this.$route.params.id;
+			let params = {
+				'id':this.$route.params.id
+			};
+			if(this.$route.query.channel){
+				params.channel = this.$route.query.channel;
+			};
 			axios({
 				method:'get',
 				url:'/api/archives/show',
-				params:{'id':this.$route.params.id}
+				params:params
 			}).then((response)=>{
 				if(this.loadingFlag){
 					this.$store.commit('switchPageLoading',false);	
