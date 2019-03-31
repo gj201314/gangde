@@ -21,13 +21,13 @@
 								<div class="form-item">
 									<div class="item-title">短信效验码:</div>
 									<div class="item-content">
-										<div class="input-box input-code" :class="[rules.code.msg!=''? 'error':'']">
-											<input type="text" maxlength="4" v-model.number="formData.code" @blur="validate('code')" placeholder="手机短信" />
+										<div class="input-box input-code" :class="[rules.captcha.msg!=''? 'error':'']">
+											<input type="text" maxlength="4" v-model.number="formData.captcha" @blur="validate('captcha')" placeholder="手机短信" />
 											<span class="getCode" @click="createCountDown">{{countText}}</span>
 										</div>
 									</div>
-									<div class="item-errMsg" v-show="rules.code.msg!=''">
-										{{rules.code.msg}}
+									<div class="item-errMsg" v-show="rules.captcha.msg!=''">
+										{{rules.captcha.msg}}
 									</div>
 								</div>
 								<div class="form-item">
@@ -73,9 +73,9 @@
 									<span class="error-msg" v-show="rules.mobile.msg!=''">{{rules.mobile.msg}}</span>
 								</div>
 								<div class="form-item item-code">
-									<input type="text" class="input-code" maxlength="4" v-model.number="formData.code" @blur="validate('code')" placeholder="验证码" />
+									<input type="text" class="input-code" maxlength="4" v-model.number="formData.captcha" @blur="validate('captcha')" placeholder="验证码" />
 									<span class="getCode" @click="createCountDown">{{countText}}</span>
-									<span class="error-msg" v-show="rules.code.msg!=''">{{rules.code.msg}}</span>
+									<span class="error-msg" v-show="rules.captcha.msg!=''">{{rules.captcha.msg}}</span>
 								</div>
 								<div class="form-item">
 									<input type="password" v-model.trim="formData.password" @blur="validate('password')" placeholder="登录密码" />
@@ -127,7 +127,7 @@ export default {
 				mobile:'',
 				password:'',
 				confirmPwd:'',
-				code:''
+				captcha:''
 			},
 			remember:true,
 			timer:null,
@@ -145,7 +145,7 @@ export default {
 					msg:'',
 					name:'确认密码'
 				},
-				code:{
+				captcha:{
 					msg:'',
 					name:'短信效验码'
 				}
@@ -203,7 +203,7 @@ export default {
 			}else if(name=='mobile' && !this.$isMobile(val)){
 				this.rules[name].msg = this.rules[name].name+'只能为11位的数字';
 				return false;
-			}else if(name=='code' && !this.$isMobileCode(val)){
+			}else if(name=='captcha' && !this.$isMobileCode(val)){
 				this.rules[name].msg = this.rules[name].name+'只能为4位的数字';
 				return false;
 			}else if(name=='password' && !this.$isPwd(val)){
@@ -221,6 +221,9 @@ export default {
 			let flag = false;
 			for(let v in this.formData){
 				flag = this.validate(v);
+				if(!flag){
+					break;
+				};
 			};
 			if(flag){
 				this.$axios({

@@ -66,6 +66,9 @@ export default {
 			let flag = false;
 			for(let v in this.formData){
 				flag = this.validate(v);
+				if(!flag){
+					break;
+				};
 			};
 			if(flag){
 				this.$axios({

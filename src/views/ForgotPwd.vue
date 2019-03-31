@@ -1,6 +1,6 @@
 <template>
 	<div id="reg">
-		<t-header></t-header>
+		<t-header :toLogin="toLogin"></t-header>
 		<div class="wrap">
 			<div class="main clearfix">
 				<template v-if="!flag">
@@ -21,13 +21,13 @@
 								<div class="form-item">
 									<div class="item-title">短信效验码:</div>
 									<div class="item-content">
-										<div class="input-box input-code" :class="[rules.code.msg!=''? 'error':'']">
-											<input type="text" maxlength="4" v-model.number="formData.code" @blur="validate('code')" placeholder="手机短信" />
+										<div class="input-box input-code" :class="[rules.captcha.msg!=''? 'error':'']">
+											<input type="text" maxlength="4" v-model.number="formData.captcha" @blur="validate('captcha')" placeholder="手机短信" />
 											<span class="getCode" @click="createCountDown">{{countText}}</span>
 										</div>
 									</div>
-									<div class="item-errMsg" v-show="rules.code.msg!=''">
-										{{rules.code.msg}}
+									<div class="item-errMsg" v-show="rules.captcha.msg!=''">
+										{{rules.captcha.msg}}
 									</div>
 								</div>
 								<div class="form-item">
@@ -69,13 +69,13 @@
 									<span class="error-msg" v-show="rules.mobile.msg!=''">{{rules.mobile.msg}}</span>
 								</div>
 								<div class="form-item item-code">
-									<input type="text" class="input-code" maxlength="4" v-model.number="formData.code" @blur="validate('code')" placeholder="验证码" />
+									<input type="text" class="input-code" maxlength="4" v-model.number="formData.captcha" @blur="validate('captcha')" placeholder="验证码" />
 									<span class="getCode" @click="createCountDown">{{countText}}</span>
-									<span class="error-msg" v-show="rules.code.msg!=''">{{rules.code.msg}}</span>
+									<span class="error-msg" v-show="rules.captcha.msg!=''">{{rules.captcha.msg}}</span>
 								</div>
 								<div class="form-item">
-									<input type="text" v-model.trim="formData.password" @blur="validate('password')" placeholder="新密码" />
-									<span class="error-msg" v-show="rules.password.msg!=''">{{rules.password.msg}}</span>
+									<input type="text" v-model.trim="formData.newpassword" @blur="validate('newpassword')" placeholder="新密码" />
+									<span class="error-msg" v-show="rules.newpassword.msg!=''">{{rules.newpassword.msg}}</span>
 								</div>
 								<div class="form-item">
 									<input type="text" v-model.trim="formData.confirmPwd" @blur="validate('confirmPwd')" placeholder="确认密码" />
@@ -102,7 +102,7 @@
 				<template v-if="flag">
 					<div class="success-box">
 						<div class="msg">密码已重置成功，请使用新密码登录</div>
-						<button type="button" class="btn">登录</button>
+						<button type="button" class="btn" @click="toLogin=true">登录</button>
 					</div>
 				</template>
 			</div>
@@ -117,20 +117,22 @@ export default {
 		return {
 			flag:false,
 			typeRadio:1,
+			toLogin:false,
 			countText:'获取',
 			timer:null,
 			formData:{
+				type:'mobile',
 				mobile:'',
-				password:'',
+				newpassword:'',
 				confirmPwd:'',
-				code:'',
+				captcha:'',
 			},
 			rules:{
 				mobile:{
 					msg:'',
 					name:'手机号码'
 				},
-				password:{
+				newpassword:{
 					msg:'',
 					name:'新密码'
 				},
@@ -138,7 +140,7 @@ export default {
 					msg:'',
 					name:'确认密码'
 				},
-				code:{
+				captcha:{
 					msg:'',
 					name:'短信效验码'
 				}
@@ -156,9 +158,6 @@ export default {
 				this.$msg({msg:'请输入手机号码',status:'error'});
 			}else if(!this.$isMobile(this.formData.mobile)){
 				this.$msg({msg:'请输入正确的手机号码',status:'error'});
-			}else if(name=='code' && !this.$isMobileCode(val)){
-				this.rules[name].msg = this.rules[name].name+'只能为4位的数字';
-				return false;
 			}else if(this.timer==null){
 				this.smSend();
 			};
@@ -199,7 +198,10 @@ export default {
 			}else if(name=='mobile' && !p1.test(val)){
 				this.rules[name].msg = this.rules[name].name+'只能为11位的数字';
 				return false;
-			}else if(name=='confirmPwd' && (this.formData['password']!=this.formData['confirmPwd'])){
+			}else if(name=='captcha' && !this.$isMobileCode(val)){
+				this.rules[name].msg = this.rules[name].name+'只能为4位的数字';
+				return false;
+			}else if(name=='confirmPwd' && (this.formData['newpassword']!=this.formData['confirmPwd'])){
 				this.rules[name].msg = '两次密码不一致';
 				return false;
 			}else{
@@ -211,9 +213,25 @@ export default {
 			let flag = false;
 			for(let v in this.formData){
 				flag = this.validate(v);
+				if(!flag){
+					break;
+				};
 			};
 			if(flag){
-				console.log('提交ajax')
+				this.$axios({
+					method:'post',
+					url:'/user/resetpwd',
+					data:this.formData
+				}).then((response)=>{
+					let res = response.data;
+					if(res.code==0){
+						this.$msg({'msg':res.msg,'status':'error'});
+					}else{
+						this.flag = true;
+					};
+				}).catch((error)=>{
+					console.log(error);
+				});
 			}
 		}
 	}

@@ -35,8 +35,8 @@
 				</div>
 				<h5 class="article-title">相关文章</h5>
 				<ul class="article-list">
-					<li v-for="item in article">
-						<router-link :to="'/details/'+item.id">{{item.title}}</router-link>
+					<li v-for="(value, key) in article">
+						<router-link :to="'/details/'+key">{{value}}</router-link>
 					</li>
 				</ul>
 			</div>
@@ -52,7 +52,7 @@ export default {
 			pageCount:1,
 			currentPage:1,
 			items:[],
-			article:[],
+			article:{},
 			limit:10
 		}
 	},

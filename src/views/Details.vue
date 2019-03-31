@@ -33,8 +33,8 @@
 				</div>
 				<h5 class="article-title">相关文章</h5>
 				<ul class="article-list">
-					<li v-for="item in article">
-						<router-link :to="'/details/'+item.id">{{item.title}}</router-link>
+					<li v-for="(value, key) in article">
+						<router-link :to="'/details/'+key">{{value}}</router-link>
 					</li>
 				</ul>
 			</div>
@@ -55,9 +55,9 @@
 					<span class="error-msg" v-show="rules.mobile.msg!=''">{{rules.mobile.msg}}</span>
 				</div>
 				<div class="form-item item-code">
-					<input type="text" class="input-code" maxlength="4" v-model.number="formData.code" @blur="validate('code')" placeholder="验证码" />
+					<input type="text" class="input-code" maxlength="4" v-model.number="formData.captcha" @blur="validate('captcha')" placeholder="验证码" />
 					<span class="getCode" @click="createCountDown">{{countText}}</span>
-					<span class="error-msg" v-show="rules.code.msg!=''">{{rules.code.msg}}</span>
+					<span class="error-msg" v-show="rules.captcha.msg!=''">{{rules.captcha.msg}}</span>
 				</div>
 				<div class="form-item">
 					<input type="text" v-model.trim="formData.company" @blur="validate('company')" placeholder="公司名称(选填)" />
@@ -95,7 +95,7 @@ export default {
 			timer:null,
 			countText:'获取',
 			loadingFlag:false,
-			article:[],
+			article:{},
 			customBtn:'点此获取白皮书',
 			qrImg:'../../static/qr-img.png',
 			formData:{
@@ -103,7 +103,7 @@ export default {
 				mobile:'',
 				company:'',
 				email:'',
-				code:'',
+				captcha:'',
 				source_id:''
 			},
 			rules:{
@@ -123,7 +123,7 @@ export default {
 					msg:'',
 					name:'邮箱'
 				},
-				code:{
+				captcha:{
 					msg:'',
 					name:'验证码'
 				}
@@ -253,6 +253,9 @@ export default {
 			}else if(val=='' && (name!='email')){
 				this.rules[name].msg = this.rules[name].name+'不能为空';
 				return false;
+			}else if(name=='captcha' && !this.$isMobileCode(val)){
+				this.rules[name].msg = this.rules[name].name+'只能为4位的数字';
+				return false;
 			}else if(name=='mobile' && !this.$isMobile(val)){
 				this.rules[name].msg = this.rules[name].name+'只能为11位的数字';
 				return false;
@@ -268,6 +271,9 @@ export default {
 			for(let v in this.formData){
 				if(v!='source_id'){
 					flag = this.validate(v);
+					if(!flag){
+						break;
+					};
 				};
 			};
 			if(flag){
