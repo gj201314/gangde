@@ -33,12 +33,12 @@
 								<div class="form-item">
 									<div class="item-title">新密码:</div>
 									<div class="item-content">
-										<div class="input-box" :class="[rules.password.msg!=''? 'error':'']">
-											<input type="password" v-model.trim="formData.password" @blur="validate('password')" placeholder="3-20位字符" />
+										<div class="input-box" :class="[rules.newpassword.msg!=''? 'error':'']">
+											<input type="password" v-model.trim="formData.newpassword" @blur="validate('newpassword')" placeholder="3-20位字符" />
 										</div>
 									</div>
-									<div class="item-errMsg" v-show="rules.password.msg!=''">
-										{{rules.password.msg}}
+									<div class="item-errMsg" v-show="rules.newpassword.msg!=''">
+										{{rules.newpassword.msg}}
 									</div>
 								</div>
 								<div class="form-item">
@@ -212,9 +212,11 @@ export default {
 		submit(){
 			let flag = false;
 			for(let v in this.formData){
-				flag = this.validate(v);
-				if(!flag){
-					break;
+				if(v!='type'){
+					flag = this.validate(v);
+					if(!flag){
+						break;
+					};
 				};
 			};
 			if(flag){
