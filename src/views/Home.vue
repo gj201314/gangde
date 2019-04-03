@@ -109,7 +109,6 @@
 		<div class="regBtn-box">
 			<router-link to="/reg">免费注册</router-link>
 		</div>
-		<b-footer></b-footer>
 	</div>
 </template>
 

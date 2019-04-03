@@ -36,7 +36,7 @@
 					</div>
 					<div class="item basis">
 						<h4>基础版</h4>
-						<span class="price"><i>&yen;</i>14.900</span>
+						<span class="price"><i>&yen;</i>14,900</span>
 						<ul class="fn-list">
 							<li>分组:&nbsp;2组</li>
 							<li>文章标签设置</li>
@@ -58,7 +58,7 @@
 					</div>
 					<div class="item enterprise">
 						<h4>企业版</h4>
-						<span class="price"><i>&yen;</i>29.800</span>
+						<span class="price"><i>&yen;</i>29,800</span>
 						<ul class="fn-list">
 							<li>分组:&nbsp;5组</li>
 							<li>文章标签设置</li>
@@ -108,7 +108,7 @@
 					</div>
 					<div class="item basis" v-show="activeNum==1">
 						<h4>基础版</h4>
-						<span class="price"><i>&yen;</i>14.900<em>元/年</em></span>
+						<span class="price"><i>&yen;</i>14,900<em>元/年</em></span>
 						<div class="btn-box">
 							<button type="button" class="btn-default">立即购买</button>
 						</div>
@@ -127,7 +127,7 @@
 					</div>
 					<div class="item enterprise" v-show="activeNum==2">
 						<h4>企业版</h4>
-						<span class="price"><i>&yen;</i>29.800<em>元/年</em></span>
+						<span class="price"><i>&yen;</i>29,800<em>元/年</em></span>
 						<div class="btn-box">
 							<button type="button" class="btn-default">立即购买</button>
 						</div>
@@ -155,7 +155,6 @@
 				</div>
 			</div>
 		</div>
-		<b-footer></b-footer>
 	</div>
 </template>
 

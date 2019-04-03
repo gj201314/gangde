@@ -1,7 +1,8 @@
 <template>
   <div id="app">
 		<loading v-if="flag"></loading>
-    <router-view/>
+		<router-view/>
+		<b-footer></b-footer>
   </div>
 </template>
 

@@ -76,7 +76,6 @@
 			<div class="msg">资料提交成功，可以下载白皮书文件了！</div>
 			<a href="" download="" ref="download">点击即可下载</a>
 		</p-dialog>
-		<b-footer></b-footer>
 	</div>
 </template>
 

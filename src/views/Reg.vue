@@ -113,7 +113,6 @@
 				</template>
 			</div>
 		</div>
-		<b-footer></b-footer>
 	</div>
 </template>
 
