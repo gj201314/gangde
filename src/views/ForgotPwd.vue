@@ -74,11 +74,11 @@
 									<span class="error-msg" v-show="rules.captcha.msg!=''">{{rules.captcha.msg}}</span>
 								</div>
 								<div class="form-item">
-									<input type="text" v-model.trim="formData.newpassword" @blur="validate('newpassword')" placeholder="新密码" />
+									<input type="password" v-model.trim="formData.newpassword" @blur="validate('newpassword')" placeholder="新密码" />
 									<span class="error-msg" v-show="rules.newpassword.msg!=''">{{rules.newpassword.msg}}</span>
 								</div>
 								<div class="form-item">
-									<input type="text" v-model.trim="formData.confirmPwd" @blur="validate('confirmPwd')" placeholder="确认密码" />
+									<input type="password" v-model.trim="formData.confirmPwd" @blur="validate('confirmPwd')" placeholder="确认密码" />
 									<span class="error-msg" v-show="rules.confirmPwd.msg!=''">{{rules.confirmPwd.msg}}</span>
 								</div>
 								<div class="btn-box">
