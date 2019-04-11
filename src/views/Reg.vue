@@ -200,7 +200,7 @@ export default {
 				this.rules[name].msg = this.rules[name].name+'不能为空';
 				return false;
 			}else if(name=='mobile' && !this.$isMobile(val)){
-				this.rules[name].msg = this.rules[name].name+'只能为11位的数字';
+				this.rules[name].msg = this.rules[name].name+'格式有误';
 				return false;
 			}else if(name=='captcha' && !this.$isMobileCode(val)){
 				this.rules[name].msg = this.rules[name].name+'只能为4位的数字';

@@ -43,12 +43,12 @@ export default {
 	},
 	methods:{
 		validate(name){
-			let val = this.formData[name],p1=/^1([0-9]{10})$/;
+			let val = this.formData[name];
 			if(val==''){
 				this.rules[name].msg = this.rules[name].name+'不能为空';
 				return false;
-			}else if(name=='account' && !p1.test(val)){
-				this.rules[name].msg = this.rules[name].name+'只能为11位的数字';
+			}else if(name=='account' && !this.$isMobile(val)){
+				this.rules[name].msg = this.rules[name].name+'格式有误';
 				return false;
 			}else if(name=='confirmPwd' && (this.formData['pwd']!=this.formData['confirmPwd'])){
 				this.rules[name].msg = '两次密码不一致';
