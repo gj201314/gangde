@@ -4,7 +4,7 @@
 		<d-header :title="'搜索:'+$route.params.search"></d-header>
 		<div class="wrap clearfix main">
 			<div class="item-list pull-left">
-				<div class="item-box clearfix" v-for="item in items" @click="toDetails(item.id)">
+				<a class="item-box clearfix" :href="item.fullurl" target="_blank" v-for="item in items">
 					<div class="item-content pull-left">
 						<h5>{{item.title}}</h5>
 						<p>{{item.description}}</p>
@@ -13,7 +13,7 @@
 					<div class="item-img pull-right">
 						<img :src="item.image" alt="">
 					</div>
-				</div>
+				</a>
 				<div class="pagination-box">
 					<div class="pagination" v-if="pageCount>1">
 						<div class="prev" @click="pagePrev"><</div>
@@ -35,8 +35,8 @@
 				</div>
 				<h5 class="article-title">相关文章</h5>
 				<ul class="article-list">
-					<li v-for="(value, key) in article">
-						<router-link :to="'/details/'+key">{{value}}</router-link>
+					<li v-for="item in article">
+						<a :href="item.fullurl" target="_blank">{{item.title}}</a>
 					</li>
 				</ul>
 			</div>
@@ -51,7 +51,7 @@ export default {
 			pageCount:1,
 			currentPage:1,
 			items:[],
-			article:{},
+			article:[],
 			limit:10
 		}
 	},
@@ -165,6 +165,7 @@ export default {
 			position: relative;
 			padding: 27px 10px 27px 0;
 			border-bottom:1px #f0f0f0 solid;
+			display: block;
 			.item-content {
 				padding-right:180px;
 				h5 {

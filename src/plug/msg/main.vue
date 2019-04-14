@@ -47,6 +47,7 @@ export default {
 	position: fixed;
 	padding: 10px;
 	color:#fff;
+	font-size: 14px;
 	top:20px;
 	left:50%;
 	border-radius: 4px;

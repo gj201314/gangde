@@ -402,6 +402,10 @@ export default {
 		.content {
 			margin-bottom: 15px;
 			min-height:600px;
+			img {
+				max-width:100%;
+				display: block
+			}
 		}
 		.clickMore {
 			height:50px;
@@ -430,7 +434,7 @@ export default {
 		}
 	}
 }
-@media screen and (max-width:980px){
+@media screen and (max-width:1200px){
 	#details {
 		section,.articleQr {
 			float:none;
