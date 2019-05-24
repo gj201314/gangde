@@ -426,7 +426,7 @@ export default {
 				h4 {
 					height:80px;
 					line-height:80px;
-					background:#e3c653;
+					background:@dColor;
 					color:#fff;
 				}
 				.fn-list {

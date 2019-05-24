@@ -265,8 +265,17 @@ h3.content-title {
 		border: 1px #e1e1e1 solid;
 		text-align: center;
 		border-radius:0 25px 0 25px;
+		transition: border-color 0.3s;
+		-moz-transition: border-color 0.3s;
+		-webkit-transition: border-color 0.3s;
+		-ms-transition: border-color 0.3s;
+		cursor: pointer;
 		.item-icon {
 			padding-top:36px;
+			img {
+				width:100px;
+				max-height:100px;
+			}
 		}
 		h5 {
 			padding-top:20px;
@@ -278,20 +287,37 @@ h3.content-title {
 			background: #fff;
 			width:100%;
 			height:100%;
+			transition: transform 0.3s;
+			-moz-transition: transform 0.3s;
+			-webkit-transition: transform 0.3s;
+			-ms-transition: transform 0.3s;
 		}
 		.icon-bar {
 			display: block;
 			margin:12px auto 0;
 			width:40px;
 			height:3px;
-			background: #e3c653;
+			background: @dColor;
 			border-radius:3px;
+			transition: width 0.3s;
+			-moz-transition: width 0.3s;
+			-webkit-transition: width 0.3s;
+			-ms-transition: width 0.3s;
 		}
 		&:nth-child(2n) {
 			margin-left:75px;
 			margin-right:75px;
+		}
+		&:hover {
 			border-radius:0;
-			border-color:#e3c653;
+			overflow: hidden;
+			border-color:@dColor;
+			.item-section {
+				transform: scale(1.05);
+				-webkit-transform: scale(1.05);
+				-moz-transform: scale(1.05);
+				-ms-transform: scale(1.05);
+			}
 			.icon-bar{
 				width:80px;
 			}
@@ -400,6 +426,7 @@ h3.content-title {
 				width:100%;
 				text-align: initial;
 				height:auto;
+				overflow: initial;
 				&:last-child {
 					margin:0;
 				}
@@ -407,6 +434,12 @@ h3.content-title {
 					.flexbox;
 					.justifyContent;
 					padding:33px 0;
+					&:hover {
+						transform:initial;
+						-webkit-transform:initial;
+						-moz-transform:initial;
+						-ms-transform:initial;
+					}
 					.m-item-l {
 						width:32%;
 						margin-right:3%;
@@ -415,11 +448,13 @@ h3.content-title {
 							font-size:18px;
 						}
 						.item-icon {
-							width:62%;
+							width:100px;
+							height:100px;
 							margin:0 auto;
 							padding-top:0;
 							img {
 								width:100%;
+								max-height:100%;
 								height:auto;
 								display: block;
 							}

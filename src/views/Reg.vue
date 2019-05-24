@@ -237,7 +237,7 @@ export default {
 						// this.flag = true;
 						this.$msg({'msg':'注册成功'});
 						setTimeout(()=>{
-							location.href = '/index/user/dashboard.html';
+							location.href = '/index/user/dashboard.html?type=1';
 						},1000);
 					};
 				}).catch((error)=>{

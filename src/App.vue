@@ -67,7 +67,7 @@ button {
 }
 #app {
   font-size:14px;
-	font-family: '微软雅黑';
+	font-family:微软雅黑;
 }
 /* 头部样式 */
 #header {
@@ -78,7 +78,7 @@ button {
 		padding:10px 0;
 	}
 	.search {
-		border:1px #e3c653 solid;
+		border:1px @dColor solid;
 		overflow: hidden;
 		.borderRadius(35px);
 		height: 35px;
@@ -124,7 +124,7 @@ button {
 			padding:0 10px;
 			margin-left:45px;
 			&.router-link-exact-active {
-				color:#e3c653;
+				color:@dColor;
 				position: relative;
 			}
 			&.router-link-exact-active:after {
@@ -135,7 +135,7 @@ button {
 				bottom:0;
 				height: 3px;
 				.borderRadius(3px);
-				background: #e3c653;
+				background: @dColor;
 			}
 		}
 	}
@@ -151,12 +151,12 @@ button {
 			font-size: 14px;
 			display:inline-block;
 			&.btn-reg {
-				border: 1px #e3c653 solid;
-				color:#e3c653;
+				border: 1px @dColor solid;
+				color:@dColor;
 				margin-right: 14px;
 			}
 			&.btn-login {
-				background:#d8bb48;
+				background:@dColor;
 				color:#fff;
 			}
 		}
@@ -168,9 +168,15 @@ button {
 				width:auto;
 				font-style: normal;
 				padding:0 5px;
-				color:#e3c653;
+				color:@dColor;
 			}
 		}
+	}
+	.logo-img {
+		display: none;
+	}
+	.logo-img2 {
+		display: block;
 	}
 }
 .m-homeHeader {
@@ -334,7 +340,7 @@ button {
 			}
 			&.router-link-exact-active {
 				.item-text {
-					color:#e3c653;
+					color:@dColor;
 				}
 				&.item-home {
 					.item-icon {
@@ -477,7 +483,7 @@ button {
 		.btn-box {
 			padding-top: 5px;
 			button {
-				background: #d8bb48;
+				background: @dColor;
 				color:#fff;
 				height: 40px;
 				line-height: 40px;
@@ -515,7 +521,7 @@ button {
 		line-height: 40px;
 	}
 	.btn {
-		background: #d8bb48;
+		background: @dColor;
 		color:#fff;
 		margin-top: 70px;
 		height: 40px;
@@ -597,10 +603,10 @@ button {
 	.btn-submit {
 		width:100%;
 		height:45px;
-		border:1px #d8bb48 solid;
+		border:1px @dColor solid;
 		font-size: 16px;
 		.borderRadius(4px);
-		background:#d8bb48;
+		background:@dColor;
 		color:#fff;
 	}
 	.exists {
@@ -676,7 +682,7 @@ button {
 			left:0;
 			width:6px;
 			border-radius:3px;
-			background:#d8bb48;
+			background:@dColor;
 			height: 14px;
 		}
 	}

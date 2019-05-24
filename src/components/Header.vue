@@ -3,7 +3,8 @@
 		<div class="wrap clearfix p-header">
 			<div class="pull-left clearfix">
 				<div class="logo">
-					<img src="../../static/logo.png" alt="" />
+					<img src="../../static/logo.png" class="logo-img" alt="" />
+					<img src="../../static/logo2.png" class="logo-img2" alt="" />
 				</div>
 			</div>
 			<nav class="pull-left nar-bar clearfix">
@@ -129,7 +130,7 @@ export default {
 		a {
 			color:#c4c5c8;
 			&.router-link-exact-active {
-				color:#e3c653;
+				color:@dColor;
 			}
 		}
 	}
@@ -138,6 +139,12 @@ export default {
 			background: transparent;
 			color:#bca64f;
 		}
+	}
+	.logo-img {
+		display: block;
+	}
+	.logo-img2 {
+		display: none;
 	}
 }
 @media screen and (max-width:1200px) {

@@ -413,9 +413,9 @@ export default {
 			line-height:50px;
 			border-radius:50px;
 			text-align: center;
-			border:1px #e3c653 solid;
+			border:1px @dColor solid;
 			font-size: 16px;
-		    color: #e3c653;
+		    color: @dColor;
 			background: #fff;
 			display: block;
 			margin-bottom: 40px;

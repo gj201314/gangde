@@ -85,7 +85,7 @@ export default {
 						this.$store.commit('swicthNickName',res.data.userinfo.username);
 						this.$emit('handleEvent','close');
 						setTimeout(()=>{
-							location.href = '/index/user/dashboard.html';
+							location.href = '/index/user/dashboard.html?type=1';
 						},1000);
 					};
 				}).catch((error)=>{
