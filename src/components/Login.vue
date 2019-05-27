@@ -1,7 +1,7 @@
 <template>
   <div id="login-box">
 		<div class="login-img">
-			<img src="../../static/logo.png" alt="">
+			<img src="../../static/logo2.png" alt="">
 		</div>
 		<div class="form mobile-form">
 			<div class="form-item">

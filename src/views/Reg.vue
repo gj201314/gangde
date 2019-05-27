@@ -5,6 +5,7 @@
 			<div class="main clearfix">
 				<template v-if="!flag">
 					<section class="pull-left">
+						<div class="tip">提示：仅支持中国大陆手机号码</div>
 						<div class="p-form">
 							<div class="form">
 								<div class="form-item">
@@ -250,6 +251,16 @@ export default {
 </script>
 <style lang="less" scoped>
 #reg {
+	.tip {
+		height:30px;
+		line-height:30px;
+		margin-right: 20px;
+		text-indent:20px;
+		border-radius:3px;
+		font-size:12px;
+		color:#fff;
+		background:@dColor;
+	}
 	article {
 		.qrImg-box {
 			position: relative;
@@ -269,6 +280,11 @@ export default {
 				background-size:22px 130px;
 			}
 		}
+	}
+}
+@media screen and (max-width: 1200px){
+	.tip {
+		margin-right:0 !important;
 	}
 }
 </style>
