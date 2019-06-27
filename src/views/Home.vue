@@ -25,13 +25,14 @@
 		</div>
 		<div class="wrap">
 			<div class="advantage">
-				<h3 class="content-title"><img src="../assets/youshi.png" alt="产品优势" title="产品优势"></h3>
+				<div class="content-title"><img src="../assets/youshi.png" alt="产品优势" title="产品优势"></div>
 				<div class="item-list clearfix">
 					<div class="item">
 						<div class="item-section">
 							<div class="m-item-l">
 								<div class="item-icon">
-									<img src="../assets/icon-yliu.png" alt="">
+									<img src="../assets/icon-yliu-p.png" class="p-img" alt="">
+									<img src="../assets/icon-yliu-m.png" class="m-img" alt="">
 								</div>
 								<h5>独创新抓粉模式</h5>
 								<span class="icon-bar"></span>
@@ -46,7 +47,8 @@
 						<div class="item-section">
 							<div class="m-item-l">
 								<div class="item-icon">
-									<img src="../assets/icon-push.png" alt="">
+									<img src="../assets/icon-push-p.png" class="p-img" alt="">
+									<img src="../assets/icon-push-m.png" class="m-img" alt="">
 								</div>
 								<h5>优质内容获取新手法</h5>
 								<span class="icon-bar"></span>
@@ -61,7 +63,8 @@
 						<div class="item-section">
 							<div class="m-item-l">
 								<div class="item-icon">
-									<img src="../assets/icon-hbao.png" alt="">
+									<img src="../assets/icon-hbao-p.png" class="p-img" alt="">
+									<img src="../assets/icon-hbao-m.png" class="m-img" alt="">
 								</div>
 								<h5>内容海报一键生成</h5>
 								<span class="icon-bar"></span>
@@ -81,9 +84,7 @@
 		</div>
 		<div class="wrap">
 			<div class="ganders">
-				<h3 class="content-title">
-					<img src="../assets/hezuo.png" alt="合作伙伴" title="合作伙伴">
-				</h3>
+				<div class="content-title"><img src="../assets/hezuo.png" alt="合作伙伴" title="合作伙伴"></div>
 				<div class="item-list clearfix">
 					<div class="f-item item">
 						<img src="../../static/logo-ym.png" alt="友盟">
@@ -267,7 +268,7 @@ export default {
 		.p-swiper {
 			.item {
 				height:590px;
-				padding-top:290px;
+				padding-top:260px;
 				background-image: url(../../static/banner-img1.jpg);
 				background-size:cover;
 				-webkit-background-size:cover;
@@ -282,11 +283,11 @@ export default {
 					line-height:70px;
 					text-align:center;
 					margin:0 auto;
-					color:#fff;
+					color:#e1e3e5;
 				}
 				.item-subTitle {
 					width:70%;
-					color:#fff;
+					color:#cacbcd;
 					font-size:22px;
 					line-height:40px;
 					text-align:center;
@@ -319,11 +320,11 @@ export default {
 		.borderRadius(50px)
 	}
 }
-h3.content-title {
+.content-title {
 	text-align: center;
 	padding-top: 66px;
 	img{
-		height: 62px;
+		height: 49px;
 		display:inline-block;
 		width:auto;
 		vertical-align: middle;
@@ -418,15 +419,15 @@ h3.content-title {
 	img {
 		width:100%;
 	}
-	.p-img {
-		display: block;
-	}
-	.m-img {
-		display: none;
-	}
+}
+.p-img {
+	display: inline-block;
+}
+.m-img {
+	display: none;
 }
 .ganders {
-	margin-bottom: 70px;
+	padding-bottom: 70px;
 	.item-list {
 		padding-top:30px;
 		.f-item {
@@ -482,10 +483,10 @@ h3.content-title {
 			}
 		}
 	}
-	h3.content-title {
+	.content-title {
 		padding-top: 20px;
 		img {
-			width:47%;
+			width:24%;
 			height: auto;
 		}
 	}
@@ -510,7 +511,7 @@ h3.content-title {
 				.item-section {
 					.flexbox;
 					.justifyContent;
-					padding:33px 0;
+					padding:2rem 0;
 					&:hover {
 						transform:initial;
 						-webkit-transform:initial;
@@ -518,22 +519,30 @@ h3.content-title {
 						-ms-transform:initial;
 					}
 					.m-item-l {
-						width:32%;
+						width:31%;
 						margin-right:3%;
 						text-align: center;
 						h5 {
-							font-size:18px;
+							font-size:3.6rem;
+						}
+						.icon-bar {
+							display:none;
 						}
 						.item-icon {
-							width:100px;
-							height:100px;
+							width:100%;
 							margin:0 auto;
 							padding-top:0;
 							img {
-								width:100%;
+								width:58%;
 								max-height:100%;
 								height:auto;
 								display: block;
+							}
+							.p-img {
+								display: none;
+							}
+							.m-img {
+								display: inline-block;
 							}
 						}
 						span {
@@ -541,20 +550,20 @@ h3.content-title {
 						}
 					}
 					.m-item-r {
-						width:56%;
+						width:55%;
 						b {
 							display: block;
-							font-size:16px;
+							font-size:5rem;
 							color:#333;
 							font-weight: normal;
+							display:none;
 						}
 						p {
 							margin:0;
-							padding-top:10px;
 							width:100%;
-							font-size:14px;
+							font-size:2.7rem;
 							color:#666;
-							line-height:24px;
+							line-height:2;
 						}
 					}
 				}

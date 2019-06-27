@@ -1,3 +1,15 @@
+(function(){
+	function count_FONTSIZA(){
+		var w = document.body.clientWidth/100;
+		document.documentElement.style.fontSize = w+'px';
+
+	};
+	count_FONTSIZA();
+	window.onresize = function(){
+		count_FONTSIZA();
+	}
+})();
+
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
