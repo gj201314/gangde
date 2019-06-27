@@ -3,14 +3,20 @@
 		<div id="home-top">
 			<t-header class="home-header"></t-header>
 			<div class="banner-box">
-				<swiper :options="banOption">
-					<swiper-slide v-for="imgSrc in banImg" class="item">
-						<img :src="'../../static/'+imgSrc+'.png'" alt="" class="p-img">
-						<img :src="'../../static/m-'+imgSrc+'.png'" alt="" class="m-img">
+				<swiper :options="banOption" class="p-img p-swiper">
+					<swiper-slide v-for="text in banText" class="item">
+						<a href="#" target="_blank"><div class="item-title">{{text.title}}</div></a>
+						<a href="#" target="_blank"><div class="item-subTitle">{{text.subTitle}}</div></a>
 					</swiper-slide>
 					<div class="swiper-button-prev ban-button-prev" slot="button-prev"></div>
 					<div class="swiper-button-next ban-button-next" slot="button-next"></div>
 					<div class="swiper-pagination ban-pagination" slot="pagination"></div>
+				</swiper>
+				<swiper :options="banOption2" class="m-img">
+					<swiper-slide v-for="imgSrc in banImg2" class="item">
+						<img :src="'../../static/m-'+imgSrc" alt="">
+					</swiper-slide>
+					<!-- <div class="swiper-pagination ban-pagination2" slot="pagination"></div> -->
 				</swiper>
 				<div class="m-regBtn">
 					<router-link to="/reg">免费注册</router-link>
@@ -27,12 +33,12 @@
 								<div class="item-icon">
 									<img src="../assets/icon-yliu.png" alt="">
 								</div>
-								<h5>独创引流模式</h5>
+								<h5>独创新抓粉模式</h5>
 								<span class="icon-bar"></span>
 							</div>
 							<div class="m-item-r">
 								<b>在纲得平台发布内容时</b>
-								<p>将你的优质内容发布到纲得平台后，用户通过百度等搜索引擎，可以阅读部内容，剩余内容需关注公众号才能获得而实现从搜索引擎到微信公众号的引流。</p>
+								<p>PC流量不浪费，纲得平台独创 PC SEM搜索引擎为公众号抓粉新方式；借助高质量内容和搜索引擎优化，让PC流量导流至 微信公众号。</p>
 							</div>
 						</div>
 					</div>
@@ -42,12 +48,12 @@
 								<div class="item-icon">
 									<img src="../assets/icon-push.png" alt="">
 								</div>
-								<h5>灵活发布内容</h5>
+								<h5>优质内容获取新手法</h5>
 								<span class="icon-bar"></span>
 							</div>
 							<div class="m-item-r">
 								<b>在纲得平台发布内容时</b>
-								<p>在纲得平台发布内容时， 可以通选择内容类型，实现引流到微信公号，还是获取客户的姓名、手机号等信息。</p>
+								<p>借助白皮书引言导读，快速生成 留资注册页，通过优质内容下载，快速获客！</p>
 							</div>
 						</div>
 					</div>
@@ -57,7 +63,7 @@
 								<div class="item-icon">
 									<img src="../assets/icon-hbao.png" alt="">
 								</div>
-								<h5>一键生成海报</h5>
+								<h5>内容海报一键生成</h5>
 								<span class="icon-bar"></span>
 							</div>
 							<div class="m-item-r">
@@ -123,7 +129,21 @@ export default {
 	data(){
 		return {
 			flag:false,
-			banImg:['banner-img1'],
+			banText:[
+				{
+					'title':'一站式内容获客平台，帮你找到读者',
+					'subTitle':'一键生成内容海报，朋友圈抓粉来得轻松！',
+				},
+				{
+					'title':'公众号小编常用的工具平台',
+					'subTitle':'谁说公众号阅读数据无法获取，纲得来帮你！',
+				},
+				{
+					'title':'5.24 通汉教你，如何内容获客',
+					'subTitle':'纲得CEO通汉分享：社交内容获客三步走，你一定要知道！',
+				}
+			],
+			banImg2:['banner-img1.png'],
 			banOption:{
 				loop:true,
 				pagination: {
@@ -133,6 +153,13 @@ export default {
 				navigation:{
 					nextEl: '.ban-button-next',
 					prevEl: '.ban-button-prev'
+				}
+			},
+			banOption2:{
+				loop:true,
+				pagination: {
+					el: '.ban-pagination2',
+					clickable: true
 				}
 			}
 		}
@@ -152,6 +179,26 @@ export default {
 	}
 }
 </script>
+<style lang="less">
+	.p-swiper {
+		.ban-pagination {
+			.swiper-pagination-bullet {
+				width:3px;
+				height:3px;
+				.borderRadius(3px);
+				background: #e5e5e4;
+				opacity:1;
+				transition: all 0.3s;
+				-webkit-transition: all 0.3s;
+				-moz-transition: all 0.3s;
+				-ms-transition: all 0.3s;
+			}
+			.swiper-pagination-bullet-active {
+				width:68px;
+			}
+		}
+	}
+</style>
 <style lang="less" scoped>
 #home {
 	background: #f5f5f5;
@@ -215,6 +262,36 @@ export default {
 				display: block;
 				text-align: center;
 				.borderRadius(50px)
+			}
+		}
+		.p-swiper {
+			.item {
+				height:590px;
+				padding-top:290px;
+				background-image: url(../../static/banner-img1.jpg);
+				background-size:cover;
+				-webkit-background-size:cover;
+				-moz-background-size:cover;
+				background-repeat: no-repeat;
+				background-position: center center;
+				position: relative;
+				color:#fff;
+				.item-title {
+					width:70%;
+					font-size:55px;
+					line-height:70px;
+					text-align:center;
+					margin:0 auto;
+					color:#fff;
+				}
+				.item-subTitle {
+					width:70%;
+					color:#fff;
+					font-size:22px;
+					line-height:40px;
+					text-align:center;
+					margin:0 auto;
+				}
 			}
 		}
 		.p-img {

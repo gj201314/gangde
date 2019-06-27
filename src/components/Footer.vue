@@ -12,7 +12,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="m-footer clearfix">
+		<!-- <div class="m-footer clearfix">
 			<router-link to="/" class="item item-home">
 				<span class="item-icon"></span>
 				<span class="item-text">首页</span>
@@ -25,7 +25,7 @@
 				<span class="item-icon"></span>
 				<span class="item-text">关于我们</span>
 			</router-link>
-		</div>
+		</div> -->
   </div>
 </template>
 

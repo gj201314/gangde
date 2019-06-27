@@ -7,6 +7,7 @@ import Reg from '@/views/Reg'
 import ForgotPwd from '@/views/ForgotPwd'
 import Details from '@/views/Details'
 import Price from '@/views/Price'
+import About from '@/views/About'
 
 Vue.use(Router)
 /**
@@ -73,6 +74,14 @@ export default new Router({
 		component:Price,
 		meta:{
 			title:'价格'
+		}
+	},
+	{
+		path: '/about',
+		name: 'about',
+		component:About,
+		meta:{
+			title:'关于我们'
 		}
 	}
   ],

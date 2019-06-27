@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :data-route="routeName">
 		<loading v-if="flag"></loading>
 		<router-view/>
 		<b-footer></b-footer>
@@ -8,7 +8,20 @@
 
 <script>
 export default {
-  name: 'App',
+    name: 'App',
+	data(){
+		return {
+			routeName:null
+		}
+	},
+	watch:{
+		$route(to,from){
+			this.routeName = to.name;
+		}
+	},
+	mounted(){
+		this.routeName = this.$route.name;
+	},
 	computed:{
 		flag(){
 			return this.$store.state.pageLoading;
@@ -771,7 +784,7 @@ button {
 		}
 	}
 	#footer {
-		height:60px;
+		height:0px;
 		background:transparent;
 	}
 }
