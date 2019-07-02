@@ -357,7 +357,7 @@ export default {
 		}
 		h5 {
 			padding-top:20px;
-			font-weight: 500;
+			font-weight:normal;
 			font-size:20px;
 			color:#333;
 		}
@@ -511,7 +511,8 @@ export default {
 				.item-section {
 					.flexbox;
 					.justifyContent;
-					padding:2rem 0;
+					.alignItems;
+					padding:6.5rem 0;
 					&:hover {
 						transform:initial;
 						-webkit-transform:initial;
@@ -561,9 +562,9 @@ export default {
 						p {
 							margin:0;
 							width:100%;
-							font-size:2.7rem;
+							font-size:3rem;
 							color:#666;
-							line-height:2;
+							line-height:2.2;
 						}
 					}
 				}
