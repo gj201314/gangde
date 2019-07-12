@@ -4,7 +4,7 @@
 			<t-header class="home-header"></t-header>
 			<div class="banner-box">
 				<swiper :options="banOption" class="p-img p-swiper">
-					<swiper-slide v-for="text in banText" class="item">
+					<swiper-slide v-for="(text,index) in banText" class="item" :key="index">
 						<a href="#" target="_blank"><div class="item-title">{{text.title}}</div></a>
 						<a href="#" target="_blank"><div class="item-subTitle">{{text.subTitle}}</div></a>
 					</swiper-slide>
@@ -13,7 +13,7 @@
 					<div class="swiper-pagination ban-pagination" slot="pagination"></div>
 				</swiper>
 				<swiper :options="banOption2" class="m-img">
-					<swiper-slide v-for="imgSrc in banImg2" class="item">
+					<swiper-slide v-for="(imgSrc,index) in banImg2" class="item" :key="index">
 						<img :src="'../../static/m-'+imgSrc" alt="">
 					</swiper-slide>
 					<!-- <div class="swiper-pagination ban-pagination2" slot="pagination"></div> -->
