@@ -512,7 +512,7 @@ export default {
 					.flexbox;
 					.justifyContent;
 					.alignItems;
-					padding:6.5rem 0;
+					padding:4.5rem 0;
 					&:hover {
 						transform:initial;
 						-webkit-transform:initial;
