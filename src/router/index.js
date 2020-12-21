@@ -1,13 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/views/Home'
-import Search from '@/views/Search'
-import Login from '@/views/Login'
-import Reg from '@/views/Reg'
-import ForgotPwd from '@/views/ForgotPwd'
-import Details from '@/views/Details'
-import Price from '@/views/Price'
-import About from '@/views/About'
+const Home = ()=> import('@/views/Home');
+const Search =()=>  import('@/views/Search')
+const Login =()=>  import('@/views/Login')
+const Reg = ()=> import('@/views/Reg')
+const ForgotPwd = ()=> import('@/views/ForgotPwd')
+const Details = ()=> import('@/views/Details')
+const Price = ()=> import('@/views/Price')
+const About = ()=> import('@/views/About')
 
 Vue.use(Router)
 /**
